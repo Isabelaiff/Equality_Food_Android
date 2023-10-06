@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".criarConta">
+    tools:context=".AtualizarPerfil">
 
     <Button
         android:id="@+id/cadastrar_button"
@@ -43,25 +43,12 @@
         app:srcCompat="@drawable/logo" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
-        android:layout_width="297dp"
-        android:layout_height="56dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Número de telefone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.616" />
-
-    <EditText
         android:id="@+id/editTextTextPersonName"
         android:layout_width="297dp"
         android:layout_height="56dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Nome Completo"
+        android:text="Atualizar Nome"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -69,56 +56,30 @@
         app:layout_constraintVertical_bias="0.358" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName3"
-        android:layout_width="297dp"
-        android:layout_height="56dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Data de Nascimento"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.445" />
-
-    <EditText
         android:id="@+id/editTextTextPersonName6"
         android:layout_width="297dp"
         android:layout_height="56dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="E-mail"
+        android:text="Atualizar E-mail"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.693" />
+        app:layout_constraintVertical_bias="0.518" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName5"
+        android:id="@+id/editTextTextPersonName2"
         android:layout_width="297dp"
         android:layout_height="56dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Senha"
+        android:text="Atualizar Número "
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.853" />
-
-    <EditText
-        android:id="@+id/editTextTextPersonName4"
-        android:layout_width="297dp"
-        android:layout_height="56dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="CPF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.524" />
+        app:layout_constraintVertical_bias="0.441" />
 
     <EditText
         android:id="@+id/editTextTextPersonName7"
@@ -126,12 +87,12 @@
         android:layout_height="56dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Endereço"
+        android:text="Atualizar Endereço"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.77" />
+        app:layout_constraintVertical_bias="0.595" />
 
     <ImageView
         android:id="@+id/imageView19"

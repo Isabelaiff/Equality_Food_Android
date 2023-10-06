@@ -12,6 +12,12 @@
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
         tools:targetApi="31">
         <activity
+            android:name=".LocalizacaoEntrega"
+            android:exported="false" />
+        <activity
+            android:name=".AtualizarPerfil"
+            android:exported="false" />
+        <activity
             android:name=".AdapterListaProdutos"
             android:exported="false" />
         <activity

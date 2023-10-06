@@ -82,16 +82,15 @@
 
     <ImageButton
         android:id="@+id/imageButton8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="76dp"
         android:background="#FFFFFF"
+        android:contentDescription="bota a descrição aqui"
         app:layout_constraintEnd_toStartOf="@+id/textView4"
-        app:layout_constraintHorizontal_bias="0.313"
+        app:layout_constraintHorizontal_bias="0.281"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/setinha"
-        android:contentDescription="bota a descrição aqui"
-        />
+        app:srcCompat="@drawable/setinha" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

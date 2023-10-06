@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EsqueceuSenha">
+    tools:context=".LocalizacaoEntrega">
 
     <TextView
         android:id="@+id/textView"
@@ -143,7 +143,7 @@
         android:layout_width="213dp"
         android:layout_height="20dp"
         android:layout_marginBottom="504dp"
-        android:text="Digite o código de segurança"
+        android:text="Antigo Endereço de Entre"
         android:textColor="#757575"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
