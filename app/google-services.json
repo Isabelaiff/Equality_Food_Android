@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "953824687911",
+    "firebase_url": "https://dbequalityfood-default-rtdb.firebaseio.com",
+    "project_id": "dbequalityfood",
+    "storage_bucket": "dbequalityfood.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:953824687911:android:a04cc83984e9a343701b02",
+        "android_client_info": {
+          "package_name": "com.example.equalityfood"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcqqHMvkFAJ-5y1cSi99MczfPV7XhO9TU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

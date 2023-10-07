@@ -60,12 +60,11 @@
         app:srcCompat="@drawable/logo" />
 
     <EditText
-        android:id="@+id/editTextText2"
+        android:id="@+id/campoSenha"
         android:layout_width="326dp"
         android:layout_height="48dp"
         android:ems="10"
-        android:inputType="text"
-        android:text="******"
+        android:inputType="textPassword"
         android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -111,7 +110,7 @@
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Usúario"
+        android:text="Usuário"
         android:textColor="#1E1E1E"
         android:textSize="15sp"
         android:textStyle="bold"
@@ -138,11 +137,10 @@
         app:layout_constraintVertical_bias="0.714" />
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/campoUsuario"
         android:layout_width="326dp"
         android:layout_height="48dp"
         android:inputType="text"
-        android:text="sm1lle"
         android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
