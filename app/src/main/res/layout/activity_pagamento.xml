@@ -176,7 +176,7 @@
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/campoUsuario"
+            android:id="@+id/campoEmail"
             android:layout_width="248dp"
             android:layout_height="match_parent"
             android:backgroundTint="#FDF9FC"

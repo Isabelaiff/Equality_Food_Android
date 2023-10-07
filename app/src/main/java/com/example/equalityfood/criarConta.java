@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -75,6 +76,46 @@ public class criarConta extends AppCompatActivity {
 //        });
     }
 
+//    private void salvarUsuario() {
+//        String nomeTexto = nome.getText().toString();
+//        String dataNascTexto = dataNasc.getText().toString();
+//        String cpfTexto = CPF.getText().toString();
+//        String numTelefoneTexto = numTelefone.getText().toString();
+//        String emailTexto = email.getText().toString();
+//        String cepTexto = CEP.getText().toString();
+//        String numEnderecoTexto = numEndereco.getText().toString();
+//        String complementoTexto = complemento.getText().toString();
+//        String senhaTexto = senha.getText().toString();
+//
+//        // Verifique se os campos obrigatórios estão preenchidos
+//        if (nomeTexto.isEmpty() || cpfTexto.isEmpty() || numTelefoneTexto.isEmpty() || emailTexto.isEmpty() || cepTexto.isEmpty() || numEnderecoTexto.isEmpty() || senhaTexto.isEmpty()) {
+//            Toast.makeText(getApplicationContext(), "Por favor, preencha todos os campos obrigatórios.", Toast.LENGTH_SHORT).show();
+//        } else {
+//            DatabaseReference usuariosRef = EqualityFoodRef.child("Usuario").push();
+//
+//            HashMap<String, String> enderecoMap = new HashMap<>();
+//            enderecoMap.put("CEP", cepTexto);
+//            enderecoMap.put("numEndereco", numEnderecoTexto);
+//
+//            if (!complementoTexto.isEmpty()) {
+//                enderecoMap.put("complemento", complementoTexto);
+//            }
+//
+//            usuariosRef.child("endereco").setValue(enderecoMap);
+//            usuariosRef.child("nome").setValue(nomeTexto);
+//            usuariosRef.child("dataNasc").setValue(dataNascTexto);
+//            usuariosRef.child("CPF").setValue(cpfTexto);
+//            usuariosRef.child("numTelefone").setValue(numTelefoneTexto);
+//            usuariosRef.child("email").setValue(emailTexto);
+//            usuariosRef.child("senha").setValue(senhaTexto);
+//
+//            Toast.makeText(getApplicationContext(), "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show();
+//
+//            Intent intent = new Intent(criarConta.this, bemVindo.class);
+//            startActivity(intent);
+//        }
+//    }
+
     private void salvarUsuario() {
         String nomeTexto = nome.getText().toString();
         String dataNascTexto = dataNasc.getText().toString();
@@ -86,34 +127,45 @@ public class criarConta extends AppCompatActivity {
         String complementoTexto = complemento.getText().toString();
         String senhaTexto = senha.getText().toString();
 
-        // Verifique se os campos obrigatórios estão preenchidos
-        if (nomeTexto.isEmpty() || cpfTexto.isEmpty() || numTelefoneTexto.isEmpty() || emailTexto.isEmpty() || cepTexto.isEmpty() || numEnderecoTexto.isEmpty() || senhaTexto.isEmpty()) {
+        // Verifique se todos os campos estão preenchidos
+        if (nomeTexto.isEmpty() || dataNascTexto.isEmpty() || cpfTexto.isEmpty() || numTelefoneTexto.isEmpty() ||
+                emailTexto.isEmpty() || cepTexto.isEmpty() || numEnderecoTexto.isEmpty() || senhaTexto.isEmpty()) {
             Toast.makeText(getApplicationContext(), "Por favor, preencha todos os campos obrigatórios.", Toast.LENGTH_SHORT).show();
         } else {
-            DatabaseReference usuariosRef = EqualityFoodRef.child("Usuario").push();
+            // Crie o usuário com email e senha
+            FirebaseAuth.getInstance().createUserWithEmailAndPassword(emailTexto, senhaTexto)
+                    .addOnCompleteListener(this, task -> {
+                        if (task.isSuccessful()) {
+                            // Autenticação bem-sucedida, agora salve os outros dados no banco de dados
+                            DatabaseReference usuariosRef = EqualityFoodRef.child("Usuario").push();
 
-            HashMap<String, String> enderecoMap = new HashMap<>();
-            enderecoMap.put("CEP", cepTexto);
-            enderecoMap.put("numEndereco", numEnderecoTexto);
+                            HashMap<String, String> enderecoMap = new HashMap<>();
+                            enderecoMap.put("CEP", cepTexto);
+                            enderecoMap.put("numEndereco", numEnderecoTexto);
 
-            if (!complementoTexto.isEmpty()) {
-                enderecoMap.put("complemento", complementoTexto);
-            }
+                            if (!complementoTexto.isEmpty()) {
+                                enderecoMap.put("complemento", complementoTexto);
+                            }
 
-            usuariosRef.child("endereco").setValue(enderecoMap);
-            usuariosRef.child("nome").setValue(nomeTexto);
-            usuariosRef.child("dataNasc").setValue(dataNascTexto);
-            usuariosRef.child("CPF").setValue(cpfTexto);
-            usuariosRef.child("numTelefone").setValue(numTelefoneTexto);
-            usuariosRef.child("email").setValue(emailTexto);
-            usuariosRef.child("senha").setValue(senhaTexto);
+                            usuariosRef.child("endereco").setValue(enderecoMap);
+                            usuariosRef.child("nome").setValue(nomeTexto);
+                            usuariosRef.child("dataNasc").setValue(dataNascTexto);
+                            usuariosRef.child("CPF").setValue(cpfTexto);
+                            usuariosRef.child("numTelefone").setValue(numTelefoneTexto);
+                            usuariosRef.child("email").setValue(emailTexto);
 
-            Toast.makeText(getApplicationContext(), "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show();
 
-            Intent intent = new Intent(criarConta.this, bemVindo.class);
-            startActivity(intent);
+                            Intent intent = new Intent(criarConta.this, bemVindo.class);
+                            startActivity(intent);
+                        } else {
+                            // Se a autenticação falhar, exiba uma mensagem de erro
+                            Toast.makeText(getApplicationContext(), "Falha ao criar usuário.", Toast.LENGTH_SHORT).show();
+                        }
+                    });
         }
     }
+
 
 
 

@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +17,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.Status;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class Login extends AppCompatActivity {
 
@@ -27,14 +30,31 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.login);
 
         Button entrarButton = findViewById(R.id.button3);
+        TextView campoEmail = findViewById(R.id.campoEmail);
+        EditText campoSenha = findViewById(R.id.campoSenha);
 
         entrarButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Login.this, bemVindo.class);
-                startActivity(intent);
+                String emailTexto = campoEmail.getText().toString();
+                String senhaTexto = campoSenha.getText().toString();
+
+                FirebaseAuth.getInstance().signInWithEmailAndPassword(emailTexto, senhaTexto)
+                        .addOnCompleteListener(Login.this, task -> {
+                            if (task.isSuccessful()) {
+                                // Login bem-sucedido
+                                Toast.makeText(getApplicationContext(), "Login realizado com sucesso!", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(Login.this, home.class);
+                                startActivity(intent);
+                                finish();
+                            } else {
+                                // Falha no login do usuário
+                                Toast.makeText(getApplicationContext(), "Falha no login: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
             }
         });
+
 
         Button esqueceuSenha = findViewById(R.id.esqueceuSenha);
 
@@ -93,6 +113,7 @@ public class Login extends AppCompatActivity {
             } else {
                 Status status = result.getStatus();
                 Toast.makeText(this, "Falha na autenticação: " + status, Toast.LENGTH_SHORT).show();
+                System.out.println(Toast.LENGTH_SHORT);
             }
         }
     }

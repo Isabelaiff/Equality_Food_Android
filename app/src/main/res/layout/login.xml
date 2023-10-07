@@ -110,7 +110,7 @@
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Usuário"
+        android:text="E-mail"
         android:textColor="#1E1E1E"
         android:textSize="15sp"
         android:textStyle="bold"
@@ -137,7 +137,7 @@
         app:layout_constraintVertical_bias="0.714" />
 
     <EditText
-        android:id="@+id/campoUsuario"
+        android:id="@+id/campoEmail"
         android:layout_width="326dp"
         android:layout_height="48dp"
         android:inputType="text"
