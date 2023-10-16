@@ -32,31 +32,34 @@ public class Login extends AppCompatActivity {
         Button entrarButton = findViewById(R.id.button3);
         TextView campoEmail = findViewById(R.id.campoEmail);
         EditText campoSenha = findViewById(R.id.campoSenha);
+        Button esqueceuSenha = findViewById(R.id.esqueceuSenha);
 
         entrarButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String emailTexto = campoEmail.getText().toString();
-                String senhaTexto = campoSenha.getText().toString();
+                String emailTexto = campoEmail.getText().toString().trim();
+                String senhaTexto = campoSenha.getText().toString().trim();
 
-                FirebaseAuth.getInstance().signInWithEmailAndPassword(emailTexto, senhaTexto)
-                        .addOnCompleteListener(Login.this, task -> {
-                            if (task.isSuccessful()) {
-                                // Login bem-sucedido
-                                Toast.makeText(getApplicationContext(), "Login realizado com sucesso!", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(Login.this, home.class);
-                                startActivity(intent);
-                                finish();
-                            } else {
-                                // Falha no login do usuário
-                                Toast.makeText(getApplicationContext(), "Falha no login: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                if (emailTexto.isEmpty() || senhaTexto.isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "Por favor, preencha todos os campos.", Toast.LENGTH_SHORT).show();
+                } else {
+                    FirebaseAuth.getInstance().signInWithEmailAndPassword(emailTexto, senhaTexto)
+                            .addOnCompleteListener(Login.this, task -> {
+                                if (task.isSuccessful()) {
+                                    // Login bem-sucedido
+                                    Toast.makeText(getApplicationContext(), "Login realizado com sucesso!", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(Login.this, home.class);
+                                    startActivity(intent);
+                                    finish();
+                                } else {
+                                    // Falha no login do usuário
+                                    Toast.makeText(getApplicationContext(), "Falha no login: e-mail ou senha incorretos ", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                }
             }
         });
 
-
-        Button esqueceuSenha = findViewById(R.id.esqueceuSenha);
 
         esqueceuSenha.setOnClickListener(new View.OnClickListener() {
             @Override
