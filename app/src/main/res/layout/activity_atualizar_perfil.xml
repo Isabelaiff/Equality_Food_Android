@@ -82,7 +82,7 @@
         app:layout_constraintVertical_bias="0.441" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName7"
+        android:id="@+id/endereco"
         android:layout_width="297dp"
         android:layout_height="56dp"
         android:ems="10"

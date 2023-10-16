@@ -46,7 +46,7 @@
         android:layout_width="60dp"
         android:layout_height="20dp"
         android:text="Carrinho:"
-        app:layout_constraintBottom_toTopOf="@+id/textView6"
+        app:layout_constraintBottom_toTopOf="@+id/nomeVis"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.088"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,7 +54,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/nomeVis"
         android:layout_width="60dp"
         android:layout_height="20dp"
         android:layout_marginBottom="15dp"
