@@ -16,6 +16,7 @@ public class Pagamento extends AppCompatActivity {
         setContentView(R.layout.activity_pagamento);
 
         ImageButton btnCarrinho = findViewById(R.id.imageButton7);
+        Button btnPagar = findViewById(R.id.finalizar); // Substitua com o ID do botão "Pagar"
 
         btnCarrinho.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -25,10 +26,12 @@ public class Pagamento extends AppCompatActivity {
             }
         });
 
-
+        btnPagar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopUp1 PopUp1 = new PopUp1(Pagamento.this);
+                PopUp1.show();
+            }
+        });
     }
-
-
-
-
 }
