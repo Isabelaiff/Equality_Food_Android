@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ListaProdutos">
+    tools:context=".ListaFrango">
 
     <SearchView
         android:id="@+id/searchView"
@@ -32,7 +32,7 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="25dp"
-        android:text="Congelados"
+        android:text="Frango"
         android:textColor="@color/black"
         android:textSize="18dp"
         app:layout_constraintBottom_toTopOf="@+id/lista"
