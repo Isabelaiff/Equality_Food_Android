@@ -6,6 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".EsqueceuSenha">
 
+    <ImageButton
+        android:id="@+id/voltar_button2"
+        android:layout_width="51dp"
+        android:layout_height="66dp"
+        android:layout_marginStart="1dp"
+        android:background="#F9F9F9"
+        android:contentDescription="X"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.222"
+        app:srcCompat="@drawable/header" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="161dp"
@@ -26,7 +41,7 @@
         android:id="@+id/voltarPagamento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="380dp"
+        android:layout_marginBottom="408dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -142,12 +157,12 @@
         android:id="@+id/textView12"
         android:layout_width="213dp"
         android:layout_height="20dp"
-        android:layout_marginBottom="504dp"
+        android:layout_marginBottom="508dp"
         android:text="Digite o código de segurança"
         android:textColor="#757575"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintHorizontal_bias="0.227"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -168,7 +183,7 @@
         android:id="@+id/imageView15"
         android:layout_width="412dp"
         android:layout_height="245dp"
-        android:layout_marginBottom="524dp"
+        android:layout_marginBottom="572dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"

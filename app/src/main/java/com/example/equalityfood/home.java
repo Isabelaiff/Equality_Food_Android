@@ -56,10 +56,32 @@ public class home extends AppCompatActivity {
         btnCongelados.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(home.this, ListaProdutos.class);
+                Intent intent = new Intent(home.this, ListaCongelados.class);
                 startActivity(intent);
             }
         });
+
+        ImageButton imageButton4 = findViewById(R.id.imageButton4);
+
+        imageButton4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(home.this, Pedidos.class);
+                startActivity(intent);
+            }
+        });
+
+        ImageButton imageButton5 = findViewById(R.id.imageButton5);
+
+        imageButton5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(home.this, ListaNaoPereciveis.class);
+                startActivity(intent);
+            }
+        });
+
+
 
 
 

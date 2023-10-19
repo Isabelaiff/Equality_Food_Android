@@ -14,6 +14,24 @@
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
         tools:targetApi="31">
         <activity
+            android:name=".ListaCarneBovina"
+            android:exported="false" />
+        <activity
+            android:name=".ListaFrango"
+            android:exported="false" />
+        <activity
+            android:name=".ListaCarneSuina"
+            android:exported="false" />
+        <activity
+            android:name=".ListaLegumes"
+            android:exported="false" />
+        <activity
+            android:name=".ListaNaoPereciveis"
+            android:exported="false" />
+        <activity
+            android:name=".AdapterPedidos"
+            android:exported="false" />
+        <activity
             android:name=".Pedidos"
             android:exported="false" />
         <activity
@@ -29,7 +47,7 @@
             android:name=".AdapterListaProdutos"
             android:exported="false" />
         <activity
-            android:name=".ListaProdutos"
+            android:name=".ListaCongelados"
             android:exported="false" />
         <activity
             android:name=".Produtos"

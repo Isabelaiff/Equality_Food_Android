@@ -20,9 +20,9 @@ public class Perfil extends AppCompatActivity {
 
         ImageButton btnHome2 = findViewById(R.id.btnHome);
 
-        TextView nomeVis = findViewById(R.id.nomeVis);
-        TextView emailVis = findViewById(R.id.emailVis);
-        TextView numeroVis = findViewById(R.id.numeroVis);
+        TextView nomeVis = findViewById(R.id.textView23);
+        TextView emailVis = findViewById(R.id.textView24);
+        TextView numeroVis = findViewById(R.id.textView26);
 
 
 
@@ -46,14 +46,26 @@ public class Perfil extends AppCompatActivity {
             numeroVis.setText(numero);
         }
 
-        ImageButton btnCarrinho = findViewById(R.id.imageButton3);
 
-        btnCarrinho.setOnClickListener(new View.OnClickListener() {
+        ImageButton imageButton13 = findViewById(R.id.imageButton13);
+
+        imageButton13.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Perfil.this, Carrinho.class);
                 startActivity(intent);
             }
         });
+
+        ImageButton imageButton3 = findViewById(R.id.imageButton3);
+        imageButton3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Perfil.this, Pedidos.class);
+                startActivity(intent);
+            }
+        });
+
+
     }
 }

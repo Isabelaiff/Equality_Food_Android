@@ -8,19 +8,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-public class ListaProdutos extends AppCompatActivity {
+public class ListaFrango extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lista_produtos);
+        setContentView(R.layout.activity_lista_frango);
 
         ImageButton esqueceuSenha = findViewById(R.id.imageButton8);
 
         esqueceuSenha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ListaProdutos.this, home.class);
+                Intent intent = new Intent(ListaFrango.this, home.class);
                 startActivity(intent);
             }
         });
@@ -30,7 +30,7 @@ public class ListaProdutos extends AppCompatActivity {
         VerCarrinho.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ListaProdutos.this, Carrinho.class);
+                Intent intent = new Intent(ListaFrango.this, Carrinho.class);
                 startActivity(intent);
             }
         });
