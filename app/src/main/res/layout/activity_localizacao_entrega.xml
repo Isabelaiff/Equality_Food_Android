@@ -151,7 +151,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/entrarGoogle"
+        android:id="@+id/btnCodigo"
         android:layout_width="357dp"
         android:layout_height="56dp"
         android:backgroundTint="#8F0404"
