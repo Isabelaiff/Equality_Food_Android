@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class Pedidos extends AppCompatActivity {
 
@@ -49,6 +50,10 @@ public class Pedidos extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(Pedidos.this, Carrinho.class);
                 startActivity(intent);
+
+                ListView list = (ListView) findViewById(android.R.id.list);
+                TextView emptyView = (TextView) findViewById(android.R.id.empty);
+                list.setEmptyView(emptyView);
             }
         });
 
