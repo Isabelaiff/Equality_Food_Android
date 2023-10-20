@@ -31,6 +31,15 @@ public class EsqueceuSenha extends AppCompatActivity {
 
         Button btnCodigo = findViewById(R.id.btnCodigo);
         EditText inputEmail = findViewById(R.id.inputEmail);
+        ImageButton btnVoltar = findViewById(R.id.voltar_button2);
+
+        btnVoltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(EsqueceuSenha.this, Login.class);
+                startActivity(intent);
+            }
+        });
 
         btnCodigo.setOnClickListener(new View.OnClickListener() {
             @Override
