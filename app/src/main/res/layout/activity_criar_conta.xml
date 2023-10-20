@@ -8,46 +8,41 @@
 
     <Button
         android:id="@+id/cadastrar_button"
-        android:layout_width="190dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#F4981A"
         android:text="Cadastrar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.956" />
+        app:layout_constraintTop_toBottomOf="@+id/confirmarSenha"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/cpf"
-        android:layout_width="297dp"
+        android:layout_width="0dp"
         android:layout_height="56dp"
         android:ems="10"
         android:enabled="true"
         android:focusable="true"
         android:hint="CPF"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.385" />
+        app:layout_constraintTop_toBottomOf="@+id/dataNasc" />
 
     <EditText
         android:id="@+id/dataNasc"
-        android:layout_width="297dp"
+        android:layout_width="0dp"
         android:layout_height="56dp"
         android:clickable="true"
         android:ems="10"
         android:focusable="false"
         android:focusableInTouchMode="false"
         android:hint="Data de Nascimento"
-        app:layout_constraintBottom_toTopOf="@+id/cpf"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nomeCompleto"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/nomeCompleto" />
 
     <ImageButton
         android:id="@+id/voltar_button"
@@ -61,130 +56,101 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.222"
+        app:layout_constraintVertical_bias="0.052"
         app:srcCompat="@drawable/header" />
-
-    <ImageView
-        android:id="@+id/imageView20"
-        android:layout_width="519dp"
-        android:layout_height="180dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/cabecalho" />
 
     <EditText
         android:id="@+id/email"
-        android:layout_width="297dp"
+        android:layout_width="0dp"
         android:layout_height="56dp"
         android:ems="10"
         android:enabled="true"
         android:focusable="true"
         android:hint="E-mail"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.551" />
+        app:layout_constraintTop_toBottomOf="@+id/numTelefone" />
 
     <EditText
         android:id="@+id/confirmarSenha"
-        android:layout_width="297dp"
-        android:layout_height="56dp"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
         android:ems="10"
         android:hint="Confirme sua senha"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/senha"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/senha" />
 
     <EditText
         android:id="@+id/numEndereco"
-        android:layout_width="153dp"
-        android:layout_height="48dp"
+        android:layout_width="0dp"
+        android:layout_height="51dp"
         android:ems="10"
         android:hint="Número"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.709" />
+        app:layout_constraintTop_toBottomOf="@+id/cep" />
 
     <EditText
         android:id="@+id/nomeCompleto"
-        android:layout_width="297dp"
+        android:layout_width="0dp"
         android:layout_height="56dp"
         android:ems="10"
         android:hint="Nome Completo"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.219" />
+        app:layout_constraintTop_toBottomOf="@+id/voltar_button" />
 
     <EditText
         android:id="@+id/cep"
-        android:layout_width="297dp"
+        android:layout_width="0dp"
         android:layout_height="56dp"
         android:ems="10"
         android:enabled="true"
         android:focusable="true"
         android:hint="CEP"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.635" />
+        app:layout_constraintTop_toBottomOf="@+id/email" />
 
     <EditText
         android:id="@+id/senha"
-        android:layout_width="297dp"
-        android:layout_height="56dp"
+        android:layout_width="0dp"
+        android:layout_height="59dp"
         android:ems="10"
         android:hint="Senha"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.788" />
+        app:layout_constraintTop_toBottomOf="@+id/complemento" />
 
     <EditText
         android:id="@+id/numTelefone"
-        android:layout_width="297dp"
+        android:layout_width="0dp"
         android:layout_height="56dp"
         android:ems="10"
         android:enabled="true"
         android:focusable="true"
         android:hint="Número de telefone"
         android:inputType="phone"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.469" />
+        app:layout_constraintTop_toBottomOf="@+id/cpf" />
 
     <EditText
         android:id="@+id/complemento"
-        android:layout_width="136dp"
-        android:layout_height="49dp"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
         android:ems="10"
         android:hint="Complemento"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/senha"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.142"
-        app:layout_constraintStart_toEndOf="@+id/numEndereco"
-        app:layout_constraintTop_toBottomOf="@+id/cep"
-        app:layout_constraintVertical_bias="0.428" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/numEndereco" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

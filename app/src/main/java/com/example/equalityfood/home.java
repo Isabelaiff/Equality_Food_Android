@@ -83,6 +83,18 @@ public class home extends AppCompatActivity {
 
 
 
+        ImageButton imageButton10 = findViewById(R.id.imageButton10);
+
+        imageButton10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(home.this, ListaLegumes.class);
+                startActivity(intent);
+            }
+        });
+
+
+
 
 
     }
