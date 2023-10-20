@@ -36,31 +36,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
-<<<<<<< HEAD
-=======
-    <ImageView
-        android:id="@+id/voltarPagamento"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="408dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/rectangle_7" />
-
-    <TextView
-        android:id="@+id/editInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Nova senha"
-        android:textColor="#757575"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView10"
-        app:layout_constraintEnd_toEndOf="@+id/imageView10"
-        app:layout_constraintHorizontal_bias="0.036"
-        app:layout_constraintStart_toStartOf="@+id/imageView10"
-        app:layout_constraintTop_toTopOf="@+id/imageView10"
-        app:layout_constraintVertical_bias="0.035" />
-
     <ImageView
         android:id="@+id/imageView11"
         android:layout_width="wrap_content"
@@ -69,14 +44,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.548"
+        app:layout_constraintVertical_bias="0.365"
         app:srcCompat="@drawable/rectangle_7" />
 
     <TextView
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Confirme sua nova senha"
+        android:text="Digite seu email"
         android:textColor="#757575"
         app:layout_constraintBottom_toBottomOf="@+id/imageView11"
         app:layout_constraintEnd_toEndOf="@+id/imageView11"
@@ -85,94 +60,27 @@
         app:layout_constraintTop_toTopOf="@+id/imageView11"
         app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="xxxxxxxxxxx"
-        android:textColor="@color/black"
-        android:textSize="14dp"
-        app:layout_constraintBottom_toBottomOf="@+id/voltarPagamento"
-        app:layout_constraintEnd_toEndOf="@+id/voltarPagamento"
-        app:layout_constraintHorizontal_bias="0.02"
-        app:layout_constraintStart_toStartOf="@+id/voltarPagamento"
-        app:layout_constraintTop_toTopOf="@+id/voltarPagamento"
-        app:layout_constraintVertical_bias="0.714"
-        tools:ignore="TextSizeCheck" />
 
-    <ImageView
-        android:id="@+id/imageView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.342"
-        app:srcCompat="@drawable/rectangle_7" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="xxxxxxxxxxx"
-        android:textColor="@color/black"
-        android:textSize="14dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView10"
-        app:layout_constraintEnd_toEndOf="@+id/imageView10"
-        app:layout_constraintHorizontal_bias="0.036"
-        app:layout_constraintStart_toStartOf="@+id/imageView10"
-        app:layout_constraintTop_toTopOf="@+id/imageView10"
-        app:layout_constraintVertical_bias="0.821"
-        tools:ignore="TextSizeCheck" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="xxxxxxxxxxx"
+    <EditText
+        android:id="@+id/inputEmail"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
         android:textColor="@color/black"
         android:textSize="14dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView11"
         app:layout_constraintEnd_toEndOf="@+id/imageView11"
-        app:layout_constraintHorizontal_bias="0.032"
+        app:layout_constraintHorizontal_bias="0.523"
         app:layout_constraintStart_toStartOf="@+id/imageView11"
         app:layout_constraintTop_toTopOf="@+id/imageView11"
-        app:layout_constraintVertical_bias="0.678"
+        app:layout_constraintVertical_bias="1.0"
         tools:ignore="TextSizeCheck" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="161dp"
-        android:layout_height="20dp"
-        android:text="Digite sua nova senha"
-        android:textColor="#757575"
-        app:layout_constraintBottom_toBottomOf="@+id/voltarPagamento"
-        app:layout_constraintEnd_toEndOf="@+id/voltarPagamento"
-        app:layout_constraintHorizontal_bias="0.033"
-        app:layout_constraintStart_toStartOf="@+id/voltarPagamento"
-        app:layout_constraintTop_toTopOf="@+id/voltarPagamento"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="213dp"
-        android:layout_height="20dp"
-        android:layout_marginBottom="508dp"
-        android:text="Digite o código de segurança"
-        android:textColor="#757575"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.227"
-        app:layout_constraintStart_toStartOf="parent" />
-
->>>>>>> c81ca851fab07869b373f25c323618f17fdd1ef3
     <Button
         android:id="@+id/btnCodigo"
         android:layout_width="357dp"
         android:layout_height="56dp"
         android:backgroundTint="#8F0404"
-        android:text="Enviar código de confirmação"
+        android:text="Enviar email de alteração"
         android:textColor="#FFFFFF"
         android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -191,32 +99,6 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/cabecalho" />
-
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="213dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="19dp"
-        android:text="Digite seu e-mail"
-        android:textColor="#757575"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.141"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.037" />
-
-    <EditText
-        android:id="@+id/inputEmail"
-        android:layout_width="356dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="3dp"
-        android:ems="10"
-        android:hint="seu e-mail"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

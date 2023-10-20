@@ -274,7 +274,7 @@
         app:layout_constraintVertical_bias="0.312" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/inputEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Legumes"
@@ -314,7 +314,7 @@
         android:layout_width="98dp"
         android:layout_height="92dp"
         android:layout_marginStart="32dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView5"
+        app:layout_constraintBottom_toBottomOf="@+id/inputEmail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/imageButton9"
