@@ -8,10 +8,13 @@
 
     <Button
         android:id="@+id/cadastrar_button"
-        android:layout_width="190dp"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#F4981A"
-        android:text="Cadastrar"
+        android:layout_width="195dp"
+        android:layout_height="52dp"
+        android:background="@drawable/borda_botao_laranja"
+        android:backgroundTint="#F5991A"
+        android:hint="Cadastrar"
+        android:textColorHint="#FFFFFF"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -24,10 +27,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="180dp"
+        android:layout_marginTop="228dp"
+        android:background="#00FFFFFF"
         android:contentDescription="X"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.042"
+        app:layout_constraintHorizontal_bias="0.145"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/header" />
@@ -96,12 +100,12 @@
 
     <ImageView
         android:id="@+id/imageView19"
-        android:layout_width="426dp"
-        android:layout_height="231dp"
-        android:layout_marginBottom="588dp"
+        android:layout_width="799dp"
+        android:layout_height="370dp"
+        android:layout_marginBottom="796dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.515"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/cabecalho" />
 

@@ -152,18 +152,18 @@
 
     <Button
         android:id="@+id/btnCodigo"
-        android:layout_width="357dp"
-        android:layout_height="56dp"
-        android:backgroundTint="#8F0404"
-        android:text="CONCLUIR"
-        android:textColor="#FFFFFF"
-        android:textSize="18dp"
+        android:layout_width="230dp"
+        android:layout_height="60dp"
+        android:background="@drawable/borda_botao"
+        android:hint="Concluir"
+        android:textColorHint="#FFFFFF"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintHorizontal_bias="0.479"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.663" />
+        app:layout_constraintVertical_bias="0.662" />
 
     <ImageView
         android:id="@+id/imageView15"

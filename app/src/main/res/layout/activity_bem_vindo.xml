@@ -84,8 +84,8 @@
 
     <Button
         android:id="@+id/btnVamosLa"
-        android:layout_width="272dp"
-        android:layout_height="74dp"
+        android:layout_width="230dp"
+        android:layout_height="60dp"
         android:layout_marginStart="99dp"
         android:layout_marginEnd="98dp"
         android:backgroundTint="#80141E"
@@ -95,6 +95,7 @@
         android:textColorHint="#80141E"
         android:textColorLink="#80141E"
         android:textSize="18sp"
+        android:background="@drawable/borda_botao"
         app:cornerRadius="19dp"
         app:layout_constraintBottom_toBottomOf="@+id/Card"
         app:layout_constraintEnd_toEndOf="@+id/Card"

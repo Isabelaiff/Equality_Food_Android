@@ -203,14 +203,14 @@
 
         <Button
             android:id="@+id/finalizar"
-            android:layout_width="373dp"
-            android:layout_height="87dp"
+            android:layout_width="230dp"
+            android:layout_height="60dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="30dp"
-            android:backgroundTint="#8F0404"
-            android:text="PAGAR"
-            android:textColor="#FFFFFF"
-            android:textSize="24dp"
+            android:background="@drawable/borda_botao"
+            android:hint="Pagar"
+            android:textColorHint="#FFFFFF"
+            android:textSize="20sp"
             app:cornerRadius="15dp" />
 
     </LinearLayout>

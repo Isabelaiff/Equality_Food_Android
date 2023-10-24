@@ -44,10 +44,13 @@
 
     <Button
         android:id="@+id/finalizar"
-        android:layout_width="213dp"
-        android:layout_height="71dp"
+        android:layout_width="230dp"
+        android:layout_height="60dp"
+        android:background="@drawable/borda_botao"
+        android:textColorHint="#FFFFFF"
+        android:textSize="20sp"
         android:backgroundTint="#8F0404"
-        android:text="Finalizar Compra"
+        android:hint="Finalizar Compra"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

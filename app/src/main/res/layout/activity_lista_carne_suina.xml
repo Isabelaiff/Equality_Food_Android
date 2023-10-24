@@ -70,12 +70,13 @@
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="230dp"
+        android:layout_height="60dp"
         android:layout_marginBottom="15dp"
-        android:backgroundTint="@color/design_default_color_error"
-        android:text="VER CARRINHO"
-        android:textColor="@color/white"
+        android:background="@drawable/borda_botao"
+        android:hint="Ver carrinho"
+        android:textColorHint="#FFFF"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

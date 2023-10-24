@@ -49,8 +49,8 @@
 
         <ImageButton
             android:id="@+id/imageButton2"
-            android:layout_width="258dp"
-            android:layout_height="88dp"
+            android:layout_width="230dp"
+            android:layout_height="60dp"
             android:layout_marginTop="18dp"
             android:contentDescription="X"
             android:contextClickable="true"
@@ -61,22 +61,22 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.87"
             app:srcCompat="@drawable/rounded_button"
-            android:background="@android:color/transparent"/>
+            android:background="@drawable/borda_botao"/>
 
         <TextView
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:shadowColor="#FEFDFB"
-            android:text="VER PEDIDO"
-            android:textColor="#FEFDFB"
-            android:textSize="20dp"
+            android:text="Ver pedido"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.827" />
+            app:layout_constraintVertical_bias="0.847" />
 
         <ImageView
             android:id="@+id/imageView12"
