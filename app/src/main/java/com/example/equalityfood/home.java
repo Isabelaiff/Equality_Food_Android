@@ -95,6 +95,39 @@ public class home extends AppCompatActivity {
 
 
 
+        ImageButton imageButton11 = findViewById(R.id.imageButton11);
+
+        imageButton11.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(home.this, ListaCarneSuina.class);
+                startActivity(intent);
+            }
+        });
+
+        ImageButton imageButton14 = findViewById(R.id.imageButton14);
+
+        imageButton14.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(home.this, ListaFrango.class);
+                startActivity(intent);
+            }
+        });
+
+        ImageButton imageButton15 = findViewById(R.id.imageButton15);
+
+        imageButton15.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(home.this, ListaCarneBovina.class);
+                startActivity(intent);
+            }
+        });
+
+
+
+
 
 
     }

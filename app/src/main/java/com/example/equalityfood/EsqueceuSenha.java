@@ -36,8 +36,7 @@ public class EsqueceuSenha extends AppCompatActivity {
         btnVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(EsqueceuSenha.this, Login.class);
-                startActivity(intent);
+                finish();
             }
         });
 

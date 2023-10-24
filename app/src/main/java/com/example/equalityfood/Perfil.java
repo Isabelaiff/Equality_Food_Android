@@ -67,5 +67,25 @@ public class Perfil extends AppCompatActivity {
         });
 
 
+
+        Button textView32 = findViewById(R.id.textView32);
+        textView32.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Perfil.this, EsqueceuSenha.class);
+                startActivity(intent);
+            }
+        });
+
+
+        Button textView30 = findViewById(R.id.textView30);
+        textView30.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Perfil.this, PoliticaPrivacidade.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }

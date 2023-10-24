@@ -172,7 +172,7 @@ public class criarConta extends AppCompatActivity {
                                     // Usuário autenticado com sucesso e informações armazenadas no banco de dados
                                     Toast.makeText(getApplicationContext(), "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show();
 
-                                    Intent intent = new Intent(criarConta.this, bemVindo.class);
+                                    Intent intent = new Intent(criarConta.this, PoliticaPrivacidade.class);
                                     startActivity(intent);
                                 }
                             } else {

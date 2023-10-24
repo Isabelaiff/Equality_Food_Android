@@ -8,19 +8,19 @@
 
     <SearchView
         android:id="@+id/searchView"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
+        android:layout_width="501dp"
+        android:layout_height="51dp"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="28dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.347"
+        app:layout_constraintHorizontal_bias="0.475"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
         android:id="@+id/lista"
-        android:layout_width="350dp"
-        android:layout_height="450dp"
+        android:layout_width="692dp"
+        android:layout_height="666dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.508"
@@ -37,9 +37,10 @@
         android:textSize="18dp"
         app:layout_constraintBottom_toTopOf="@+id/lista"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchView"
-        app:layout_constraintVertical_bias="0.434" />
+        app:layout_constraintVertical_bias="0.244" />
 
     <TextView
         android:id="@+id/inputEmail"
@@ -70,8 +71,8 @@
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="282dp"
+        android:layout_height="73dp"
         android:layout_marginBottom="15dp"
         android:backgroundTint="@color/design_default_color_error"
         android:text="VER CARRINHO"
@@ -84,11 +85,11 @@
         android:id="@+id/imageButton8"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_marginTop="76dp"
-        android:background="#FFFFFF"
+        android:layout_marginTop="88dp"
+        android:background="#00FFFFFF"
         android:contentDescription="bota a descrição aqui"
         app:layout_constraintEnd_toStartOf="@+id/textView4"
-        app:layout_constraintHorizontal_bias="0.281"
+        app:layout_constraintHorizontal_bias="0.411"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/setinha" />

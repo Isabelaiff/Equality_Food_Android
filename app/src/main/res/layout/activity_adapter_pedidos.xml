@@ -7,26 +7,23 @@
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="403dp"
-        android:layout_height="161dp"
+        android:layout_width="672dp"
+        android:layout_height="235dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.376"
         app:srcCompat="@drawable/rectangle" />
 
     <LinearLayout
-        android:layout_width="389dp"
-        android:layout_height="154dp"
+        android:id="@+id/linearLayout2"
+        android:layout_width="609dp"
+        android:layout_height="183dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.444"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        tools:layout_editor_absoluteX="48dp"
+        tools:layout_editor_absoluteY="321dp">
 
         <!--        <ImageView-->
         <!--            android:id="@+id/img"-->
@@ -36,16 +33,8 @@
         <!--            android:layout_weight="1"-->
         <!--            app:srcCompat="@drawable/retanglefoto" />-->
 
-        <ImageView
-            android:id="@+id/imgCesta"
-            android:layout_width="160dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="10dp"
-            android:layout_weight="1"
-            tools:srcCompat="@drawable/groupcesta" />
-
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
             android:layout_width="298dp"
             android:layout_height="144dp"
             android:layout_weight="1">
@@ -72,10 +61,10 @@
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.076"
+                app:layout_constraintHorizontal_bias="0.082"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.484" />
+                app:layout_constraintVertical_bias="0.563" />
 
             <TextView
                 android:id="@+id/data"
@@ -85,13 +74,25 @@
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.105"
+                app:layout_constraintHorizontal_bias="0.093"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.765" />
+                app:layout_constraintVertical_bias="0.865" />
+
+            <ImageView
+                android:id="@+id/imgCesta"
+                android:layout_width="89dp"
+                android:layout_height="139dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.916"
+                app:layout_constraintStart_toStartOf="@+id/status"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@drawable/groupcesta" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

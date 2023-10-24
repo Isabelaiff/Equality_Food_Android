@@ -28,8 +28,7 @@ public class Carrinho extends AppCompatActivity {
         voltarHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Carrinho.this, home.class);
-                startActivity(intent);
+                finish();
             }
         });
 

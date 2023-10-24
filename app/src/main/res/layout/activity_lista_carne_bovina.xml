@@ -8,8 +8,8 @@
 
     <SearchView
         android:id="@+id/searchView"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
+        android:layout_width="535dp"
+        android:layout_height="51dp"
         android:layout_marginStart="15dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,14 +19,14 @@
 
     <ListView
         android:id="@+id/lista"
-        android:layout_width="350dp"
-        android:layout_height="450dp"
+        android:layout_width="714dp"
+        android:layout_height="701dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/searchView"
-        app:layout_constraintVertical_bias="0.467" />
+        app:layout_constraintVertical_bias="0.518" />
 
     <TextView
         android:id="@+id/textView4"
@@ -39,7 +39,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchView"
-        app:layout_constraintVertical_bias="0.434" />
+        app:layout_constraintVertical_bias="0.287" />
 
     <TextView
         android:id="@+id/inputEmail"

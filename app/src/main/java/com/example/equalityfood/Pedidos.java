@@ -58,12 +58,14 @@ public class Pedidos extends AppCompatActivity {
         });
 
 
+        ImageButton close = findViewById(R.id.close);
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+
     }
-
-
-
-
-
-
-
 }
