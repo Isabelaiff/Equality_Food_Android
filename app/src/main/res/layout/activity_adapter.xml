@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".templateCarrinho">
 
   <ImageView
       android:id="@+id/imageView2"
@@ -47,15 +48,17 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:background="#00FFFFFF"
+        android:backgroundTint="#00FFFFFF">
 
       <TextView
           android:id="@+id/produto"
-          android:layout_width="134dp"
-          android:layout_height="51dp"
+          android:layout_width="195dp"
+          android:layout_height="56dp"
           android:text="Lasanha congelada Seara"
           android:textColor="#000000"
-          android:textSize="16dp"
+          android:textSize="20sp"
           app:layout_constraintBottom_toBottomOf="parent"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintHorizontal_bias="0.092"
@@ -63,14 +66,16 @@
           app:layout_constraintTop_toTopOf="parent"
           app:layout_constraintVertical_bias="0.376" />
 
-      <TextView
-          android:id="@+id/qtd3"
-          android:layout_width="31dp"
-          android:layout_height="26dp"
+      <Button
+          android:id="@+id/menos"
+          android:layout_width="48dp"
+          android:layout_height="48dp"
+          android:background="#00FFFFFF"
+          android:backgroundTint="#00FFFFFF"
           android:gravity="center"
-          android:text="-"
-          android:textColor="#000000"
-          android:textSize="18sp"
+          android:hint="-"
+          android:textColorHint="#000000"
+          android:textSize="20sp"
           app:layout_constraintBottom_toBottomOf="parent"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintHorizontal_bias="0.697"
@@ -85,7 +90,7 @@
           android:gravity="center"
           android:text="0"
           android:textColor="#000000"
-          android:textSize="18sp"
+          android:textSize="20sp"
           app:layout_constraintBottom_toBottomOf="parent"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintHorizontal_bias="0.799"
@@ -93,14 +98,16 @@
           app:layout_constraintTop_toTopOf="parent"
           app:layout_constraintVertical_bias="0.428" />
 
-      <TextView
-          android:id="@+id/qtd4"
-          android:layout_width="31dp"
-          android:layout_height="26dp"
+      <Button
+          android:id="@+id/mais"
+          android:layout_width="48dp"
+          android:layout_height="48dp"
+          android:background="#00FFFFFF"
+          android:backgroundTint="#00404040"
           android:gravity="center"
-          android:text="+"
-          android:textColor="#000000"
-          android:textSize="18sp"
+          android:hint="+"
+          android:textColorHint="#000000"
+          android:textSize="20sp"
           app:layout_constraintBottom_toBottomOf="parent"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintHorizontal_bias="0.901"
@@ -114,9 +121,9 @@
           android:layout_height="49dp"
           android:layout_marginTop="4dp"
           android:layout_marginRight="6dp"
+          android:background="@drawable/borda_botao"
           android:text="Remover"
           android:textColor="#FFFFFF"
-          android:background="@drawable/borda_botao"
           app:backgroundTint="#8F0404"
           app:layout_constraintBottom_toBottomOf="parent"
           app:layout_constraintEnd_toEndOf="parent"
@@ -131,7 +138,7 @@
           android:layout_height="wrap_content"
           android:text="R$ "
           android:textColor="#000000"
-          android:textSize="18sp"
+          android:textSize="20sp"
           app:layout_constraintBottom_toBottomOf="parent"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintHorizontal_bias="0.064"
@@ -145,7 +152,7 @@
           android:layout_height="wrap_content"
           android:text="0,00"
           android:textColor="#000000"
-          android:textSize="18sp"
+          android:textSize="20sp"
           app:layout_constraintBottom_toBottomOf="parent"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintHorizontal_bias="0.179"

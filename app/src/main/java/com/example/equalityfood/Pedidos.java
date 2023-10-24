@@ -12,7 +12,7 @@ import android.widget.TextView;
 public class Pedidos extends AppCompatActivity {
 
 
-    String[] staus = {"Entregue"};
+    String[] status = {"Entregue"};
     String[] Data = {"dd/mes/ano"};
     double[] precoPedido = {80.00};
 
@@ -23,7 +23,7 @@ public class Pedidos extends AppCompatActivity {
         setContentView(R.layout.activity_pedidos);
 
         ListView lista = findViewById(R.id.listaviewpedidos);
-        AdapterPedidos adapter = new AdapterPedidos(this, staus, Data, precoPedido);
+        AdapterPedidos adapter = new AdapterPedidos(this, status, Data, precoPedido);
         lista.setAdapter(adapter);
 
         ImageButton btnHome2 = findViewById(R.id.btnHome2);
@@ -51,9 +51,9 @@ public class Pedidos extends AppCompatActivity {
                 Intent intent = new Intent(Pedidos.this, Carrinho.class);
                 startActivity(intent);
 
-                ListView list = (ListView) findViewById(android.R.id.list);
-                TextView emptyView = (TextView) findViewById(android.R.id.empty);
-                list.setEmptyView(emptyView);
+//                ListView list = (ListView) findViewById(android.R.id.list);
+//                TextView emptyView = (TextView) findViewById(android.R.id.empty);
+//                list.setEmptyView(emptyView);
             }
         });
 

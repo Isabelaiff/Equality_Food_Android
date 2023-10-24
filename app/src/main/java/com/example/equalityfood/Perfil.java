@@ -43,7 +43,7 @@ public class Perfil extends AppCompatActivity {
 
             nomeVis.setText(nome);
             emailVis.setText(email);
-            numeroVis.setText(numero);
+                numeroVis.setText(numero);
         }
 
 

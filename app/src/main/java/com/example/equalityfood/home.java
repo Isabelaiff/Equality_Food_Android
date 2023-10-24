@@ -31,6 +31,13 @@ public class home extends AppCompatActivity {
                 return false;
             }
         });
+
+        searchView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                searchView.setIconified(false);
+            }
+        });
         ImageButton btnPerfil = findViewById(R.id.btnPerfil2);
 
         btnPerfil.setOnClickListener(new View.OnClickListener() {

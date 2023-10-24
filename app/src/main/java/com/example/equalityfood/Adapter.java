@@ -17,11 +17,10 @@ public class Adapter extends BaseAdapter {
     private double[] precoVet;
 
 
-    public Adapter(Context applicationContext, String[] prod, int[] img, int[] qtd, double[] preco) {
+    public Adapter(Context applicationContext, String[] prod, int[] img, double[] preco) {
         this.applicationContext = applicationContext;
         this.prod = prod;
         this.img = img;
-        this.qtdvetor = qtd;
         this.precoVet = preco;
         this.inflater = LayoutInflater.from(applicationContext);
     }
@@ -47,12 +46,10 @@ public class Adapter extends BaseAdapter {
 
         ImageView icon = view.findViewById(R.id.imgProd);
         TextView nome = view.findViewById(R.id.produto);
-        TextView qtdView = view.findViewById(R.id.qtd);
         TextView precoView = view.findViewById(R.id.preco);
 
 
         nome.setText(prod[i]);
-        qtdView.setText(String.valueOf(qtdvetor[i]));
         precoView.setText(String.valueOf(precoVet[i]));
         icon.setImageResource(img[i]);
         return view;

@@ -11,7 +11,6 @@ public class Carrinho extends AppCompatActivity {
 
     String[] produtos = {"Lasanha congelada Seara","Picanha Maturata"};
     int[] imgProd = {R.drawable.rectangleprod,R.drawable.rectangleprod};
-    int[] quantidade = {1,100};
     double[] precoProd = {80.00, 100.50};
 
     @Override
@@ -20,7 +19,7 @@ public class Carrinho extends AppCompatActivity {
         setContentView(R.layout.activity_carrinho);
 
         ListView lista = findViewById(R.id.listaview);
-        Adapter adapter = new Adapter(this, produtos, imgProd, quantidade, precoProd);
+        Adapter adapter = new Adapter(this, produtos, imgProd, precoProd);
         lista.setAdapter(adapter);
 
         ImageButton voltarHome = findViewById(R.id.imageButton6);
@@ -28,7 +27,8 @@ public class Carrinho extends AppCompatActivity {
         voltarHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                Intent intent = new Intent(Carrinho.this, home.class);
+                startActivity(intent);
             }
         });
 
