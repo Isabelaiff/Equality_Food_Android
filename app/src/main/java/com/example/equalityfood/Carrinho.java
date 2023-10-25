@@ -32,6 +32,7 @@ public class Carrinho extends AppCompatActivity {
             }
         });
 
+
         Button btnCarrinho = findViewById(R.id.finalizar);
 
         btnCarrinho.setOnClickListener(new View.OnClickListener() {

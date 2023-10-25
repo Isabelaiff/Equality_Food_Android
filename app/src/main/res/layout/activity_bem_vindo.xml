@@ -34,8 +34,8 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="324dp"
-        android:layout_height="170dp"
+        android:layout_width="303dp"
+        android:layout_height="198dp"
         android:text="Aqui você encontra comida de qualidade por um preço justo! Assim você economiza e ainda reduz o desperdício de alimentos"
         android:textAlignment="center"
         android:textColor="#321213"
