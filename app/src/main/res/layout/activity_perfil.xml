@@ -359,7 +359,7 @@
                     android:src="@drawable/politica" />
 
                 <Button
-                    android:id="@+id/textView30"
+                    android:id="@+id/btnPolitica"
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
                     android:layout_marginLeft="10dp"

@@ -23,6 +23,7 @@ public class Perfil extends AppCompatActivity {
         TextView nomeVis = findViewById(R.id.textView23);
         TextView emailVis = findViewById(R.id.textView24);
         TextView numeroVis = findViewById(R.id.textView26);
+        Button btnPolitica = findViewById(R.id.btnPolitica);
 
 
 
@@ -30,6 +31,14 @@ public class Perfil extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Perfil.this, home.class);
+                startActivity(intent);
+            }
+        });
+
+        btnPolitica.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Perfil.this, PoliticaPrivacidade.class);
                 startActivity(intent);
             }
         });
@@ -78,7 +87,7 @@ public class Perfil extends AppCompatActivity {
         });
 
 
-        Button textView30 = findViewById(R.id.textView30);
+        Button textView30 = findViewById(R.id.btnPolitica);
         textView30.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
