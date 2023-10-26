@@ -371,7 +371,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="15dp"
                     android:text="Tema"
                     android:textColor="#0D0D0D"
                     android:textSize="18sp" />
@@ -381,7 +381,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
                     android:layout_marginLeft="120dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="15dp"
                     android:backgroundTint="#F7F7F7"
                     android:hint="Modo Escuro"
                     android:textColorHint="#1573FE"
@@ -406,8 +406,8 @@
                     android:id="@+id/textView29"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="18dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="25dp"
                     android:text="Fale Conosco"
                     android:textColor="#0D0D0D"
                     android:textSize="18sp" />
@@ -417,7 +417,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="40dp"
-                    android:layout_marginTop="18dp"
+                    android:layout_marginTop="25dp"
                     android:text="equalityfood@outlook.com"
                     android:textColor="#0D0D0D"
                     android:textSize="18sp" />
