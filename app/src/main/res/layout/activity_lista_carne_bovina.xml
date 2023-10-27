@@ -8,12 +8,15 @@
 
     <SearchView
         android:id="@+id/searchView"
-        android:layout_width="535dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="15dp"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="21dp"
+        android:background="@drawable/search_view_background"
+        android:queryHint="Pesquisar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.347"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,10 +26,10 @@
         android:layout_height="701dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.555"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/searchView"
-        app:layout_constraintVertical_bias="0.518" />
+        app:layout_constraintVertical_bias="0.421" />
 
     <TextView
         android:id="@+id/textView4"
@@ -43,24 +46,26 @@
 
     <TextView
         android:id="@+id/inputEmail"
-        android:layout_width="60dp"
-        android:layout_height="20dp"
+        android:layout_width="105dp"
+        android:layout_height="31dp"
         android:text="Carrinho:"
+        android:textColor="#000000"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/nomeVis"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.088"
+        app:layout_constraintHorizontal_bias="0.087"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lista"
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/nomeVis"
-        android:layout_width="60dp"
-        android:layout_height="20dp"
+        android:layout_width="98dp"
+        android:layout_height="34dp"
         android:layout_marginBottom="15dp"
         android:text="R$0,00"
         android:textColor="@color/black"
-        android:textSize="16dp"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.088"
@@ -85,13 +90,16 @@
         android:id="@+id/imageButton8"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_marginTop="76dp"
-        android:background="#FFFFFF"
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="17dp"
+        android:background="#00FFFFFF"
         android:contentDescription="bota a descrição aqui"
+        app:layout_constraintBottom_toTopOf="@+id/lista"
         app:layout_constraintEnd_toStartOf="@+id/textView4"
-        app:layout_constraintHorizontal_bias="0.281"
+        app:layout_constraintHorizontal_bias="0.106"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/setinha" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
