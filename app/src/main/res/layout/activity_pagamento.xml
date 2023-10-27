@@ -219,6 +219,6 @@
         android:id="@+id/imageView8"
         android:layout_width="956dp"
         android:layout_height="346dp"
-        android:src="@drawable/group_6__1_" />
+        android:src="@drawable/footer" />
 
 </LinearLayout>
