@@ -17,6 +17,9 @@
             android:name=".telaSemInternet"
             android:exported="false" />
         <activity
+            android:name=".Foto"
+            android:exported="false" />
+        <activity
             android:name=".PoliticaPrivacidade"
             android:exported="false" />
         <activity
@@ -103,5 +106,9 @@
             <!-- </intent-filter> -->
         </activity>
     </application>
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
 
 </manifest>

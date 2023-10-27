@@ -96,5 +96,14 @@ public class Perfil extends AppCompatActivity {
             }
         });
 
+        ImageButton imageButton12 = findViewById(R.id.imageButton12);
+        imageButton12.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Perfil.this, Foto.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }
