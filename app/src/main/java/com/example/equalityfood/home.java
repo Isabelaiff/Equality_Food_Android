@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -58,16 +59,6 @@ public class home extends AppCompatActivity {
             }
         });
 
-        ImageButton btnCongelados = findViewById(R.id.imageButton9);
-
-        btnCongelados.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(home.this, ListaCongelados.class);
-                startActivity(intent);
-            }
-        });
-
         ImageButton imageButton4 = findViewById(R.id.imageButton4);
 
         imageButton4.setOnClickListener(new View.OnClickListener() {
@@ -78,9 +69,9 @@ public class home extends AppCompatActivity {
             }
         });
 
-        ImageButton imageButton5 = findViewById(R.id.imageButton5);
+        ImageView naoPerecivel = findViewById(R.id.imageView23);
 
-        imageButton5.setOnClickListener(new View.OnClickListener() {
+        naoPerecivel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(home.this, ListaNaoPereciveis.class);
@@ -89,20 +80,19 @@ public class home extends AppCompatActivity {
         });
 
 
-
-        ImageButton imageButton10 = findViewById(R.id.imageButton10);
+        ImageView imageButton10 = findViewById(R.id.imageView31);
 
         imageButton10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(home.this, ListaLegumes.class);
+                Intent intent = new Intent(home.this, ListaCongelados.class);
                 startActivity(intent);
             }
         });
 
 
 
-        ImageButton imageButton11 = findViewById(R.id.imageButton11);
+        ImageView imageButton11 = findViewById(R.id.imageView35);
 
         imageButton11.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,7 +102,7 @@ public class home extends AppCompatActivity {
             }
         });
 
-        ImageButton imageButton14 = findViewById(R.id.imageButton14);
+        ImageView imageButton14 = findViewById(R.id.imageView36);
 
         imageButton14.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,7 +112,7 @@ public class home extends AppCompatActivity {
             }
         });
 
-        ImageButton imageButton15 = findViewById(R.id.imageButton15);
+        ImageView imageButton15 = findViewById(R.id.imageView37);
 
         imageButton15.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,10 +122,15 @@ public class home extends AppCompatActivity {
             }
         });
 
+        ImageView imageView32 = findViewById(R.id.imageView32);
 
-
-
-
+        imageView32.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(home.this, ListaLegumes.class);
+                startActivity(intent);
+            }
+        });
 
     }
     private void performSearch(String query) {

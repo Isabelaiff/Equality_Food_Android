@@ -8,15 +8,17 @@
 
     <SearchView
         android:id="@+id/searchView"
-        android:layout_width="501dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="28dp"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="21dp"
+        android:background="@drawable/search_view_background"
+        android:queryHint="Pesquisar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.475"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
     <ListView
         android:id="@+id/lista"
         android:layout_width="692dp"
@@ -44,24 +46,26 @@
 
     <TextView
         android:id="@+id/inputEmail"
-        android:layout_width="60dp"
-        android:layout_height="20dp"
+        android:layout_width="105dp"
+        android:layout_height="31dp"
         android:text="Carrinho:"
+        android:textColor="#000000"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/nomeVis"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.088"
+        app:layout_constraintHorizontal_bias="0.087"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lista"
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/nomeVis"
-        android:layout_width="60dp"
-        android:layout_height="20dp"
+        android:layout_width="98dp"
+        android:layout_height="34dp"
         android:layout_marginBottom="15dp"
         android:text="R$0,00"
         android:textColor="@color/black"
-        android:textSize="16dp"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.088"
