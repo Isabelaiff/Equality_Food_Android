@@ -17,10 +17,6 @@ public class Adapter extends BaseAdapter {
     private int[] img;
     private int[] qtdvetor;
     private double[] precoVet;
-    private int count = 0;
-    private TextView textView;
-    private Button buttonIncrement;
-    private Button button;
 
 
     public Adapter(Context applicationContext, String[] prod, int[] img, double[] preco) {
@@ -50,32 +46,39 @@ public class Adapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup parent) {
         view = inflater.inflate(R.layout.activity_adapter, null);
 
+        int count = 0;
+
         ImageView icon = view.findViewById(R.id.imgProd);
         TextView nome = view.findViewById(R.id.produto);
         TextView precoView = view.findViewById(R.id.preco);
-        textView = view.findViewById(R.id.qtd);
-        buttonIncrement = view.findViewById(R.id.mais);
-        button = view.findViewById(R.id.menos);
+        TextView textViewQtd = view.findViewById(R.id.qtd);
+        Button buttonIncrement = view.findViewById(R.id.mais);
+        Button button = view.findViewById(R.id.menos);
 
         nome.setText(prod[i]);
         precoView.setText(String.valueOf(precoVet[i]));
         icon.setImageResource(img[i]);
+        textViewQtd.setText("0");
 
 
         buttonIncrement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                count++;
-                textView.setText(String.valueOf(count));
+                int qtd = Integer.parseInt(textViewQtd.getText().toString());
+                qtd++;
+
+                textViewQtd.setText(String.valueOf(qtd));
             }
         });
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (count > 0) {
-                    count--;
-                    textView.setText(String.valueOf(count));
+                int qtd = Integer.parseInt(textViewQtd.getText().toString());
+
+                if (qtd > 0) {
+                    qtd--;
+                    textViewQtd.setText(String.valueOf(qtd));
                 }
             }
         });
