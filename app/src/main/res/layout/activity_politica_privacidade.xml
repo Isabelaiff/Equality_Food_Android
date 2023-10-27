@@ -12,7 +12,6 @@
         android:layout_height="51dp"
         android:layout_marginTop="56dp"
         android:text="Politica e Privacidade"
-        android:textColor="#000000"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
@@ -25,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
         android:text="Li e aceito todos os termos"
-        android:textSize="30sp"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/finalizar2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
@@ -47,22 +46,17 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ScrollView
-        android:layout_width="500dp"
-        android:layout_height="700dp"
+        android:layout_width="326dp"
+        android:layout_height="448dp"
         app:layout_constraintBottom_toTopOf="@+id/checkBox"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6"
-        app:layout_constraintVertical_bias="0.639">
+        tools:layout_editor_absoluteX="45dp">
 
         <TextView
             android:id="@+id/textPolitica"
-            android:layout_width="500dp"
+            android:layout_width="323dp"
             android:layout_height="455dp"
             android:text="A Equality Food é dedicada a proteger a privacidade e a segurança dos dados pessoais dos nossos usuários. Esta Política de Privacidade descreve como coletamos, usamos, compartilhamos e protegemos as informações pessoais que você nos fornece ao utilizar o aplicativo Equality Food. Ao utilizar o Aplicativo, você concorda com os termos e práticas descritas nesta Política de Privacidade.  Informações Coletadas Ao utilizar o Equality Food, podemos coletar as seguintes informações pessoais:  1.1. Informações de Conta:  -Nome completo; -Data de nascimento; -CPF; -Número de telefone; -Endereço completo.  1.2. Informações de Compras:  -Histórico de pedidos.  As informações pessoais coletadas são usadas para os seguintes fins:  2.1. Prestação de Serviços:  -Processar pedidos de comida; -Realizar entregas no endereço fornecido; -Notificar sobre o status do pedido; -Resolver problemas com pedidos.  2.2. Comunicação:  -Responder a perguntas e solicitações.  A Equality Food pode compartilhar suas informações pessoais com as seguintes partes:  3.1. Parceiros e Prestadores de Serviços:  -Compartilhamos informações com entregadores parceiros para entregas.  3.2. Cumprimento Legal:  -Podemos compartilhar informações quando exigido por lei ou em resposta a solicitações legais.  3.3. Segurança e Proteção:  -Compartilharemos informações para proteger os direitos, a privacidade, a segurança e a propriedade do Aplicativo.  Segurança de Dados  A Equality Food toma medidas razoáveis para proteger suas informações pessoais contra acesso não autorizado, uso indevido ou divulgação.  Seus Direitos Você tem direitos em relação às suas informações pessoais, incluindo o direito de:  5.1. Acessar suas informações pessoais. 5.2. Corrigir informações imprecisas.  Contato Para exercer seus direitos ou fazer perguntas sobre esta Política de Privacidade, entre em contato com nossa equipe de suporte:  Equipe de Suporte: equalityfood@outlook.com  Alterações na Política de Privacidade  A Equality Food pode atualizar esta Política de Privacidade periodicamente. Quaisquer alterações significativas serão notificadas aos usuários por meio do Aplicativo ou por outros meios apropriados.  Por favor, reveja esta Política de Privacidade regularmente para estar ciente de nossas práticas de privacidade mais recentes.  Ao continuar a usar o Aplicativo Equality Food após quaisquer alterações na Política de Privacidade, você concorda com as práticas descritas nesta política revisada.  Esta Política de Privacidade foi atualizada pela última vez em 20/10/2023."
-            android:textColor="#000000"
-            android:textSize="24sp"
             app:layout_constraintBottom_toTopOf="@+id/checkBox"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
