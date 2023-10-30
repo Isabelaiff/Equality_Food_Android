@@ -12,7 +12,7 @@
         android:layout_height="52dp"
         android:background="@drawable/borda_botao_laranja"
         android:backgroundTint="#F5991A"
-        android:hint="Cadastrar"
+        android:hint="Alterar"
         android:textColorHint="#FFFFFF"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"

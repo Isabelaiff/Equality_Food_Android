@@ -3,7 +3,6 @@ package com.example.equalityfood;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,30 +19,13 @@ public class Perfil extends AppCompatActivity {
         setContentView(R.layout.activity_perfil);
 
         ImageButton btnHome2 = findViewById(R.id.btnHome);
+
         TextView nomeVis = findViewById(R.id.textView23);
         TextView emailVis = findViewById(R.id.textView24);
         TextView numeroVis = findViewById(R.id.textView26);
         Button btnPolitica = findViewById(R.id.btnPolitica);
-        TextView textViewEmail = findViewById(R.id.textView34);
-        Button localizacao = findViewById(R.id.textView31);
 
 
-        textViewEmail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String emailContent = textViewEmail.getText().toString();
-                sendEmail(emailContent);
-            }
-        });
-
-
-        localizacao.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Perfil.this, LocalizacaoEntrega.class);
-                startActivity(intent);
-            }
-        });
 
         btnHome2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,7 +52,7 @@ public class Perfil extends AppCompatActivity {
 
             nomeVis.setText(nome);
             emailVis.setText(email);
-                numeroVis.setText(numero);
+            numeroVis.setText(numero);
         }
 
 
@@ -114,24 +96,43 @@ public class Perfil extends AppCompatActivity {
             }
         });
 
-        ImageButton imageButton12 = findViewById(R.id.imageButton12);
-        imageButton12.setOnClickListener(new View.OnClickListener() {
+//        ImageButton imageButton12 = findViewById(R.id.imageButton12);
+//        imageButton12.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(Perfil.this, Foto.class);
+//                startActivity(intent);
+//            }
+//        });
+
+        Button editarInfo = findViewById(R.id.button);
+        editarInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Perfil.this, Foto.class);
+                Intent intent = new Intent(Perfil.this, AtualizarPerfil.class);
                 startActivity(intent);
             }
         });
 
-    }
-    private void sendEmail(String content) {
-        Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
-        emailIntent.setData(Uri.parse("mailto:"));
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Assunto do e-mail");
-        emailIntent.putExtra(Intent.EXTRA_TEXT, content);
+        Button logout = findViewById(R.id.logout_button);
 
-        if (emailIntent.resolveActivity(getPackageManager()) != null) {
-            startActivity(emailIntent);
-        }
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+
+                Intent intent = new Intent(Perfil.this, Login.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
     }
+
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//  //      FirebaseAuth.getInstance().signOut();
+//
+//    }
 }
