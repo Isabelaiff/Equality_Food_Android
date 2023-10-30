@@ -1,14 +1,18 @@
 package com.example.equalityfood;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -19,7 +23,6 @@ public class Perfil extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil);
 
-        ImageButton btnHome2 = findViewById(R.id.btnHome);
         TextView nomeVis = findViewById(R.id.textView23);
         TextView emailVis = findViewById(R.id.textView24);
         TextView numeroVis = findViewById(R.id.textView26);
@@ -28,27 +31,12 @@ public class Perfil extends AppCompatActivity {
         Button localizacao = findViewById(R.id.textView31);
 
 
-        textViewEmail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String emailContent = textViewEmail.getText().toString();
-                sendEmail(emailContent);
-            }
-        });
 
 
         localizacao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Perfil.this, LocalizacaoEntrega.class);
-                startActivity(intent);
-            }
-        });
-
-        btnHome2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Perfil.this, home.class);
                 startActivity(intent);
             }
         });
@@ -72,27 +60,6 @@ public class Perfil extends AppCompatActivity {
             emailVis.setText(email);
                 numeroVis.setText(numero);
         }
-
-
-        ImageButton imageButton13 = findViewById(R.id.imageButton13);
-
-        imageButton13.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Perfil.this, Carrinho.class);
-                startActivity(intent);
-            }
-        });
-
-        ImageButton imageButton3 = findViewById(R.id.imageButton3);
-        imageButton3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Perfil.this, Pedidos.class);
-                startActivity(intent);
-            }
-        });
-
 
 
         Button textView32 = findViewById(R.id.textView32);
@@ -122,16 +89,27 @@ public class Perfil extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-    }
-    private void sendEmail(String content) {
-        Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
-        emailIntent.setData(Uri.parse("mailto:"));
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Assunto do e-mail");
-        emailIntent.putExtra(Intent.EXTRA_TEXT, content);
-
-        if (emailIntent.resolveActivity(getPackageManager()) != null) {
-            startActivity(emailIntent);
-        }
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.imageButton4:
+                        Intent intent = new Intent(Perfil.this, Pedidos.class);
+                        startActivity(intent);
+                        return true;
+                    case R.id.imageButton:
+                        Intent carrinho = new Intent(Perfil.this, Carrinho.class);
+                        startActivity(carrinho);
+                        return true;
+                    case R.id.menu_page1:
+                        Intent perfil = new Intent(Perfil.this, home.class);
+                        startActivity(perfil);
+                        return true;
+                }
+                return false;
+            }
+        });
     }
 }
+
