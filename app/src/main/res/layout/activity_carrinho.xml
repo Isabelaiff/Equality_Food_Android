@@ -39,7 +39,7 @@
             <ListView
                 android:id="@+id/listaview"
                 android:layout_width="762dp"
-                android:layout_height="602dp"
+                android:layout_height="636dp"
                 android:textAlignment="center" />
         </LinearLayout>
     </ScrollView>
@@ -55,17 +55,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/header" />
+        app:srcCompat="@drawable/header"
+        tools:ignore="NotSibling" />
 
     <ImageView
         android:id="@+id/imageView12"
         android:layout_width="863dp"
         android:layout_height="291dp"
+        android:background="#00FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:srcCompat="@drawable/fundofixo" />
+        app:srcCompat="@drawable/fundofixo"
+        tools:ignore="NotSibling" />
 
     <Button
         android:id="@+id/finalizar"

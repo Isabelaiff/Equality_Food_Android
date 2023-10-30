@@ -1,7 +1,12 @@
 package com.example.equalityfood;
 
+import static android.system.Os.remove;
+
+import static java.security.AccessController.getContext;
+
 import android.content.Context;
 import android.os.Bundle;
+import android.system.ErrnoException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +15,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
+import java.util.List;
+
 public class Adapter extends BaseAdapter {
     private Context applicationContext;
     private LayoutInflater inflater;
@@ -17,13 +26,15 @@ public class Adapter extends BaseAdapter {
     private int[] img;
     private int[] qtdvetor;
     private double[] precoVet;
+    private List<Carrinho> cardList;
 
 
-    public Adapter(Context applicationContext, String[] prod, int[] img, double[] preco) {
+    public Adapter(Context applicationContext, String[] prod, int[] img, double[] preco, List<Carrinho> cardList) {
         this.applicationContext = applicationContext;
         this.prod = prod;
         this.img = img;
         this.precoVet = preco;
+        this.cardList = cardList;
         this.inflater = LayoutInflater.from(applicationContext);
     }
 
@@ -34,20 +45,20 @@ public class Adapter extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return prod.length;
     }
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
     @Override
     public View getView(int i, View view, ViewGroup parent) {
         view = inflater.inflate(R.layout.activity_adapter, null);
 
-        int count = 0;
-
+        ImageView card = view.findViewById(R.id.imageView2);
+        Button removeButton = view.findViewById(R.id.button);
         ImageView icon = view.findViewById(R.id.imgProd);
         TextView nome = view.findViewById(R.id.produto);
         TextView precoView = view.findViewById(R.id.preco);
@@ -60,6 +71,14 @@ public class Adapter extends BaseAdapter {
         icon.setImageResource(img[i]);
         textViewQtd.setText("1");
 
+
+//        removeButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                cardList.remove(card);
+//                notifyDataSetChanged();
+//            }
+//        });
 
         buttonIncrement.setOnClickListener(new View.OnClickListener() {
             @Override
