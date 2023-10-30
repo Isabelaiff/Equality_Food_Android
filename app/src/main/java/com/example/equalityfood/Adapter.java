@@ -58,7 +58,7 @@ public class Adapter extends BaseAdapter {
         nome.setText(prod[i]);
         precoView.setText(String.valueOf(precoVet[i]));
         icon.setImageResource(img[i]);
-        textViewQtd.setText("0");
+        textViewQtd.setText("1");
 
 
         buttonIncrement.setOnClickListener(new View.OnClickListener() {
@@ -76,7 +76,7 @@ public class Adapter extends BaseAdapter {
             public void onClick(View view) {
                 int qtd = Integer.parseInt(textViewQtd.getText().toString());
 
-                if (qtd > 0) {
+                if (qtd > 1) {
                     qtd--;
                     textViewQtd.setText(String.valueOf(qtd));
                 }

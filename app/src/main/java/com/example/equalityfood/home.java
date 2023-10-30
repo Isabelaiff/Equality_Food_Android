@@ -1,14 +1,18 @@
 package com.example.equalityfood;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.Toast;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class home extends AppCompatActivity {
 
@@ -39,35 +43,44 @@ public class home extends AppCompatActivity {
                 searchView.setIconified(false);
             }
         });
-        ImageButton btnPerfil = findViewById(R.id.btnPerfil2);
+//        ImageButton btnPerfil = findViewById(R.id.btnPerfil2);
+//
+//        btnPerfil.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(home.this, Perfil.class);
+//                startActivity(intent);
+//            }
+//        });
+//
+//        ImageButton btnCarrinho = findViewById(R.id.imageButton);
+//
+//        btnCarrinho.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(home.this, Carrinho.class);
+//                startActivity(intent);
+//            }
+//        });
+//
+//        ImageButton btnInicio = findViewById(R.id.menu_page1);
+//
+//        btnInicio.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(this, "Você está nessa página", Toast.LENGTH_SHORT).show();;
+//            }
+//        });
+//
+//        ImageButton imageButton4 = findViewById(R.id.imageButton4);
 
-        btnPerfil.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(home.this, Perfil.class);
-                startActivity(intent);
-            }
-        });
-
-        ImageButton btnCarrinho = findViewById(R.id.imageButton);
-
-        btnCarrinho.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(home.this, Carrinho.class);
-                startActivity(intent);
-            }
-        });
-
-        ImageButton imageButton4 = findViewById(R.id.imageButton4);
-
-        imageButton4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(home.this, Pedidos.class);
-                startActivity(intent);
-            }
-        });
+//        imageButton4.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(home.this, Pedidos.class);
+//                startActivity(intent);
+//            }
+//        });
 
         ImageView naoPerecivel = findViewById(R.id.imageView23);
 
@@ -89,7 +102,6 @@ public class home extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
 
 
         ImageView imageButton11 = findViewById(R.id.imageView35);
@@ -132,9 +144,30 @@ public class home extends AppCompatActivity {
             }
         });
 
-    }
-    private void performSearch(String query) {
-        Toast.makeText(this, "Pesquisando por: " + query, Toast.LENGTH_SHORT).show();
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.imageButton4:
+                        Intent intent = new Intent(home.this, Pedidos.class);
+                        startActivity(intent);
+                        return true;
+                    case R.id.imageButton:
+                        Intent carrinho = new Intent(home.this, Carrinho.class);
+                        startActivity(carrinho);
+                        return true;
+                    case R.id.btnPerfil2:
+                        Intent perfil = new Intent(home.this, Perfil.class);
+                        startActivity(perfil);
+                        return true;
+                }
+                return false;
+            }
+        });
     }
 
+    private void performSearch (String query){
+        Toast.makeText(this, "Pesquisando por: " + query, Toast.LENGTH_SHORT).show();
+    }
 }

@@ -2,9 +2,11 @@ package com.example.equalityfood;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 public class Pedidos extends AppCompatActivity {
@@ -25,11 +27,12 @@ public class Pedidos extends AppCompatActivity {
         lista.setAdapter(adapter);
 
 
-        ImageButton close = findViewById(R.id.close);
+        ImageView close = findViewById(R.id.close);
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                Intent intent = new Intent(Pedidos.this, home.class);
+                startActivity(intent);
             }
         });
 

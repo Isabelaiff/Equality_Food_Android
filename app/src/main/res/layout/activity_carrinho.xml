@@ -10,48 +10,73 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="99dp"
-        android:layout_height="32dp"
+        android:layout_width="117dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="176dp"
         android:gravity="center"
         android:text="Carrinho"
         android:textColor="#000000"
-        android:textSize="20sp"
+        android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="@+id/linearLayout"
+        app:layout_constraintStart_toEndOf="@+id/voltar"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.041" />
+        app:layout_constraintVertical_bias="0.039" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="702dp"
-        android:layout_height="631dp"
-        android:orientation="vertical"
+    <ScrollView
+        android:layout_width="760dp"
+        android:layout_height="881dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/voltar">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="762dp"
+            android:layout_height="602dp"
+            android:orientation="vertical">
+
+            <ListView
+                android:id="@+id/listaview"
+                android:layout_width="762dp"
+                android:layout_height="602dp"
+                android:textAlignment="center" />
+        </LinearLayout>
+    </ScrollView>
+
+    <ImageView
+        android:id="@+id/voltar"
+        android:layout_width="53dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.293">
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/header" />
 
-        <ListView
-            android:id="@+id/listaview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textAlignment="center" />
-    </LinearLayout>
+    <ImageView
+        android:id="@+id/imageView12"
+        android:layout_width="863dp"
+        android:layout_height="291dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:srcCompat="@drawable/fundofixo" />
 
     <Button
         android:id="@+id/finalizar"
         android:layout_width="230dp"
         android:layout_height="60dp"
         android:background="@drawable/borda_botao"
-        android:textColorHint="#FFFFFF"
-        android:textSize="20sp"
         android:backgroundTint="#8F0404"
         android:hint="Finalizar Compra"
         android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -59,20 +84,7 @@
         app:layout_constraintVertical_bias="0.959" />
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Total"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.092"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.806" />
-
-    <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textView27"
         android:layout_width="96dp"
         android:layout_height="39dp"
         android:text="R$ 0,00"
@@ -80,28 +92,22 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.102"
+        app:layout_constraintHorizontal_bias="0.141"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.86" />
+        app:layout_constraintVertical_bias="0.868" />
 
-    <ImageButton
-        android:id="@+id/imageButton6"
-        android:layout_width="103dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="53dp"
-        android:layout_marginTop="31dp"
-        android:layout_marginEnd="36dp"
-        android:layout_marginBottom="16dp"
-        android:background="#00FFFFFF"
-        android:contentDescription="bota a descrição aqui"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintEnd_toStartOf="@+id/textView"
-        app:layout_constraintHorizontal_bias="0.0"
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.131"
         app:layout_constraintStart_toStartOf="parent"
-
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="?attr/actionModeCloseDrawable" />
+        app:layout_constraintVertical_bias="0.831" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

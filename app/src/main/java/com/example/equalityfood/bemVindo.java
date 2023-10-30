@@ -19,7 +19,7 @@ public class bemVindo extends AppCompatActivity {
         btnVamosLa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(bemVindo.this, home.class);
+                Intent intent = new Intent(bemVindo.this, Login.class);
                 startActivity(intent);
 
             }
