@@ -312,7 +312,22 @@
 
             </LinearLayout>
 
+            <Button
+                android:id="@+id/logout_button"
+                android:layout_width="258dp"
+                android:layout_height="59dp"
+                android:layout_marginBottom="88dp"
+                android:background="@drawable/borda_botao"
+                android:hint="Log out"
+                android:textColorHint="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.473"
+                app:layout_constraintStart_toStartOf="parent" />
+
         </LinearLayout>
+
 
         <ImageView
             android:id="@+id/imageView13"

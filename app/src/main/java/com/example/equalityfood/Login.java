@@ -18,6 +18,7 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.Status;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class Login extends AppCompatActivity {
 
@@ -118,6 +119,19 @@ public class Login extends AppCompatActivity {
                 Toast.makeText(this, "Falha na autenticação: " + status, Toast.LENGTH_SHORT).show();
                 System.out.println(Toast.LENGTH_SHORT);
             }
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        FirebaseUser usuarioLogin = auth.getCurrentUser();
+
+        if (usuarioLogin != null){
+            Intent intent = new Intent(Login.this, home.class);
+            startActivity(intent);
+            finish();
         }
     }
 }

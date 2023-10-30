@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,11 +26,7 @@ public class Perfil extends AppCompatActivity {
         TextView emailVis = findViewById(R.id.textView24);
         TextView numeroVis = findViewById(R.id.textView26);
         Button btnPolitica = findViewById(R.id.btnPolitica);
-        TextView textViewEmail = findViewById(R.id.textView34);
-        Button localizacao = findViewById(R.id.textView31);
-
-
-
+        Button localizacao = findViewById(R.id.textView32);
 
         localizacao.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,7 +53,7 @@ public class Perfil extends AppCompatActivity {
 
             nomeVis.setText(nome);
             emailVis.setText(email);
-                numeroVis.setText(numero);
+            numeroVis.setText(numero);
         }
 
 
@@ -81,11 +76,20 @@ public class Perfil extends AppCompatActivity {
             }
         });
 
-        ImageButton imageButton12 = findViewById(R.id.imageButton12);
-        imageButton12.setOnClickListener(new View.OnClickListener() {
+//        ImageButton imageButton12 = findViewById(R.id.imageButton12);
+//        imageButton12.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(Perfil.this, Foto.class);
+//                startActivity(intent);
+//            }
+//        });
+
+        Button editarInfo = findViewById(R.id.button);
+        editarInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Perfil.this, Foto.class);
+                Intent intent = new Intent(Perfil.this, AtualizarPerfil.class);
                 startActivity(intent);
             }
         });
@@ -110,6 +114,25 @@ public class Perfil extends AppCompatActivity {
                 return false;
             }
         });
+    Button logout = findViewById(R.id.logout_button);
+
+        logout.setOnClickListener(new View.OnClickListener(){
+        @Override
+        public void onClick (View v) {
+            FirebaseAuth.getInstance().signOut();
+
+            Intent intent = new Intent(Perfil.this, Login.class);
+            startActivity(intent);
+            finish();
+        }
+    });
     }
 }
 
+
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//  //      FirebaseAuth.getInstance().signOut();
+//
+//    }
