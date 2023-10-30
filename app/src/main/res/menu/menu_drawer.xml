@@ -9,18 +9,16 @@
         />
     <item
         android:id="@+id/imageButton4"
+        android:background="#00FFFFFF"
         android:icon="@drawable/pedido"
         android:title="@string/Pedidos"
-        android:background="#00FFFFFF"
-        android:visible="true"
-        />
+        android:visible="true" />
     <item
         android:id="@+id/imageButton"
+        android:background="#00FFFFFF"
         android:icon="@drawable/carrinhoicon"
         android:title="@string/Carrinho"
-        android:background="#00FFFFFF"
-        android:visible="true"
-        />
+        android:visible="true" />
     <item
         android:id="@+id/btnPerfil2"
         android:icon="@drawable/perfiltran"

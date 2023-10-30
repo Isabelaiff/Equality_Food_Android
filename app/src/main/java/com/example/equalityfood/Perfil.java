@@ -3,6 +3,7 @@ package com.example.equalityfood;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,13 +20,30 @@ public class Perfil extends AppCompatActivity {
         setContentView(R.layout.activity_perfil);
 
         ImageButton btnHome2 = findViewById(R.id.btnHome);
-
         TextView nomeVis = findViewById(R.id.textView23);
         TextView emailVis = findViewById(R.id.textView24);
         TextView numeroVis = findViewById(R.id.textView26);
         Button btnPolitica = findViewById(R.id.btnPolitica);
+        TextView textViewEmail = findViewById(R.id.textView34);
+        Button localizacao = findViewById(R.id.textView31);
 
 
+        textViewEmail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String emailContent = textViewEmail.getText().toString();
+                sendEmail(emailContent);
+            }
+        });
+
+
+        localizacao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Perfil.this, LocalizacaoEntrega.class);
+                startActivity(intent);
+            }
+        });
 
         btnHome2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,5 +123,15 @@ public class Perfil extends AppCompatActivity {
             }
         });
 
+    }
+    private void sendEmail(String content) {
+        Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
+        emailIntent.setData(Uri.parse("mailto:"));
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Assunto do e-mail");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, content);
+
+        if (emailIntent.resolveActivity(getPackageManager()) != null) {
+            startActivity(emailIntent);
+        }
     }
 }
