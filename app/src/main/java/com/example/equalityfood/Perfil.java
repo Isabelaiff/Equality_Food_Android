@@ -26,7 +26,7 @@ public class Perfil extends AppCompatActivity {
         TextView emailVis = findViewById(R.id.textView24);
         TextView numeroVis = findViewById(R.id.textView26);
         Button btnPolitica = findViewById(R.id.btnPolitica);
-        Button localizacao = findViewById(R.id.textView32);
+        Button localizacao = findViewById(R.id.textView31);
 
         localizacao.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -102,40 +102,36 @@
         app:srcCompat="@drawable/propagandaseara" />
 
     <ImageView
-        android:id="@+id/imageView37"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
-        android:layout_marginEnd="116dp"
-        android:layout_marginBottom="1dp"
-        app:layout_constraintBottom_toTopOf="@+id/editInfo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/rectangle_38" />
-
-    <ImageView
         android:id="@+id/imageView36"
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:layout_marginEnd="44dp"
-        android:layout_marginBottom="36dp"
+        android:layout_marginBottom="52dp"
         app:layout_constraintBottom_toTopOf="@+id/imageView2"
         app:layout_constraintEnd_toStartOf="@+id/imageView37"
         app:srcCompat="@drawable/rectangle_37" />
 
-    <TextView
-        android:id="@+id/emailVis"
-        android:layout_width="74dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="135dp"
-        android:layout_marginBottom="214dp"
-        android:text="Frango"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
-        app:layout_constraintEnd_toStartOf="@+id/editInfo"
-        app:layout_constraintHorizontal_bias="0.542"
-        app:layout_constraintStart_toEndOf="@+id/nomeVis"
-        app:layout_constraintTop_toTopOf="@+id/imageView36"
-        app:layout_constraintVertical_bias="0.0" />
+    <ImageView
+        android:id="@+id/imageView31"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="44dp"
+        app:layout_constraintEnd_toStartOf="@+id/imageView32"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:srcCompat="@drawable/rectangle_34" />
+
+    <ImageView
+        android:id="@+id/imageView35"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginEnd="56dp"
+        android:layout_marginBottom="52dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+        app:layout_constraintEnd_toStartOf="@+id/imageView36"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/rectangle_36" />
 
     <TextView
         android:id="@+id/nomeVis"
@@ -151,39 +147,29 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView35"
         app:layout_constraintVertical_bias="0.0" />
 
-    <ImageView
-        android:id="@+id/imageView35"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
-        android:layout_marginStart="116dp"
-        android:layout_marginEnd="56dp"
-        android:layout_marginBottom="36dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView2"
-        app:layout_constraintEnd_toStartOf="@+id/imageView36"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/rectangle_36" />
-
-    <ImageView
-        android:id="@+id/imageView31"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="44dp"
-        app:layout_constraintEnd_toStartOf="@+id/imageView32"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:srcCompat="@drawable/rectangle_34" />
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="116dp"
-        android:layout_marginBottom="152dp"
+        android:layout_marginBottom="156dp"
         android:text="Não perecíveis"
         android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView35"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/inputEmail"
+        android:layout_width="99dp"
+        android:layout_height="25dp"
+        android:layout_marginEnd="136dp"
+        android:layout_marginBottom="24dp"
+        android:text="Legumes"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView37"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageView
         android:id="@+id/imageView23"
@@ -191,7 +177,7 @@
         android:layout_height="130dp"
         android:layout_marginStart="112dp"
         android:layout_marginEnd="104dp"
-        android:layout_marginBottom="28dp"
+        android:layout_marginBottom="24dp"
         app:layout_constraintBottom_toBottomOf="@+id/textView"
         app:layout_constraintEnd_toStartOf="@+id/imageView31"
         app:layout_constraintHorizontal_bias="0.0"
@@ -202,7 +188,7 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="156dp"
+        android:layout_marginBottom="152dp"
         android:text="@string/congelados"
         android:textColor="#000000"
         android:textSize="20sp"
@@ -217,35 +203,50 @@
         android:layout_height="127dp"
         android:layout_marginTop="48dp"
         android:layout_marginEnd="116dp"
+        android:outlineAmbientShadowColor="#535050"
         app:layout_constraintBottom_toTopOf="@+id/inputEmail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.296"
         app:srcCompat="@drawable/rectangle_35" />
 
-    <TextView
-        android:id="@+id/inputEmail"
-        android:layout_width="99dp"
-        android:layout_height="25dp"
-        android:layout_marginEnd="136dp"
-        android:layout_marginBottom="28dp"
-        android:text="Legumes"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView37"
-        app:layout_constraintEnd_toEndOf="parent" />
+    <ImageView
+        android:id="@+id/imageView37"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_marginEnd="116dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/editInfo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/rectangle_38" />
 
     <TextView
         android:id="@+id/editInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="120dp"
-        android:layout_marginBottom="320dp"
+        android:layout_marginEnd="116dp"
+        android:layout_marginBottom="336dp"
         android:text="Carne bovina"
         android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/emailVis"
+        android:layout_width="74dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="135dp"
+        android:layout_marginBottom="214dp"
+        android:text="Frango"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+        app:layout_constraintEnd_toStartOf="@+id/editInfo"
+        app:layout_constraintHorizontal_bias="0.532"
+        app:layout_constraintStart_toEndOf="@+id/nomeVis"
+        app:layout_constraintTop_toTopOf="@+id/imageView36"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
