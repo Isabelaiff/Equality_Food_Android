@@ -21,16 +21,15 @@ public class Pagamento extends AppCompatActivity {
         btnCarrinho.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Pagamento.this, Carrinho.class);
-                startActivity(intent);
+                finish();
             }
         });
 
         btnPagar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PopUp1 PopUp1 = new PopUp1(Pagamento.this);
-                PopUp1.show();
+                PopUpQrCode pop = new PopUpQrCode(Pagamento.this);
+                pop.show();
             }
         });
     }

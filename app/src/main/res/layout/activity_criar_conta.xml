@@ -10,32 +10,49 @@
         android:id="@+id/imageView20"
         android:layout_width="713dp"
         android:layout_height="343dp"
-        android:layout_marginBottom="768dp"
+        android:layout_marginBottom="776dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.703"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/cabecalho" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="133dp"
+        android:layout_marginTop="180dp"
+        android:layout_marginEnd="134dp"
+        android:text="Crie sua conta"
+        android:textColor="@color/black"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView20"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.593" />
 
     <ImageButton
         android:id="@+id/voltar_button"
         android:layout_width="51dp"
         android:layout_height="66dp"
-        android:background="#F9F9F9"
+        android:background="#00F9F9F9"
         android:contentDescription="X"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.064"
+        app:layout_constraintHorizontal_bias="0.153"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.321"
+        app:layout_constraintVertical_bias="0.222"
         app:srcCompat="@drawable/header" />
 
     <EditText
         android:id="@+id/cpf"
         android:layout_width="407dp"
         android:layout_height="56dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="8dp"
         android:ems="10"
         android:enabled="true"
         android:focusable="true"
@@ -43,30 +60,28 @@
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/numTelefone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.582"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <EditText
-        android:id="@+id/dataNasc"
-        android:layout_width="407dp"
-        android:layout_height="56dp"
-        android:layout_marginBottom="4dp"
-        android:clickable="true"
-        android:ems="10"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:hint="Data de Nascimento"
-        app:layout_constraintBottom_toTopOf="@+id/cpf"
+    <Button
+        android:id="@+id/cadastrar_button"
+        android:layout_width="258dp"
+        android:layout_height="59dp"
+        android:layout_marginBottom="88dp"
+        android:background="@drawable/borda_botao"
+        android:hint="Cadastrar"
+        android:textColorHint="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.582"
+        app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/complemento"
         android:layout_width="195dp"
         android:layout_height="60dp"
-        android:layout_marginEnd="128dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginEnd="156dp"
+        android:layout_marginBottom="8dp"
         android:ems="10"
         android:hint="Complemento"
         android:inputType="textPersonName"
@@ -77,7 +92,7 @@
         android:id="@+id/cep"
         android:layout_width="407dp"
         android:layout_height="56dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="8dp"
         android:ems="10"
         android:enabled="true"
         android:focusable="true"
@@ -85,39 +100,52 @@
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/numEndereco"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.575"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/senha"
+        android:layout_width="407dp"
+        android:layout_height="56dp"
+        android:layout_marginBottom="8dp"
+        android:ems="10"
+        android:hint="Senha"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/confirmarSenha"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/confirmarSenha"
+        android:layout_width="407dp"
+        android:layout_height="69dp"
+        android:layout_marginBottom="24dp"
+        android:ems="10"
+        android:hint="Confirme sua senha"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/cadastrar_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/nomeCompleto"
         android:layout_width="407dp"
         android:layout_height="56dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="8dp"
         android:ems="10"
         android:hint="Nome Completo"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/dataNasc"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.582"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/cadastrar_button"
-        android:layout_width="258dp"
-        android:layout_height="59dp"
-        android:layout_marginBottom="120dp"
-        android:backgroundTint="#F4981A"
-        android:text="Cadastrar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.557"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/numTelefone"
         android:layout_width="407dp"
         android:layout_height="56dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="8dp"
         android:ems="10"
         android:enabled="true"
         android:focusable="true"
@@ -125,40 +153,13 @@
         android:inputType="phone"
         app:layout_constraintBottom_toTopOf="@+id/email"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.582"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/senha"
-        android:layout_width="407dp"
-        android:layout_height="56dp"
-        android:layout_marginBottom="4dp"
-        android:ems="10"
-        android:hint="Senha"
-        android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/confirmarSenha"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.575"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/numEndereco"
-        android:layout_width="195dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="4dp"
-        android:ems="10"
-        android:hint="Número"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/senha"
-        app:layout_constraintEnd_toStartOf="@+id/complemento"
-        app:layout_constraintHorizontal_bias="0.93"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/email"
         android:layout_width="407dp"
         android:layout_height="56dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="8dp"
         android:ems="10"
         android:enabled="true"
         android:focusable="true"
@@ -166,20 +167,33 @@
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/cep"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.582"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/confirmarSenha"
-        android:layout_width="407dp"
-        android:layout_height="69dp"
-        android:layout_marginBottom="28dp"
+        android:id="@+id/numEndereco"
+        android:layout_width="195dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="8dp"
         android:ems="10"
-        android:hint="Confirme sua senha"
-        android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/cadastrar_button"
+        android:hint="Número"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/senha"
+        app:layout_constraintEnd_toStartOf="@+id/complemento"
+        app:layout_constraintHorizontal_bias="0.914"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/dataNasc"
+        android:layout_width="407dp"
+        android:layout_height="56dp"
+        android:layout_marginBottom="8dp"
+        android:clickable="true"
+        android:ems="10"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:hint="Data de Nascimento"
+        app:layout_constraintBottom_toTopOf="@+id/cpf"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.575"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

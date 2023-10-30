@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 public class Carrinho extends AppCompatActivity {
 
@@ -22,13 +23,12 @@ public class Carrinho extends AppCompatActivity {
         Adapter adapter = new Adapter(this, produtos, imgProd, precoProd);
         lista.setAdapter(adapter);
 
-        ImageButton voltarHome = findViewById(R.id.imageButton6);
+        ImageView voltarHome = findViewById(R.id.voltar);
 
         voltarHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Carrinho.this, home.class);
-                startActivity(intent);
+                finish();
             }
         });
 
