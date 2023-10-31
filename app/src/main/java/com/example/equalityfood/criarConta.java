@@ -134,6 +134,10 @@ public class criarConta extends AppCompatActivity {
         String senhaTexto = senha.getText().toString();
 
         String confirmarSenhaTexto = confirmarSenha.getText().toString();
+
+        if (ValidarCPF.isCPF(cpfTexto) == false){
+            Toast.makeText(getApplicationContext(), "Por favor, coloque um cpf válido.", Toast.LENGTH_SHORT).show();
+        }
         if (!senhaTexto.equals(confirmarSenhaTexto)) {
             Toast.makeText(getApplicationContext(), "As senhas não correspondem. Por favor, verifique e tente novamente.", Toast.LENGTH_SHORT).show();
             return; // Não prossiga com o cadastro se as senhas não coincidirem

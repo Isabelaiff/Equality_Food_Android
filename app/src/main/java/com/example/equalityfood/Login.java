@@ -1,10 +1,18 @@
 package com.example.equalityfood;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +41,8 @@ public class Login extends AppCompatActivity {
         TextView campoEmail = findViewById(R.id.campoEmail);
         EditText campoSenha = findViewById(R.id.campoSenha);
         Button esqueceuSenha = findViewById(R.id.esqueceuSenha);
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
 
         entrarButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,6 +50,9 @@ public class Login extends AppCompatActivity {
                 String emailTexto = campoEmail.getText().toString().trim();
                 String senhaTexto = campoSenha.getText().toString().trim();
 
+                //sem internet
+                semInternet();
+                //entrar
                 if (emailTexto.isEmpty() || senhaTexto.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Por favor, preencha todos os campos.", Toast.LENGTH_SHORT).show();
                 } else {
@@ -102,6 +115,9 @@ public class Login extends AppCompatActivity {
             Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
             startActivityForResult(signInIntent, RC_SIGN_IN);
         });
+
+        //Sem internet
+        semInternet();
     }
 
     @Override
@@ -120,4 +136,16 @@ public class Login extends AppCompatActivity {
             }
         }
     }
+
+    public void semInternet(){
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+
+        if (networkInfo == null || !networkInfo.isConnected()) {
+            Intent intent = new Intent(Login.this, telaSemInternet.class);
+            startActivity(intent);
+        }
+    }
+
+
 }

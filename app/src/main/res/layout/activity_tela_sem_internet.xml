@@ -50,7 +50,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#F49718"
-        android:text="VOLTAR AO INICIO"
+        android:hint="Tente novamente"
+        android:onClick="voltarinicio"
+        android:textColorHint="#FFFFFF"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -59,8 +62,8 @@
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="654dp"
-        android:layout_height="195dp"
+        android:layout_width="1112dp"
+        android:layout_height="400dp"
         app:layout_constraintBottom_toTopOf="@+id/imageView3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,8 +73,8 @@
 
     <ImageView
         android:id="@+id/imageView5"
-        android:layout_width="600dp"
-        android:layout_height="200dp"
+        android:layout_width="1112dp"
+        android:layout_height="400dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
