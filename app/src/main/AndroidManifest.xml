@@ -3,6 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SENDTO" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -14,7 +27,16 @@
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
         tools:targetApi="31">
         <activity
+            android:name=".AlterarSenha"
+            android:exported="false" />
+        <activity
+            android:name=".VerificarCodigo"
+            android:exported="false" />
+        <activity
             android:name=".telaSemInternet"
+            android:exported="false" />
+        <activity
+            android:name=".Foto"
             android:exported="false" />
         <activity
             android:name=".PoliticaPrivacidade"
@@ -93,15 +115,10 @@
             android:exported="false" />
         <activity
             android:name=".Login"
-            android:exported="false">
-
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
-        </activity>
+            android:exported="false" />
+        <activity
+            android:name=".PopUpQrCode"
+            android:exported="false" />
     </application>
 
 </manifest>

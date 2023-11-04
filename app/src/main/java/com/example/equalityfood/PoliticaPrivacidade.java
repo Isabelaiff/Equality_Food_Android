@@ -26,7 +26,7 @@ public class PoliticaPrivacidade extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (checkBox.isChecked()) {
-                    Intent intent = new Intent(PoliticaPrivacidade.this, bemVindo.class);
+                    Intent intent = new Intent(PoliticaPrivacidade.this, home.class);
                     startActivity(intent);
                 } else {
                     Toast.makeText(getApplicationContext(), "Por favor, marque a CheckBox para continuar.", Toast.LENGTH_SHORT).show();

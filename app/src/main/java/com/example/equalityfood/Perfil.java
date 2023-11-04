@@ -52,7 +52,7 @@ public class Perfil extends AppCompatActivity {
 
             nomeVis.setText(nome);
             emailVis.setText(email);
-                numeroVis.setText(numero);
+            numeroVis.setText(numero);
         }
 
 
@@ -96,5 +96,37 @@ public class Perfil extends AppCompatActivity {
             }
         });
 
+//        ImageButton imageButton12 = findViewById(R.id.imageButton12);
+//        imageButton12.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(Perfil.this, Foto.class);
+//                startActivity(intent);
+//            }
+//        });
+
+        Button editarInfo = findViewById(R.id.button);
+        editarInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Perfil.this, AtualizarPerfil.class);
+                startActivity(intent);
+            }
+        });
+
+        Button logout = findViewById(R.id.logout_button);
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+
+                Intent intent = new Intent(Perfil.this, Login.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
     }
+
 }

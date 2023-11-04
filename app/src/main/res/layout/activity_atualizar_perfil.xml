@@ -12,7 +12,7 @@
         android:layout_height="52dp"
         android:background="@drawable/borda_botao_laranja"
         android:backgroundTint="#F5991A"
-        android:hint="Cadastrar"
+        android:hint="Alterar"
         android:textColorHint="#FFFFFF"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -84,19 +84,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.441" />
-
-    <EditText
-        android:id="@+id/endereco"
-        android:layout_width="297dp"
-        android:layout_height="56dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Atualizar CEP"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.595" />
 
     <ImageView
         android:id="@+id/imageView19"

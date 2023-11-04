@@ -31,7 +31,7 @@
         app:srcCompat="@drawable/header" />
 
     <EditText
-        android:id="@+id/inputEmail"
+        android:id="@+id/inputSenha"
         android:layout_width="475dp"
         android:layout_height="54dp"
         android:layout_marginTop="228dp"
@@ -46,8 +46,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="488dp"
-        android:text="Digite seu e-mail"
-        app:layout_constraintBottom_toTopOf="@+id/inputEmail"
+        android:text="Digite sua nova senha"
+        app:layout_constraintBottom_toTopOf="@+id/inputSenha"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:layout_constraintVertical_bias="1.0" />
@@ -68,18 +68,18 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btnCodigo"
+        android:id="@+id/btnAlterarSenha"
         android:layout_width="307dp"
         android:layout_height="60dp"
         android:backgroundTint="#8F0404"
-        android:hint="Enviar email de alteração"
+        android:hint="Alterar senha"
         android:background="@drawable/borda_botao"
         android:textColorHint="#FFFFFF"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputEmail"
+        app:layout_constraintTop_toBottomOf="@+id/inputSenha"
         app:layout_constraintVertical_bias="0.124" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

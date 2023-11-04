@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Equality Food</string>
+    <string name="Início">Início</string>
+    <string name="Pedidos">Pedidos</string>
+    <string name="Carrinho">Carrinho</string>
+    <string name="Perfil">Perfil</string>
+    <string name="esqueci_a_senha">Esqueci a senha</string>
+    <string name="congelados">Congelados</string>
+    <string name="equalityfood_outlook_com">equalityfood@outlook.com</string>
 </resources>

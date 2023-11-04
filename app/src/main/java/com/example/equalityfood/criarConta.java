@@ -1,10 +1,13 @@
 package com.example.equalityfood;
 
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +18,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import java.util.Calendar;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
@@ -145,7 +151,12 @@ public class criarConta extends AppCompatActivity {
         if (nomeTexto.isEmpty() || dataNascTexto.isEmpty() || cpfTexto.isEmpty() || numTelefoneTexto.isEmpty() ||
                 emailTexto.isEmpty() || cepTexto.isEmpty() || numEnderecoTexto.isEmpty() || senhaTexto.isEmpty()) {
             Toast.makeText(getApplicationContext(), "Por favor, preencha todos os campos obrigatórios.", Toast.LENGTH_SHORT).show();
-        } else {
+        }
+        if (!ValidaCPF.isCPF(cpfTexto)) {
+            Toast.makeText(getApplicationContext(), "CPF inválido. Por favor, verifique e tente novamente.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        else {
             // Verifique se a data de nascimento é válida
             if (dataValida(dataNascTexto)) {
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(emailTexto, senhaTexto)
@@ -153,6 +164,19 @@ public class criarConta extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 // Usuário criado com sucesso
                                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                                // Atualizando nome
+                                UserProfileChangeRequest profile = new UserProfileChangeRequest.Builder().setDisplayName(nomeTexto).build();
+                                user.updateProfile(profile).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (!task.isSuccessful()){
+                                            Log.i("ERRO profile", "Erro ao atualizar o nome");
+                                        }
+                                    }
+                                });
+
+
                                 if (user != null) {
                                     // Armazene o número de telefone no Firebase Realtime Database
                                     DatabaseReference usuariosRef = FirebaseDatabase.getInstance().getReference().child("Usuario").push();
