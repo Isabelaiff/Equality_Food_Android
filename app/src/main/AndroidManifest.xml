@@ -100,11 +100,19 @@
             android:name=".bemVindo"
             android:exported="false" />
         <activity
+            android:name=".PopUpQrCode"
+            android:exported="false">
+        </activity>
+        <activity
             android:name=".Login"
             android:exported="false">
         </activity>
         <activity
-            android:name=".PopUpQrCode"
+            android:name=".TabFragment"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".PedidoFragmento"
             android:exported="false">
         </activity>
     </application>

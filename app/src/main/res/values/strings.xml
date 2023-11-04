@@ -7,4 +7,8 @@
     <string name="esqueci_a_senha">Esqueci a senha</string>
     <string name="congelados">Congelados</string>
     <string name="equalityfood_outlook_com">equalityfood@outlook.com</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="texto_speakable">texto speakable</string>
+    <string name="pedidos">Pedidos</string>
+    <string name="fechar">Fechar</string>
 </resources>

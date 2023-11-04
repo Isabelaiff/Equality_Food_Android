@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".TabFragment">
+
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="645dp"
+        android:layout_height="231dp"
+        android:layout_marginTop="150dp"
+        app:srcCompat="@drawable/rectangle"
+        android:layout_marginStart="40dp"/>
+
+    <TextView
+        android:id="@+id/valor"
+        android:layout_width="101dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="356dp"
+        android:layout_marginBottom="41dp"
+        android:text="R$ 0,00"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="200dp"
+        />
+
+    <TextView
+        android:id="@+id/quando"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="96dp"
+        android:text="Saiu para entrega"
+        android:textSize="18sp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="260dp"
+        />
+    <TextView
+        android:id="@+id/data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="96dp"
+        android:text="Hoje às 00:00"
+        android:textSize="18sp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="290dp"
+         />
+</FrameLayout>
