@@ -1,17 +1,13 @@
 package com.example.equalityfood;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -22,16 +18,19 @@ public class Perfil extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil);
 
+        ImageButton btnHome2 = findViewById(R.id.btnHome);
+
         TextView nomeVis = findViewById(R.id.textView23);
         TextView emailVis = findViewById(R.id.textView24);
         TextView numeroVis = findViewById(R.id.textView26);
         Button btnPolitica = findViewById(R.id.btnPolitica);
-        Button localizacao = findViewById(R.id.textView31);
 
-        localizacao.setOnClickListener(new View.OnClickListener() {
+
+
+        btnHome2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Perfil.this, LocalizacaoEntrega.class);
+                Intent intent = new Intent(Perfil.this, home.class);
                 startActivity(intent);
             }
         });
@@ -55,6 +54,27 @@ public class Perfil extends AppCompatActivity {
             emailVis.setText(email);
             numeroVis.setText(numero);
         }
+
+
+        ImageButton imageButton13 = findViewById(R.id.imageButton13);
+
+        imageButton13.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Perfil.this, Carrinho.class);
+                startActivity(intent);
+            }
+        });
+
+        ImageButton imageButton3 = findViewById(R.id.imageButton3);
+        imageButton3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Perfil.this, Pedidos.class);
+                startActivity(intent);
+            }
+        });
+
 
 
         Button textView32 = findViewById(R.id.textView32);
@@ -93,46 +113,20 @@ public class Perfil extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        Button logout = findViewById(R.id.logout_button);
+
+        logout.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.imageButton4:
-                        Intent intent = new Intent(Perfil.this, Pedidos.class);
-                        startActivity(intent);
-                        return true;
-                    case R.id.imageButton:
-                        Intent carrinho = new Intent(Perfil.this, Carrinho.class);
-                        startActivity(carrinho);
-                        return true;
-                    case R.id.menu_page1:
-                        Intent perfil = new Intent(Perfil.this, home.class);
-                        startActivity(perfil);
-                        return true;
-                }
-                return false;
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+
+                Intent intent = new Intent(Perfil.this, Login.class);
+                startActivity(intent);
+                finish();
             }
         });
-    Button logout = findViewById(R.id.logout_button);
 
-        logout.setOnClickListener(new View.OnClickListener(){
-        @Override
-        public void onClick (View v) {
-            FirebaseAuth.getInstance().signOut();
-
-            Intent intent = new Intent(Perfil.this, Login.class);
-            startActivity(intent);
-            finish();
-        }
-    });
     }
+
 }
-
-
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//  //      FirebaseAuth.getInstance().signOut();
-//
-//    }

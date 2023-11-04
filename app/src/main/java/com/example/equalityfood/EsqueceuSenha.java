@@ -10,7 +10,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.auth.SignInMethodQueryResult;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -19,6 +22,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import android.widget.ImageButton;
+
+import java.util.concurrent.TimeUnit;
 
 public class EsqueceuSenha extends AppCompatActivity {
 
@@ -43,56 +48,45 @@ public class EsqueceuSenha extends AppCompatActivity {
         btnCodigo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = inputEmail.getText().toString();
+                String phoneNumber = inputEmail.getText().toString();
 
-                if (email.isEmpty()) {
-                    Toast.makeText(EsqueceuSenha.this, "Por favor, insira seu e-mail.", Toast.LENGTH_SHORT).show();
+                if (phoneNumber.isEmpty()) {
+                    Toast.makeText(EsqueceuSenha.this, "Por favor, insira seu número de telefone.", Toast.LENGTH_SHORT).show();
                 } else {
-                    auth.sendPasswordResetEmail(email)
-                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                            phoneNumber,        // Número de telefone a ser verificado
+                            60,                 // Tempo de timeout
+                            TimeUnit.SECONDS,   // Unidade de tempo para o timeout
+                            EsqueceuSenha.this, // Activity para callback
+                            new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
                                 @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()) {
-                                        Toast.makeText(EsqueceuSenha.this, "E-mail de redefinição de senha enviado. Verifique seu e-mail.", Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(EsqueceuSenha.this, Login.class);
-                                        startActivity(intent);
-                                        finish();
-                                    } else {
-                                        Toast.makeText(EsqueceuSenha.this, "Falha ao enviar e-mail de redefinição de senha. Por favor, tente novamente mais tarde.", Toast.LENGTH_SHORT).show();
-                                    }
+                                public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+                                    // Caso a verificação seja bem-sucedida automaticamente
+                                    // Você pode usar o phoneAuthCredential para criar o usuário se necessário
+                                    // Exemplo: auth.createUserWithEmailAndPassword(email, password);
+                                }
+
+                                @Override
+                                public void onVerificationFailed(@NonNull FirebaseException e) {
+                                    // Caso a verificação falhe
+                                    Toast.makeText(EsqueceuSenha.this, "Falha ao verificar o número de telefone.", Toast.LENGTH_SHORT).show();
+                                }
+
+                                @Override
+                                public void onCodeSent(@NonNull String verificationId,
+                                                       @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+                                    // Callback para quando o código de verificação é enviado com sucesso
+                                    // Guarde o verificationId para usar posteriormente
+                                    // e chame uma nova activity para inserir o código de verificação
+                                    Intent intent = new Intent(EsqueceuSenha.this, VerificarCodigo.class);
+                                    intent.putExtra("verificationId", verificationId);
+                                    startActivity(intent);
                                 }
                             });
                 }
             }
         });
-    }
-}
 
-
-//Código com verficação de cadastro (!!não está funcionando!!) tenho que ajustar
-
-//public class EsqueceuSenha extends AppCompatActivity {
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_esqueceu_senha);
-//
-//        FirebaseAuth auth = FirebaseAuth.getInstance();
-//        FirebaseDatabase database = FirebaseDatabase.getInstance();
-//
-//        Button btnCodigo = findViewById(R.id.btnCodigo);
-//        EditText inputEmail = findViewById(R.id.inputEmail);
-//        ImageButton btnVoltar = findViewById(R.id.voltar_button2);
-//
-//        btnVoltar.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(EsqueceuSenha.this, Login.class);
-//                startActivity(intent);
-//            }
-//        });
-//
 //        btnCodigo.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -101,39 +95,23 @@ public class EsqueceuSenha extends AppCompatActivity {
 //                if (email.isEmpty()) {
 //                    Toast.makeText(EsqueceuSenha.this, "Por favor, insira seu e-mail.", Toast.LENGTH_SHORT).show();
 //                } else {
-//                    DatabaseReference usersRef = database.getReference("usuarios");
-//                    usersRef.orderByChild("email").equalTo(email).addListenerForSingleValueEvent(new ValueEventListener() {
-//                        @Override
-//                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                            if (dataSnapshot.exists()) {
-//                                // E-mail está cadastrado, enviar e-mail de redefinição de senha
-//                                auth.sendPasswordResetEmail(email)
-//                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-//                                            @Override
-//                                            public void onComplete(@NonNull Task<Void> task) {
-//                                                if (task.isSuccessful()) {
-//                                                    Toast.makeText(EsqueceuSenha.this, "E-mail de redefinição de senha enviado. Verifique seu e-mail.", Toast.LENGTH_SHORT).show();
-//                                                    Intent intent = new Intent(EsqueceuSenha.this, Login.class);
-//                                                    startActivity(intent);
-//                                                    finish();
-//                                                } else {
-//                                                    Toast.makeText(EsqueceuSenha.this, "Falha ao enviar e-mail de redefinição de senha. Por favor, tente novamente mais tarde.", Toast.LENGTH_SHORT).show();
-//                                                }
-//                                            }
-//                                        });
-//                            } else {
-//                                // E-mail não está cadastrado
-//                                Toast.makeText(EsqueceuSenha.this, "Este e-mail não está cadastrado.", Toast.LENGTH_SHORT).show();
-//                            }
-//                        }
-//
-//                        @Override
-//                        public void onCancelled(@NonNull DatabaseError databaseError) {
-//                            Toast.makeText(EsqueceuSenha.this, "Erro ao verificar o e-mail. Por favor, tente novamente mais tarde.", Toast.LENGTH_SHORT).show();
-//                        }
-//                    });
+//                    auth.sendPasswordResetEmail(email)
+//                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+//                                @Override
+//                                public void onComplete(@NonNull Task<Void> task) {
+//                                    if (task.isSuccessful()) {
+//                                        Toast.makeText(EsqueceuSenha.this, "E-mail de redefinição de senha enviado. Verifique seu e-mail.", Toast.LENGTH_SHORT).show();
+//                                        Intent intent = new Intent(EsqueceuSenha.this, Login.class);
+//                                        startActivity(intent);
+//                                        finish();
+//                                    } else {
+//                                        Toast.makeText(EsqueceuSenha.this, "Falha ao enviar e-mail de redefinição de senha. Por favor, tente novamente mais tarde.", Toast.LENGTH_SHORT).show();
+//                                    }
+//                                }
+//                            });
 //                }
 //            }
 //        });
-//    }
-//}
+    }
+}
+
