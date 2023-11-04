@@ -35,6 +35,7 @@
         app:tabTextColor="#6A6A6A"
         android:contentDescription="@string/texto_speakable"
         android:layout_marginTop="100dp"
+        app:tabTextAppearance="@style/TextosCustomizados"
         >
 
     </com.google.android.material.tabs.TabLayout>

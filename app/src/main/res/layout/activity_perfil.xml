@@ -306,7 +306,7 @@
                     android:clickable="true"
                     android:contextClickable="true"
                     android:text="@string/equalityfood_outlook_com"
-                    android:textColor="#3856FF"
+                    android:textColor="#000000"
                     android:textSize="18sp" />
 
 
@@ -350,8 +350,7 @@
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation"
             android:layout_width="772dp"
-            android:layout_height="269dp"
-            android:layout_alignParentBottom="true"
+            android:layout_height="324dp"
             android:background="#F5991A"
             app:itemTextColor="#FFFFFF"
             app:labelVisibilityMode="labeled"

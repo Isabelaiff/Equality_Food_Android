@@ -3,4 +3,9 @@
     <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/logo</item>
     </style>
+    <style name="TextosCustomizados" parent="TextAppearance.Design.Tab">
+        <item name="textAllCaps">false</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">18sp</item>
+    </style>
 </resources>
