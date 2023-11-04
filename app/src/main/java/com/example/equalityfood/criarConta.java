@@ -1,5 +1,6 @@
 package com.example.equalityfood;
 
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -146,7 +147,12 @@ public class criarConta extends AppCompatActivity {
         if (nomeTexto.isEmpty() || dataNascTexto.isEmpty() || cpfTexto.isEmpty() || numTelefoneTexto.isEmpty() ||
                 emailTexto.isEmpty() || cepTexto.isEmpty() || numEnderecoTexto.isEmpty() || senhaTexto.isEmpty()) {
             Toast.makeText(getApplicationContext(), "Por favor, preencha todos os campos obrigatórios.", Toast.LENGTH_SHORT).show();
-        } else {
+        }
+        if (!ValidaCPF.isCPF(cpfTexto)) {
+            Toast.makeText(getApplicationContext(), "CPF inválido. Por favor, verifique e tente novamente.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        else {
             // Verifique se a data de nascimento é válida
             if (dataValida(dataNascTexto)) {
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(emailTexto, senhaTexto)
