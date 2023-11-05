@@ -7,6 +7,7 @@
     android:backgroundTint="#D9D9D9"
     tools:context=".Adapter">
 
+
   <ImageView
       android:id="@+id/imageView2"
       android:layout_width="664dp"
@@ -81,6 +82,7 @@
           app:layout_constraintTop_toTopOf="parent"
           app:layout_constraintVertical_bias="0.171" />
 
+
       <Button
           android:id="@+id/menos"
           android:layout_width="48dp"
@@ -131,23 +133,6 @@
           app:layout_constraintTop_toTopOf="parent"
           app:layout_constraintVertical_bias="0.428" />
 
-      <Button
-          android:id="@+id/button"
-          android:layout_width="137dp"
-          android:layout_height="49dp"
-          android:layout_marginTop="4dp"
-          android:layout_marginRight="6dp"
-          android:background="@drawable/borda_botao"
-          android:text="Remover"
-          android:textColor="#FFFFFF"
-          app:backgroundTint="#8F0404"
-          app:layout_constraintBottom_toBottomOf="parent"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintHorizontal_bias="0.914"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toTopOf="parent"
-          app:layout_constraintVertical_bias="0.849" />
-
       <TextView
           android:id="@+id/moeda"
           android:layout_width="wrap_content"
@@ -175,6 +160,19 @@
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toTopOf="parent"
           app:layout_constraintVertical_bias="0.31" />
+
+      <ImageView
+          android:id="@+id/lixo"
+          android:layout_width="36dp"
+          android:layout_height="29dp"
+          android:layout_marginStart="106dp"
+          android:src="@drawable/lixocarrinho"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="0.714"
+          app:layout_constraintStart_toEndOf="@+id/produto"
+          app:layout_constraintTop_toBottomOf="@+id/mais"
+          app:layout_constraintVertical_bias="0.555" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
   </LinearLayout>
