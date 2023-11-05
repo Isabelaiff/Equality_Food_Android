@@ -12,17 +12,34 @@ import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import com.example.equalityfood.databinding.ActivityHomeBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class home extends AppCompatActivity {
 
+    ActivityHomeBinding binding;
     private SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        binding = ActivityHomeBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         searchView = findViewById(R.id.searchView);
+
+        binding.bottomNavigation.setOnItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.menu_page1:
+                    break;
+                case R.id.imageButton4:
+                    break;
+                case R.id.imageButton:
+                    break;
+                case R.id.btnPerfil2:
+                    break;
+            }
+            return true;
+        });
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -112,16 +129,18 @@ public class home extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.imageButton4:
-                        Intent intent = new Intent(home.this, Pedidos.class);
-                        startActivity(intent);
+                        startActivity(new Intent(getApplicationContext(), Pedidos.class));
+                        overridePendingTransition(0, 0);
                         return true;
                     case R.id.imageButton:
-                        Intent carrinho = new Intent(home.this, Carrinho.class);
-                        startActivity(carrinho);
+                        startActivity(new Intent(getApplicationContext(), Carrinho.class));
+                        overridePendingTransition(0, 0);
                         return true;
                     case R.id.btnPerfil2:
-                        Intent perfil = new Intent(home.this, Perfil.class);
-                        startActivity(perfil);
+                        startActivity(new Intent(getApplicationContext(), Perfil.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.menu_page1:
                         return true;
                 }
                 return false;

@@ -102,21 +102,24 @@ public class Perfil extends AppCompatActivity {
         });
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.btnPerfil2);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
+                    case R.id.btnPerfil2:
+                        return true;
                     case R.id.imageButton4:
-                        Intent intent = new Intent(Perfil.this, Pedidos.class);
-                        startActivity(intent);
+                        startActivity(new Intent(getApplicationContext(), Pedidos.class));
+                        overridePendingTransition(0, 0);
                         return true;
                     case R.id.imageButton:
-                        Intent carrinho = new Intent(Perfil.this, Carrinho.class);
-                        startActivity(carrinho);
+                        startActivity(new Intent(getApplicationContext(), Carrinho.class));
+                        overridePendingTransition(0, 0);
                         return true;
                     case R.id.menu_page1:
-                        Intent perfil = new Intent(Perfil.this, home.class);
-                        startActivity(perfil);
+                        startActivity(new Intent(getApplicationContext(), home.class));
+                        overridePendingTransition(0, 0);
                         return true;
                 }
                 return false;
