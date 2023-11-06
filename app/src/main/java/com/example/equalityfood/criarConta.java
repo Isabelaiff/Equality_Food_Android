@@ -5,7 +5,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -68,10 +71,7 @@ public class criarConta extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         EqualityFoodRef = database.getReference();
 
-//        EditText phoneNumberEditText = findViewById(R.id.numTelefone);
-//        MaskWatcher phoneNumberMaskWatcher = new MaskWatcher();
-//        phoneNumberEditText.addTextChangedListener(phoneNumberMaskWatcher);
-
+        semInternet();
 
         cadastrarButton.setOnClickListener(v -> {
             salvarUsuario();
@@ -141,7 +141,7 @@ public class criarConta extends AppCompatActivity {
 
         String confirmarSenhaTexto = confirmarSenha.getText().toString();
 
-        if (ValidarCPF.isCPF(cpfTexto) == false){
+        if (ValidaCPF.isCPF(cpfTexto) == false){
             Toast.makeText(getApplicationContext(), "Por favor, coloque um cpf válido.", Toast.LENGTH_SHORT).show();
         }
         if (!senhaTexto.equals(confirmarSenhaTexto)) {
@@ -216,4 +216,13 @@ public class criarConta extends AppCompatActivity {
         }
 
         }
+    public void semInternet() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        if (networkInfo == null || !networkInfo.isConnected()) {
+            // Abre a tela de sem internet
+            Intent intent = new Intent(this, telaSemInternet.class);
+            startActivity(intent);
+        }
+    }
     }

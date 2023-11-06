@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -18,7 +17,7 @@ public class Perfil extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil);
 
-        ImageButton btnHome2 = findViewById(R.id.btnHome);
+//        ImageButton btnHome2 = findViewById(R.id.btnHome);
 
         TextView nomeVis = findViewById(R.id.textView23);
         TextView emailVis = findViewById(R.id.textView24);
@@ -27,13 +26,13 @@ public class Perfil extends AppCompatActivity {
 
 
 
-        btnHome2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Perfil.this, home.class);
-                startActivity(intent);
-            }
-        });
+//        btnHome2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(Perfil.this, home.class);
+//                startActivity(intent);
+//            }
+//        });
 
         btnPolitica.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,24 +55,24 @@ public class Perfil extends AppCompatActivity {
         }
 
 
-        ImageButton imageButton13 = findViewById(R.id.imageButton13);
+//        ImageButton imageButton13 = findViewById(R.id.imageButton13);
 
-        imageButton13.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Perfil.this, Carrinho.class);
-                startActivity(intent);
-            }
-        });
+//        imageButton13.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(Perfil.this, Carrinho.class);
+//                startActivity(intent);
+//            }
+//        });
 
-        ImageButton imageButton3 = findViewById(R.id.imageButton3);
-        imageButton3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Perfil.this, Pedidos.class);
-                startActivity(intent);
-            }
-        });
+//        ImageButton imageButton3 = findViewById(R.id.imageButton3);
+//        imageButton3.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(Perfil.this, Pedidos.class);
+//                startActivity(intent);
+//            }
+//        });
 
 
 
@@ -105,7 +104,7 @@ public class Perfil extends AppCompatActivity {
 //            }
 //        });
 
-        Button editarInfo = findViewById(R.id.button);
+        Button editarInfo = findViewById(R.id.btnVoltaLogin);
         editarInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

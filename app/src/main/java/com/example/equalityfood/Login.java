@@ -1,6 +1,9 @@
 package com.example.equalityfood;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -34,11 +37,15 @@ public class Login extends AppCompatActivity {
         EditText campoSenha = findViewById(R.id.campoSenha);
         Button esqueceuSenha = findViewById(R.id.esqueceuSenha);
 
+        semInternet();
+
         entrarButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String emailTexto = campoEmail.getText().toString().trim();
                 String senhaTexto = campoSenha.getText().toString().trim();
+
+                semInternet();
 
                 if (emailTexto.isEmpty() || senhaTexto.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Por favor, preencha todos os campos.", Toast.LENGTH_SHORT).show();
@@ -118,6 +125,15 @@ public class Login extends AppCompatActivity {
                 Toast.makeText(this, "Falha na autenticação: " + status, Toast.LENGTH_SHORT).show();
                 System.out.println(Toast.LENGTH_SHORT);
             }
+        }
+    }
+    public void semInternet() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        if (networkInfo == null || !networkInfo.isConnected()) {
+            // Abre a tela de sem internet
+            Intent intent = new Intent(this, telaSemInternet.class);
+            startActivity(intent);
         }
     }
 }
