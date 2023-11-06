@@ -171,7 +171,7 @@ public class home extends AppCompatActivity {
         });
     }
 
-    private void performSearch (String query){
+    private void performSearch(String query) {
         Toast.makeText(this, "Pesquisando por: " + query, Toast.LENGTH_SHORT).show();
     }
 
@@ -183,5 +183,30 @@ public class home extends AppCompatActivity {
             Intent intent = new Intent(this, telaSemInternet.class);
             startActivity(intent);
         }
+
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.imageButton4:
+                        startActivity(new Intent(getApplicationContext(), Pedidos.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.imageButton:
+                        startActivity(new Intent(getApplicationContext(), Carrinho.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.btnPerfil2:
+                        startActivity(new Intent(getApplicationContext(), Perfil.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.menu_page1:
+                        return true;
+                }
+                return false;
+            }
+        });
     }
 }

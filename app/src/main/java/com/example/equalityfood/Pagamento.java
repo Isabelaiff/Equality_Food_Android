@@ -35,6 +35,7 @@ public class Pagamento extends AppCompatActivity {
             public void onClick(View v) {
                 PopUpQrCode pop = new PopUpQrCode(Pagamento.this);
                 pop.show();
+                onDestroy();
             }
         });
     }

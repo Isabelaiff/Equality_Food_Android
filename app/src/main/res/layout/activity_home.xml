@@ -13,123 +13,100 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="21dp"
-        android:queryHint="Pesquisar"
         android:background="@drawable/search_view_background"
+        android:queryHint="Pesquisar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-<!--    <ImageView-->
-<!--        android:id="@+id/imageView9"-->
-<!--        android:layout_width="1644dp"-->
-<!--        android:layout_height="301dp"-->
-<!--        android:layout_marginTop="932dp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.435"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:srcCompat="@drawable/rectangle_5" />-->
-
-<!--    <ImageButton-->
-<!--        android:id="@+id/imageButton"-->
-<!--        android:layout_width="55dp"-->
-<!--        android:layout_height="52dp"-->
-<!--        android:backgroundTint="#00FFFFFF"-->
-<!--        android:contentDescription="bota a descrição aqui"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.647"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintVertical_bias="0.963"-->
-<!--        app:srcCompat="@drawable/carrinhoicon" />-->
-
     <FrameLayout
-        android:id="@+id/frame_container"
-        android:layout_width="752dp"
-        android:layout_height="80dp"
+        android:id="@+id/frameLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/bottom_navigation" />
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottom_navigation"
-            android:layout_width="772dp"
-            android:layout_height="269dp"
-            android:layout_alignParentBottom="true"
-            android:background="#F5991A"
-            app:itemTextColor="#FFFFFF"
-            app:labelVisibilityMode="labeled"
-            app:menu="@menu/menu_drawer" />
-    </FrameLayout>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="774dp"
+        android:layout_height="65dp"
+        android:background="#F5991A"
+        app:itemTextColor="@drawable/selector"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/menu_drawer" />
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="617dp"
-        android:layout_height="218dp"
-        android:layout_marginBottom="12dp"
-        app:layout_constraintBottom_toTopOf="@+id/frame_container"
+        android:layout_width="609dp"
+        android:layout_height="222dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="18dp"
+        android:src="@drawable/propagandaswift"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.596"
+        app:layout_constraintHorizontal_bias="0.529"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/propaganda" />
+        app:layout_constraintTop_toBottomOf="@+id/searchView" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="316dp"
+        android:layout_marginTop="312dp"
         android:text="Categorias"
         android:textColor="#80141E"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.125"
+        app:layout_constraintHorizontal_bias="0.209"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView30"
-        android:layout_width="625dp"
-        android:layout_height="260dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        android:layout_width="763dp"
+        android:layout_height="236dp"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/frameLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.475"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView"
-        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/propagandaseara" />
 
     <ImageView
         android:id="@+id/imageView36"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
-        android:layout_marginEnd="44dp"
-        android:layout_marginBottom="52dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView2"
-        app:layout_constraintEnd_toStartOf="@+id/imageView37"
+        android:layout_width="142dp"
+        android:layout_height="142dp"
+        android:layout_marginBottom="46dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView30"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/rectangle_37" />
 
     <ImageView
         android:id="@+id/imageView31"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="44dp"
-        app:layout_constraintEnd_toStartOf="@+id/imageView32"
+        android:layout_width="142dp"
+        android:layout_height="142dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         app:srcCompat="@drawable/rectangle_34" />
 
     <ImageView
         android:id="@+id/imageView35"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
-        android:layout_marginStart="116dp"
-        android:layout_marginEnd="56dp"
-        android:layout_marginBottom="52dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView2"
-        app:layout_constraintEnd_toStartOf="@+id/imageView36"
+        android:layout_width="142dp"
+        android:layout_height="142dp"
+        android:layout_marginStart="108dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/nomeVis"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/rectangle_36" />
 
@@ -137,84 +114,82 @@
         android:id="@+id/nomeVis"
         android:layout_width="130dp"
         android:layout_height="32dp"
-        android:layout_marginStart="116dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginBottom="8dp"
         android:text="Carne suína"
         android:textColor="#000000"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView35"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintBottom_toTopOf="@+id/imageView30"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="116dp"
-        android:layout_marginBottom="156dp"
+        android:layout_marginTop="3dp"
         android:text="Não perecíveis"
         android:textColor="#000000"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView35"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/imageView35"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView23"
+        app:layout_constraintVertical_bias="0.047" />
 
     <TextView
         android:id="@+id/inputEmail"
         android:layout_width="99dp"
         android:layout_height="25dp"
-        android:layout_marginEnd="136dp"
-        android:layout_marginBottom="24dp"
         android:text="Legumes"
         android:textColor="#000000"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView37"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.781"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView32" />
 
     <ImageView
         android:id="@+id/imageView23"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
-        android:layout_marginStart="112dp"
-        android:layout_marginEnd="104dp"
-        android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView"
-        app:layout_constraintEnd_toStartOf="@+id/imageView31"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_width="142dp"
+        android:layout_height="142dp"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="352dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView35"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.388"
         app:srcCompat="@drawable/rectangle_33" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="152dp"
+        android:layout_marginTop="3dp"
         android:text="@string/congelados"
         android:textColor="#000000"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView36"
-        app:layout_constraintEnd_toStartOf="@+id/inputEmail"
-        app:layout_constraintHorizontal_bias="0.449"
-        app:layout_constraintStart_toEndOf="@+id/textView" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.138"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/imageView31" />
 
     <ImageView
         android:id="@+id/imageView32"
-        android:layout_width="130dp"
-        android:layout_height="127dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="116dp"
+        android:layout_width="142dp"
+        android:layout_height="142dp"
+        android:layout_marginTop="20dp"
         android:outlineAmbientShadowColor="#535050"
-        app:layout_constraintBottom_toTopOf="@+id/inputEmail"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.816"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.296"
         app:srcCompat="@drawable/rectangle_35" />
 
     <ImageView
         android:id="@+id/imageView37"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
-        android:layout_marginEnd="116dp"
+        android:layout_width="142dp"
+        android:layout_height="142dp"
+        android:layout_marginEnd="112dp"
         android:layout_marginBottom="4dp"
         app:layout_constraintBottom_toTopOf="@+id/editInfo"
         app:layout_constraintEnd_toEndOf="parent"
@@ -224,29 +199,26 @@
         android:id="@+id/editInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="116dp"
-        android:layout_marginBottom="336dp"
+        android:layout_marginEnd="128dp"
+        android:layout_marginBottom="12dp"
         android:text="Carne bovina"
         android:textColor="#000000"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/imageView30"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/emailVis"
-        android:layout_width="74dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="135dp"
-        android:layout_marginBottom="214dp"
-        android:text="Frango"
+        android:layout_width="145dp"
+        android:layout_height="26dp"
+        android:layout_marginBottom="16dp"
+        android:text="Carne de frango"
         android:textColor="#000000"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
-        app:layout_constraintEnd_toStartOf="@+id/editInfo"
-        app:layout_constraintHorizontal_bias="0.532"
-        app:layout_constraintStart_toEndOf="@+id/nomeVis"
-        app:layout_constraintTop_toTopOf="@+id/imageView36"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintBottom_toTopOf="@+id/imageView30"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

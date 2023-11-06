@@ -1,12 +1,16 @@
 package com.example.equalityfood;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -104,7 +108,7 @@ public class Perfil extends AppCompatActivity {
 //            }
 //        });
 
-        Button editarInfo = findViewById(R.id.btnVoltaLogin);
+        Button editarInfo = findViewById(R.id.button);
         editarInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -123,6 +127,32 @@ public class Perfil extends AppCompatActivity {
                 Intent intent = new Intent(Perfil.this, Login.class);
                 startActivity(intent);
                 finish();
+            }
+        });
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        bottomNavigationView.setSelectedItemId(R.id.btnPerfil2);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.btnPerfil2:
+                        return true;
+                    case R.id.imageButton4:
+                        startActivity(new Intent(getApplicationContext(), Pedidos.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.imageButton:
+                        startActivity(new Intent(getApplicationContext(), Carrinho.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.menu_page1:
+                        startActivity(new Intent(getApplicationContext(), home.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                }
+                return false;
             }
         });
 

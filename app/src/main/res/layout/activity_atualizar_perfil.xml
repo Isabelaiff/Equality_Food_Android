@@ -10,8 +10,7 @@
         android:id="@+id/cadastrar_button"
         android:layout_width="195dp"
         android:layout_height="52dp"
-        android:background="@drawable/borda_botao_laranja"
-        android:backgroundTint="#F5991A"
+        android:background="@drawable/borda_botao"
         android:hint="Alterar"
         android:textColorHint="#FFFFFF"
         android:textSize="20sp"
@@ -24,8 +23,8 @@
 
     <ImageButton
         android:id="@+id/voltar_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_marginStart="1dp"
         android:layout_marginTop="228dp"
         android:background="#00FFFFFF"

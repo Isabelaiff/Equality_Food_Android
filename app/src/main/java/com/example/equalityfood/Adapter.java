@@ -50,13 +50,15 @@ public class Adapter extends BaseAdapter {
         view = inflater.inflate(R.layout.activity_adapter, null);
 
         ImageView card = view.findViewById(R.id.imageView2);
-        Button removeButton = view.findViewById(R.id.btnVoltaLogin);
+        ImageView removeButton = view.findViewById(R.id.lixo);
         ImageView icon = view.findViewById(R.id.imgProd);
         TextView nome = view.findViewById(R.id.produto);
         TextView precoView = view.findViewById(R.id.preco);
         TextView textViewQtd = view.findViewById(R.id.qtd);
         Button buttonIncrement = view.findViewById(R.id.mais);
         Button button = view.findViewById(R.id.menos);
+        TextView valor = view.findViewById(R.id.produto2);
+        TextView moeda = view.findViewById(R.id.moeda);
 
         nome.setText(prod[i]);
         precoView.setText(String.valueOf(precoVet[i]));
@@ -64,13 +66,22 @@ public class Adapter extends BaseAdapter {
         textViewQtd.setText("1");
 
 
-//        removeButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                cardList.remove(card);
-//                notifyDataSetChanged();
-//            }
-//        });
+        removeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                removeButton.setVisibility(View.GONE);
+                icon.setVisibility(View.GONE);
+                nome.setVisibility(View.GONE);
+                precoView.setVisibility(View.GONE);
+                textViewQtd.setVisibility(View.GONE);
+                buttonIncrement.setVisibility(View.GONE);
+                button.setVisibility(View.GONE);
+                valor.setVisibility(View.GONE);
+                card.setVisibility(View.GONE);
+                moeda.setVisibility(View.GONE);
+
+            }
+        });
 
         buttonIncrement.setOnClickListener(new View.OnClickListener() {
             @Override

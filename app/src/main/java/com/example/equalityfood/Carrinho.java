@@ -38,7 +38,8 @@ public class Carrinho extends AppCompatActivity {
             //não pode voltar, por questões de segurança
             @Override
             public void onClick(View v) {
-                finish();
+                Intent intent = new Intent(Carrinho.this, home.class);
+                startActivity(intent);
             }
         });
 

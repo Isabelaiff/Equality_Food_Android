@@ -26,6 +26,8 @@ public class AtualizarPerfil extends AppCompatActivity {
     private EditText alterarEmail;
     private Button btnAlterar;
 
+    private Button voltar_button;
+
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
 
@@ -50,6 +52,14 @@ public class AtualizarPerfil extends AppCompatActivity {
             alterarEmail.setText(user.getEmail());
             alterarNumero.setText(user.getPhoneNumber());
         }
+
+        voltar_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AtualizarPerfil.this, Perfil.class);
+                startActivity(intent);
+            }
+        });
         btnAlterar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

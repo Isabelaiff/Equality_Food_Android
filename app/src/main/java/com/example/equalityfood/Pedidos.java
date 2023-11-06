@@ -1,33 +1,36 @@
 package com.example.equalityfood;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.ListView;
+
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 public class Pedidos extends AppCompatActivity {
-
-
-    String[] status = {"Entregue"};
-    String[] Data = {"dd/mes/ano"};
-    double[] precoPedido = {80.00};
-
+    TabsAdapter tabsAdapter;
+    TabLayout tabLayout;
+    ViewPager2 viewPager;
+    ImageButton close;
+    private final String[] titles = new String[]{"Em andamento", "Histórico de pedidos"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pedidos);
+        viewPager =  findViewById(R.id.pager);
+        tabLayout = findViewById(R.id.tabLayout);
+        tabsAdapter = new TabsAdapter(this);
+        close = findViewById(R.id.close);
 
-        ListView lista = findViewById(R.id.listaviewpedidos);
-        AdapterPedidos adapter = new AdapterPedidos(this, status, Data, precoPedido);
-        lista.setAdapter(adapter);
+        viewPager.setAdapter(tabsAdapter);
 
+        new TabLayoutMediator(tabLayout, viewPager, (((tab, position) -> tab.setText(titles[position])))).attach();
 
-        ImageView close = findViewById(R.id.close);
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
