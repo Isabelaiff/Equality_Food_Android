@@ -27,19 +27,7 @@ public class home extends AppCompatActivity {
         setContentView(binding.getRoot());
         searchView = findViewById(R.id.searchView);
 
-        binding.bottomNavigation.setOnItemSelectedListener(item -> {
-            switch (item.getItemId()) {
-                case R.id.menu_page1:
-                    break;
-                case R.id.imageButton4:
-                    break;
-                case R.id.imageButton:
-                    break;
-                case R.id.btnPerfil2:
-                    break;
-            }
-            return true;
-        });
+
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
