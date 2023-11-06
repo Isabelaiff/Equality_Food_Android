@@ -18,7 +18,7 @@ public class ListaNaoPereciveis extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_nao_pereciveis);
 
-        ImageButton esqueceuSenha = findViewById(R.id.imageButton8);
+        ImageButton esqueceuSenha = findViewById(R.id.voltarHome);
 
         semInternet();
 

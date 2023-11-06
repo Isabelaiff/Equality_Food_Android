@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
@@ -16,6 +17,15 @@ import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class home extends AppCompatActivity {
 
@@ -92,8 +102,37 @@ public class home extends AppCompatActivity {
         naoPerecivel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(home.this, ListaNaoPereciveis.class);
-                startActivity(intent);
+                String urlAPI = "https://api-equality.onrender.com/";
+                //configurar acesso a API
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl(urlAPI)
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+
+                ApiService apiService = retrofit.create(ApiService.class);
+                Call<List<ProdutosAPI>> call = apiService.GetProdutosByCategoria("naoPereciveis");
+
+                call.enqueue(new Callback<List<ProdutosAPI>>() {
+                    @Override
+                    public void onResponse(Call<List<ProdutosAPI>> call, Response<List<ProdutosAPI>> response) {
+                        if( response.isSuccessful() ){
+                            List<ProdutosAPI> produtosAPI = response.body();
+
+                            // Crie um Bundle e coloque a lista nele
+                            Bundle bundle = new Bundle();
+                            bundle.putParcelableArrayList("listaDeProdutos", new ArrayList<>(produtosAPI));
+
+                            Intent intent = new Intent(home.this, ListaCongelados.class);
+                            intent.putExtras(bundle);
+                            startActivity(intent);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<ProdutosAPI>> call, Throwable t) {
+                        Toast.makeText(getApplicationContext(), "Falha ao tentar vizualizar os produtos, Tente mais tarde!", Toast.LENGTH_LONG).show();
+                    }
+                });
             }
         });
 
@@ -102,19 +141,76 @@ public class home extends AppCompatActivity {
         imageButton10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(home.this, ListaCongelados.class);
-                startActivity(intent);
-            }
-        });
+                String urlAPI = "https://api-equality.onrender.com/";
+                //configurar acesso a API
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl(urlAPI)
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
 
+                ApiService apiService = retrofit.create(ApiService.class);
+                Call<List<ProdutosAPI>> call = apiService.GetProdutosByCategoria("congelados");
+
+                call.enqueue(new Callback<List<ProdutosAPI>>() {
+                    @Override
+                    public void onResponse(Call<List<ProdutosAPI>> call, Response<List<ProdutosAPI>> response) {
+                        if( response.isSuccessful() ){
+                            List<ProdutosAPI> produtosAPI = response.body();
+
+                            // Crie um Bundle e coloque a lista nele
+                            Bundle bundle = new Bundle();
+                            bundle.putParcelableArrayList("listaDeProdutos", new ArrayList<>(produtosAPI));
+
+                            Intent intent = new Intent(home.this, ListaCongelados.class);
+                            intent.putExtras(bundle);
+                            startActivity(intent);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<ProdutosAPI>> call, Throwable t) {
+                        Log.e("API", "Falha na chamada à API", t);
+                        System.out.println(t);
+                        Toast.makeText(getApplicationContext(), "Falha ao tentar vizualizar os produtos, Tente mais tarde!", Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+    });
 
         ImageView imageButton11 = findViewById(R.id.imageView35);
 
         imageButton11.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(home.this, ListaCarneSuina.class);
-                startActivity(intent);
+                String urlAPI = "https://api-equality.onrender.com/";
+                //configurar acesso a API
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl(urlAPI)
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+
+                ApiService apiService = retrofit.create(ApiService.class);
+                Call<List<ProdutosAPI>> call = apiService.GetProdutosByCategoria("carneSuina");
+
+                call.enqueue(new Callback<List<ProdutosAPI>>() {
+                    @Override
+                    public void onResponse(Call<List<ProdutosAPI>> call, Response<List<ProdutosAPI>> response) {
+                        if (response.isSuccessful()) {
+                            List<ProdutosAPI> produtosAPI = response.body();
+
+                            // Crie um Bundle e coloque a lista nele
+                            Bundle bundle = new Bundle();
+                            bundle.putParcelableArrayList("listaDeProdutos", new ArrayList<>(produtosAPI));
+                            Intent intent = new Intent(home.this, ListaCarneSuina.class);
+                            startActivity(intent);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<ProdutosAPI>> call, Throwable t) {
+                        Toast.makeText(getApplicationContext(), "Falha ao tentar vizualizar os produtos, Tente mais tarde!", Toast.LENGTH_LONG).show();
+                    }
+                });
             }
         });
 
@@ -123,8 +219,35 @@ public class home extends AppCompatActivity {
         imageButton14.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(home.this, ListaFrango.class);
-                startActivity(intent);
+                String urlAPI = "https://api-equality.onrender.com/";
+                //configurar acesso a API
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl(urlAPI)
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+
+                ApiService apiService = retrofit.create(ApiService.class);
+                Call<List<ProdutosAPI>> call = apiService.GetProdutosByCategoria("frango");
+
+                call.enqueue(new Callback<List<ProdutosAPI>>() {
+                    @Override
+                    public void onResponse(Call<List<ProdutosAPI>> call, Response<List<ProdutosAPI>> response) {
+                        if (response.isSuccessful()) {
+                            List<ProdutosAPI> produtosAPI = response.body();
+
+                            // Crie um Bundle e coloque a lista nele
+                            Bundle bundle = new Bundle();
+                            bundle.putParcelableArrayList("listaDeProdutos", new ArrayList<>(produtosAPI));
+                            Intent intent = new Intent(home.this, ListaFrango.class);
+                            startActivity(intent);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<ProdutosAPI>> call, Throwable t) {
+                        Toast.makeText(getApplicationContext(), "Falha ao tentar vizualizar os produtos, Tente mais tarde!", Toast.LENGTH_LONG).show();
+                    }
+                });
             }
         });
 
@@ -133,8 +256,35 @@ public class home extends AppCompatActivity {
         imageButton15.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(home.this, ListaCarneBovina.class);
-                startActivity(intent);
+                String urlAPI = "https://api-equality.onrender.com/";
+                //configurar acesso a API
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl(urlAPI)
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+
+                ApiService apiService = retrofit.create(ApiService.class);
+                Call<List<ProdutosAPI>> call = apiService.GetProdutosByCategoria("carneBovina");
+
+                call.enqueue(new Callback<List<ProdutosAPI>>() {
+                    @Override
+                    public void onResponse(Call<List<ProdutosAPI>> call, Response<List<ProdutosAPI>> response) {
+                        if (response.isSuccessful()) {
+                            List<ProdutosAPI> produtosAPI = response.body();
+
+                            // Crie um Bundle e coloque a lista nele
+                            Bundle bundle = new Bundle();
+                            bundle.putParcelableArrayList("listaDeCarneBovina", new ArrayList<>(produtosAPI));
+                            Intent intent = new Intent(home.this, ListaCarneBovina.class);
+                            startActivity(intent);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<ProdutosAPI>> call, Throwable t) {
+                        Toast.makeText(getApplicationContext(), "Falha ao tentar vizualizar os produtos, Tente mais tarde!", Toast.LENGTH_LONG).show();
+                    }
+                });
             }
         });
 
@@ -143,8 +293,35 @@ public class home extends AppCompatActivity {
         imageView32.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(home.this, ListaLegumes.class);
-                startActivity(intent);
+                String urlAPI = "https://api-equality.onrender.com/";
+                //configurar acesso a API
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl(urlAPI)
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+
+                ApiService apiService = retrofit.create(ApiService.class);
+                Call<List<ProdutosAPI>> call = apiService.GetProdutosByCategoria("legumes");
+
+                call.enqueue(new Callback<List<ProdutosAPI>>() {
+                    @Override
+                    public void onResponse(Call<List<ProdutosAPI>> call, Response<List<ProdutosAPI>> response) {
+                        if (response.isSuccessful()) {
+                            List<ProdutosAPI> produtosAPI = response.body();
+
+                            // Crie um Bundle e coloque a lista nele
+                            Bundle bundle = new Bundle();
+                            bundle.putParcelableArrayList("listaDeProdutos", new ArrayList<>(produtosAPI));
+                            Intent intent = new Intent(home.this, ListaLegumes.class);
+                            startActivity(intent);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<ProdutosAPI>> call, Throwable t) {
+                        Toast.makeText(getApplicationContext(), "Falha ao tentar vizualizar os produtos, Tente mais tarde!", Toast.LENGTH_LONG).show();
+                    }
+                });
             }
         });
 

@@ -33,6 +33,12 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class criarConta extends AppCompatActivity {
 
     EditText nome;
@@ -73,9 +79,41 @@ public class criarConta extends AppCompatActivity {
 
         semInternet();
 
-        cadastrarButton.setOnClickListener(v -> {
-            salvarUsuario();
-        });
+        cadastrarButton.setOnClickListener(new View.OnClickListener() {
+       @Override
+       public void onClick(View v) {
+           Endereco endereco = new Endereco();
+           //API VIACEP//
+           String urlAPI = "https://viacep.com.br/ws/";
+           //configurar acesso a API
+           Retrofit retrofit = new Retrofit.Builder()
+                   .baseUrl(urlAPI)
+                   .addConverterFactory(GsonConverterFactory.create())
+                   .build();
+
+           ApiService apiService = retrofit.create(ApiService.class);
+           Call<CEP> call = apiService.recuperarCEP(CEP.getText().toString());
+
+           call.enqueue(new Callback<CEP>() {
+               @Override
+               public void onResponse(Call<CEP> call, Response<CEP> response) {
+                   if (response.isSuccessful()) {
+                       CEP cep = response.body();
+                       endereco.setRua(cep.getLogradouro());
+                       endereco.setBairro(cep.getBairro());
+                       endereco.setCidade(cep.getLocalidade());
+                       endereco.setUf(cep.getUf());
+                       salvarUsuario(endereco);
+                   }
+               }
+
+               @Override
+               public void onFailure(Call<CEP> call, Throwable t) {
+                   Toast.makeText(getApplicationContext(), "Falha ao cadastrar informações de endereço!", Toast.LENGTH_SHORT).show();
+               }
+           });
+       }
+   });
 
         dataNasc.setOnClickListener(v -> mostrarCalendario());
 
@@ -128,8 +166,8 @@ public class criarConta extends AppCompatActivity {
         }
     }
 
-    private void salvarUsuario() {
-        String nomeTexto = nome.getText().toString();
+    private void salvarUsuario(Endereco endereco) {
+        final String[] nomeTexto = {nome.getText().toString()};
         String dataNascTexto = dataNasc.getText().toString();
         String cpfTexto = CPF.getText().toString();
         String numTelefoneTexto = numTelefone.getText().toString();
@@ -138,7 +176,6 @@ public class criarConta extends AppCompatActivity {
         String numEnderecoTexto = numEndereco.getText().toString();
         String complementoTexto = complemento.getText().toString();
         String senhaTexto = senha.getText().toString();
-
         String confirmarSenhaTexto = confirmarSenha.getText().toString();
 
         if (ValidaCPF.isCPF(cpfTexto) == false){
@@ -148,7 +185,7 @@ public class criarConta extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "As senhas não correspondem. Por favor, verifique e tente novamente.", Toast.LENGTH_SHORT).show();
             return; // Não prossiga com o cadastro se as senhas não coincidirem
         }
-        if (nomeTexto.isEmpty() || dataNascTexto.isEmpty() || cpfTexto.isEmpty() || numTelefoneTexto.isEmpty() ||
+        if (nomeTexto[0].isEmpty() || dataNascTexto.isEmpty() || cpfTexto.isEmpty() || numTelefoneTexto.isEmpty() ||
                 emailTexto.isEmpty() || cepTexto.isEmpty() || numEnderecoTexto.isEmpty() || senhaTexto.isEmpty()) {
             Toast.makeText(getApplicationContext(), "Por favor, preencha todos os campos obrigatórios.", Toast.LENGTH_SHORT).show();
         }
@@ -166,7 +203,7 @@ public class criarConta extends AppCompatActivity {
                                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
                                 // Atualizando nome
-                                UserProfileChangeRequest profile = new UserProfileChangeRequest.Builder().setDisplayName(nomeTexto).build();
+                                UserProfileChangeRequest profile = new UserProfileChangeRequest.Builder().setDisplayName(nomeTexto[0]).build();
                                 user.updateProfile(profile).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
@@ -176,22 +213,27 @@ public class criarConta extends AppCompatActivity {
                                     }
                                 });
 
-
                                 if (user != null) {
                                     // Armazene o número de telefone no Firebase Realtime Database
                                     DatabaseReference usuariosRef = FirebaseDatabase.getInstance().getReference().child("Usuario").push();
+
 
                                     // Outros dados do usuário
                                     HashMap<String, String> enderecoMap = new HashMap<>();
                                     enderecoMap.put("CEP", cepTexto);
                                     enderecoMap.put("numEndereco", numEnderecoTexto);
+                                    enderecoMap.put("Rua", endereco.getRua());
+                                    enderecoMap.put("Bairro", endereco.getBairro());
+                                    enderecoMap.put("Cidade", endereco.getCidade());
+                                    enderecoMap.put("UF", endereco.getUf());
 
+//
                                     if (!complementoTexto.isEmpty()) {
                                         enderecoMap.put("complemento", complementoTexto);
                                     }
 
                                     usuariosRef.child("endereco").setValue(enderecoMap);
-                                    usuariosRef.child("nome").setValue(nomeTexto);
+                                    usuariosRef.child("nome").setValue(nomeTexto[0]);
                                     usuariosRef.child("dataNasc").setValue(dataNascTexto);
                                     usuariosRef.child("CPF").setValue(cpfTexto);
                                     usuariosRef.child("numTelefone").setValue(numTelefoneTexto);

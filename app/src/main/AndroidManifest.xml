@@ -8,6 +8,14 @@
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SENDTO" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.SENDTO" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -20,6 +28,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
         tools:targetApi="31">
+        <activity
+            android:name=".AdapterCarneBovina"
+            android:exported="false" />
         <activity
             android:name=".AlterarSenha"
             android:exported="false" />
@@ -118,6 +129,7 @@
             android:name=".TabFragment"
             android:exported="false">
         </activity>
+            android:exported="false"></activity>
         <activity
             android:name=".PedidoFragmento"
             android:exported="false">

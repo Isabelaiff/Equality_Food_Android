@@ -16,7 +16,7 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdapterListaProdutos extends BaseAdapter {
+public class AdapterCarneBovina extends BaseAdapter {
     private Context applicationContext;
     private LayoutInflater inflater;
     List<String> fotoP;
@@ -24,7 +24,7 @@ public class AdapterListaProdutos extends BaseAdapter {
     List<String> descri;
     List<Double> valor;
 
-    public AdapterListaProdutos(Context applicationContext,List<String> foto, List<String> produtos, List<String> descricoes, List<Double> valores) {
+    public AdapterCarneBovina(Context applicationContext,List<String> foto, List<String> produtos, List<String> descricoes, List<Double> valores) {
         this.applicationContext = applicationContext;
         this.fotoP = foto;
         this.produtos = produtos;
@@ -50,7 +50,7 @@ public class AdapterListaProdutos extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        view = inflater.inflate(R.layout.activity_adapter_lista_produtos, null);
+        view = inflater.inflate(R.layout.activity_adapter_carne_bovina, null);
 
         TextView prod = view.findViewById(R.id.textView);
         TextView desc = view.findViewById(R.id.textView2);

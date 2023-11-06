@@ -18,7 +18,7 @@ public class ListaLegumes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_legumes);
 
-        ImageButton esqueceuSenha = findViewById(R.id.imageButton8);
+        ImageButton esqueceuSenha = findViewById(R.id.voltarHome);
 
         semInternet();
 
