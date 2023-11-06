@@ -144,6 +144,7 @@
         android:layout_width="72dp"
         android:layout_height="32dp"
         android:layout_marginStart="137dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="490dp"
         android:layout_marginBottom="8dp"
         android:text="E-mail"
@@ -152,6 +153,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/campoEmail"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView29"
         app:layout_constraintVertical_bias="1.0" />

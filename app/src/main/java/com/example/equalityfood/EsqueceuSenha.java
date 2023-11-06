@@ -2,7 +2,11 @@ package com.example.equalityfood;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -38,7 +42,10 @@ public class EsqueceuSenha extends AppCompatActivity {
         EditText inputEmail = findViewById(R.id.inputEmail);
         ImageButton btnVoltar = findViewById(R.id.voltar_button2);
 
+        semInternet();
+
         btnVoltar.setOnClickListener(new View.OnClickListener() {
+            //aplicativo será fechado caso o usuario tente voltar
             @Override
             public void onClick(View v) {
                 finish();
@@ -46,6 +53,7 @@ public class EsqueceuSenha extends AppCompatActivity {
         });
 
         btnCodigo.setOnClickListener(new View.OnClickListener() {
+            //processo para enviar o codigo para redefinição de senha
             @Override
             public void onClick(View v) {
                 String phoneNumber = inputEmail.getText().toString();
@@ -112,6 +120,16 @@ public class EsqueceuSenha extends AppCompatActivity {
 //                }
 //            }
 //        });
+    }
+
+    public void semInternet() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        if (networkInfo == null || !networkInfo.isConnected()) {
+            // Abre a tela de sem internet
+            Intent intent = new Intent(this, telaSemInternet.class);
+            startActivity(intent);
+        }
     }
 }
 

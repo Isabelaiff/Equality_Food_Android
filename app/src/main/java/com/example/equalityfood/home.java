@@ -3,7 +3,10 @@ package com.example.equalityfood;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,6 +26,8 @@ public class home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         searchView = findViewById(R.id.searchView);
+
+        semInternet();
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -94,7 +99,6 @@ public class home extends AppCompatActivity {
 
 
         ImageView imageButton10 = findViewById(R.id.imageView31);
-
         imageButton10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -169,5 +173,15 @@ public class home extends AppCompatActivity {
 
     private void performSearch (String query){
         Toast.makeText(this, "Pesquisando por: " + query, Toast.LENGTH_SHORT).show();
+    }
+
+    public void semInternet() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        if (networkInfo == null || !networkInfo.isConnected()) {
+            // Abre a tela de sem internet
+            Intent intent = new Intent(this, telaSemInternet.class);
+            startActivity(intent);
+        }
     }
 }

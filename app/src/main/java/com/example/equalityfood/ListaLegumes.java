@@ -2,7 +2,10 @@ package com.example.equalityfood;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +19,8 @@ public class ListaLegumes extends AppCompatActivity {
         setContentView(R.layout.activity_lista_legumes);
 
         ImageButton esqueceuSenha = findViewById(R.id.imageButton8);
+
+        semInternet();
 
         esqueceuSenha.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,6 +39,15 @@ public class ListaLegumes extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+    public void semInternet() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        if (networkInfo == null || !networkInfo.isConnected()) {
+            // Abre a tela de sem internet
+            Intent intent = new Intent(this, telaSemInternet.class);
+            startActivity(intent);
+        }
     }
 
 

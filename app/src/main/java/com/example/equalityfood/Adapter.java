@@ -1,12 +1,6 @@
 package com.example.equalityfood;
 
-import static android.system.Os.remove;
-
-import static java.security.AccessController.getContext;
-
 import android.content.Context;
-import android.os.Bundle;
-import android.system.ErrnoException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +8,6 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import androidx.annotation.NonNull;
 
 import java.util.List;
 
@@ -58,7 +50,7 @@ public class Adapter extends BaseAdapter {
         view = inflater.inflate(R.layout.activity_adapter, null);
 
         ImageView card = view.findViewById(R.id.imageView2);
-        Button removeButton = view.findViewById(R.id.button);
+        Button removeButton = view.findViewById(R.id.btnVoltaLogin);
         ImageView icon = view.findViewById(R.id.imgProd);
         TextView nome = view.findViewById(R.id.produto);
         TextView precoView = view.findViewById(R.id.preco);
