@@ -14,10 +14,12 @@
         android:id="@+id/imageView2"
         android:layout_width="779dp"
         android:layout_height="529dp"
-        android:layout_marginBottom="576dp"
+        android:layout_marginBottom="564dp"
         android:src="@drawable/cabecalho"
         app:layout_constraintBottom_toTopOf="@+id/frameLayout"
-        tools:layout_editor_absoluteX="-11dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/imageView34"
@@ -26,9 +28,10 @@
         android:src="@drawable/foto_de_perfil"
         app:layout_constraintBottom_toTopOf="@+id/textView23"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.472"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.938" />
+        app:layout_constraintVertical_bias="0.941" />
 
     <ImageButton
         android:id="@+id/imageButton12"
@@ -38,305 +41,57 @@
         android:contentDescription="bota a descrição aqui"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.568"
+        app:layout_constraintHorizontal_bias="0.541"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.284"
+        app:layout_constraintVertical_bias="0.301"
         app:srcCompat="@drawable/edit_line2" />
 
     <TextView
         android:id="@+id/textView23"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="14dp"
+        android:layout_marginTop="384dp"
+        android:layout_marginBottom="113dp"
         android:text="Leozin"
         android:textColor="#0D0D0D"
         android:textSize="23sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.499"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.968" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="127dp"
-        android:layout_height="114dp"
-        android:src="@drawable/foto_de_perfil"
-        app:layout_constraintBottom_toTopOf="@+id/textView23"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.938" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="561dp"
-        android:layout_height="569dp"
-        android:layout_marginTop="420dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/frame_container"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.439"
+        app:layout_constraintHorizontal_bias="0.482"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.856">
+        app:layout_constraintVertical_bias="1.0" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="37dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="5dp"
-            android:orientation="horizontal">
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="370dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.459"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView23">
 
-            <TextView
-                android:id="@+id/textView24"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="60dp"
-                android:text="seuemail@dominio.com"
-                android:textColor="#0D0D0D"
-                android:textSize="16sp" />
+        <TextView
+            android:id="@+id/textView24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:text="seuemail@dominio.com"
+            android:textColor="#0D0D0D"
+            android:textSize="16sp" />
 
-            <TextView
-                android:id="@+id/textView25"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:text="|"
-                android:textColor="#0D0D0D"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/textView26"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:text="+xx 12345 6789"
-                android:textColor="#0D0D0D"
-                android:textSize="16sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="459dp"
-            android:layout_height="527dp"
-            android:layout_marginLeft="100dp"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="65dp"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/imageView22"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="20dp"
-                    android:src="@drawable/editinfo" />
-
-                <Button
-                    android:id="@+id/button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="15dp"
-                    android:background="#00FFFFFF"
-                    android:backgroundTint="#F7F7F7"
-                    android:hint="Editar informações "
-                    android:textColorHint="#0D0D0D"
-                    android:textSize="18sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="340dp"
-                android:layout_height="69dp"
-                android:background="#00FFFFFF"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/imageView27"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="20dp"
-                    android:src="@drawable/icon_senha" />
-
-                <Button
-                    android:id="@+id/textView31"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="15dp"
-                    android:background="#00FFFFFF"
-                    android:backgroundTint="#F7F7F7"
-                    android:hint="Alterar localização de entrega"
-                    android:textColorHint="#0D0D0D"
-                    android:textSize="18sp" />
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="71dp"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/imageView28"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="20dp"
-                    android:src="@drawable/senha2" />
-
-                <Button
-                    android:id="@+id/textView32"
-                    android:layout_width="127dp"
-                    android:layout_height="48dp"
-                    android:layout_marginTop="15dp"
-                    android:background="#00FFFFFF"
-                    android:backgroundTint="#F7F7F7"
-                    android:hint="Alterar senha"
-                    android:textColorHint="#0D0D0D"
-                    android:textSize="18sp" />
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="71dp"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/imageView26"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="20dp"
-                    android:src="@drawable/politica" />
-
-                <Button
-                    android:id="@+id/btnPolitica"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="15dp"
-                    android:background="#00FFFFFF"
-                    android:backgroundTint="#F7F7F7"
-                    android:hint="Política de Privacidade"
-                    android:textColorHint="#0D0D0D"
-                    android:textSize="18sp" />
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="76dp"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/imageView24"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="20dp"
-                    android:src="@drawable/tema" />
-
-                <TextView
-                    android:id="@+id/textView28"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="15dp"
-                    android:text="Tema"
-                    android:textColor="#0D0D0D"
-                    android:textSize="18sp" />
-
-                <Button
-                    android:id="@+id/button3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48dp"
-                    android:layout_marginLeft="120dp"
-                    android:layout_marginTop="15dp"
-                    android:background="#00FFFFFF"
-                    android:backgroundTint="#F7F7F7"
-                    android:hint="Modo Escuro"
-                    android:textColorHint="#5A5D61"
-                    android:textSize="18sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="73dp"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/imageView25"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="20dp"
-                    android:src="@drawable/icon_fale_conosco" />
-
-                <TextView
-                    android:id="@+id/textView29"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="25dp"
-                    android:text="Fale Conosco"
-                    android:textColor="#0D0D0D"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/textView34"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48dp"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginTop="25dp"
-                    android:clickable="true"
-                    android:contextClickable="true"
-                    android:text="@string/equalityfood_outlook_com"
-                    android:textColor="#000000"
-                    android:textSize="18sp" />
-
-
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/logout_button"
-                android:layout_width="180dp"
-                android:layout_height="50dp"
-                android:layout_marginLeft="120dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="88dp"
-                android:background="@drawable/borda_botao"
-                android:hint="Sair do aplicativo"
-                android:textColorHint="@color/white"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.473"
-                app:layout_constraintStart_toStartOf="parent" />
-
-        </LinearLayout>
-
-
-        <ImageView
-            android:id="@+id/imageView13"
-            android:layout_width="553dp"
-            android:layout_height="93dp"
-            android:layout_marginTop="655dp"
-            android:src="@drawable/rectangle_5" />
+        <TextView
+            android:id="@+id/textView26"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="+xx 12345 6789"
+            android:textColor="#0D0D0D"
+            android:textSize="16sp" />
 
     </LinearLayout>
 
@@ -362,6 +117,233 @@
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/menu_drawer"/>
 
+
+    <ImageView
+        android:id="@+id/imageView42"
+        android:layout_width="541dp"
+        android:layout_height="132dp"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView43"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/fundoperfil" />
+
+    <ImageView
+        android:id="@+id/imageView22"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/editinfo"
+        app:layout_constraintEnd_toStartOf="@+id/button"
+        app:layout_constraintHorizontal_bias="0.613"
+        app:layout_constraintStart_toStartOf="@+id/imageView42"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginEnd="244dp"
+        android:layout_marginBottom="4dp"
+        android:background="#00FFFFFF"
+        android:backgroundTint="#F7F7F7"
+        android:hint="Editar informações "
+        android:textColorHint="#0D0D0D"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView31"
+        app:layout_constraintEnd_toEndOf="@+id/imageView42" />
+
+    <Button
+        android:id="@+id/textView31"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginEnd="164dp"
+        android:layout_marginBottom="16dp"
+        android:background="#00FFFFFF"
+        android:backgroundTint="#F7F7F7"
+        android:hint="Alterar localização de entrega"
+        android:textColorHint="#0D0D0D"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView42"
+        app:layout_constraintEnd_toEndOf="@+id/imageView42" />
+
+    <ImageView
+        android:id="@+id/imageView43"
+        android:layout_width="541dp"
+        android:layout_height="132dp"
+        android:layout_marginTop="84dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView22"
+        app:srcCompat="@drawable/fundoperfil" />
+
+    <ImageView
+        android:id="@+id/imageView13"
+        android:layout_width="541dp"
+        android:layout_height="132dp"
+        app:layout_constraintBottom_toTopOf="@+id/logout_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView43"
+        app:layout_constraintVertical_bias="0.428"
+        app:srcCompat="@drawable/fundoperfil" />
+
+    <ImageView
+        android:id="@+id/imageView27"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/icon_senha"
+        app:layout_constraintBottom_toTopOf="@+id/imageView26"
+        app:layout_constraintEnd_toStartOf="@+id/textView32"
+        app:layout_constraintHorizontal_bias="0.73"
+        app:layout_constraintStart_toStartOf="@+id/imageView43"
+        app:layout_constraintTop_toTopOf="@+id/imageView43"
+        app:layout_constraintVertical_bias="0.75" />
+
+    <ImageView
+        android:id="@+id/imageView28"
+        android:layout_width="43dp"
+        android:layout_height="47dp"
+        android:src="@drawable/senha2"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView42"
+        app:layout_constraintEnd_toStartOf="@+id/textView31"
+        app:layout_constraintHorizontal_bias="0.687"
+        app:layout_constraintStart_toStartOf="@+id/imageView42"
+        app:layout_constraintTop_toBottomOf="@+id/imageView22"
+        app:layout_constraintVertical_bias="0.48" />
+
+    <Button
+        android:id="@+id/textView32"
+        android:layout_width="124dp"
+        android:layout_height="47dp"
+        android:layout_marginEnd="292dp"
+        android:background="#00FFFFFF"
+        android:backgroundTint="#F7F7F7"
+        android:hint="Alterar senha"
+        android:textColorHint="#0D0D0D"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnPolitica"
+        app:layout_constraintEnd_toEndOf="@+id/imageView43"
+        app:layout_constraintTop_toTopOf="@+id/imageView43"
+        app:layout_constraintVertical_bias="0.666" />
+
+    <ImageView
+        android:id="@+id/imageView26"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginBottom="24dp"
+        android:src="@drawable/politica"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView43"
+        app:layout_constraintStart_toStartOf="@+id/imageView43" />
+
+    <Button
+        android:id="@+id/btnPolitica"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginEnd="228dp"
+        android:layout_marginBottom="16dp"
+        android:background="#00FFFFFF"
+        android:backgroundTint="#F7F7F7"
+        android:hint="Política de Privacidade"
+        android:textColorHint="#0D0D0D"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView43"
+        app:layout_constraintEnd_toEndOf="@+id/imageView43" />
+
+    <ImageView
+        android:id="@+id/imageView24"
+        android:layout_width="40dp"
+        android:layout_height="50dp"
+        android:src="@drawable/tema"
+        app:layout_constraintBottom_toTopOf="@+id/imageView25"
+        app:layout_constraintEnd_toStartOf="@+id/textView28"
+        app:layout_constraintHorizontal_bias="0.673"
+        app:layout_constraintStart_toStartOf="@+id/imageView13"
+        app:layout_constraintTop_toTopOf="@+id/imageView13"
+        app:layout_constraintVertical_bias="0.571" />
+
+    <TextView
+        android:id="@+id/textView28"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="84dp"
+        android:text="Tema"
+        android:textColor="#0D0D0D"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView34"
+        app:layout_constraintEnd_toStartOf="@+id/button3"
+        app:layout_constraintTop_toTopOf="@+id/imageView13"
+        app:layout_constraintVertical_bias="0.436" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="168dp"
+        android:background="#00FFFFFF"
+        android:backgroundTint="#F7F7F7"
+        android:hint="Modo Escuro"
+        android:textColorHint="#5A5D61"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/imageView13"
+        app:layout_constraintTop_toTopOf="@+id/imageView13" />
+
+    <ImageView
+        android:id="@+id/imageView25"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="24dp"
+        android:src="@drawable/icon_fale_conosco"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView13"
+        app:layout_constraintEnd_toStartOf="@+id/textView29"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/imageView13" />
+
+    <TextView
+        android:id="@+id/textView29"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="28dp"
+        android:text="Fale Conosco"
+        android:textColor="#0D0D0D"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView13"
+        app:layout_constraintEnd_toStartOf="@+id/textView34" />
+
+    <TextView
+        android:id="@+id/textView34"
+        android:layout_width="230dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginBottom="4dp"
+        android:clickable="true"
+        android:contextClickable="true"
+        android:text="@string/equalityfood_outlook_com"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView13"
+        app:layout_constraintEnd_toEndOf="@+id/imageView13" />
+
+    <Button
+        android:id="@+id/logout_button"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="120dp"
+        android:layout_marginBottom="156dp"
+        android:background="@drawable/borda_botao"
+        android:hint="Sair do aplicativo"
+        android:textColorHint="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.362"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

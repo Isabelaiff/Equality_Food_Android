@@ -1,6 +1,5 @@
 package com.example.equalityfood;
 
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -21,7 +20,7 @@ public class Foto extends Activity {
         setContentView(R.layout.activity_foto);
 
         Button btnCapture = findViewById(R.id.btnCapture);
-
+        imageView = findViewById(R.id.imageView);
         btnCapture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
