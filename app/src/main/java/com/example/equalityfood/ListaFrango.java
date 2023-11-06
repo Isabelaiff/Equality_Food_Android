@@ -18,7 +18,7 @@ public class ListaFrango extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_frango);
 
-        ImageButton esqueceuSenha = findViewById(R.id.imageButton8);
+        ImageButton esqueceuSenha = findViewById(R.id.voltarHome);
 
         semInternet();
 
