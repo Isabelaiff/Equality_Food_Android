@@ -1,12 +1,6 @@
 package com.example.equalityfood;
 
-import static android.system.Os.remove;
-
-import static java.security.AccessController.getContext;
-
 import android.content.Context;
-import android.os.Bundle;
-import android.system.ErrnoException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +8,6 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import java.util.List;
 

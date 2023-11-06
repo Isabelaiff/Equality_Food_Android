@@ -57,7 +57,7 @@
             android:name=".Pedidos"
             android:exported="false" />
         <activity
-            android:name=".PopUp1"
+            android:name=".PopUpConfirmacaoPedido"
             android:exported="false" />
         <activity
             android:name=".LocalizacaoEntrega"

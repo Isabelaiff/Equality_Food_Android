@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -22,6 +21,7 @@ public class Perfil extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil);
 
+//        ImageButton btnHome2 = findViewById(R.id.btnHome);
 
         TextView nomeVis = findViewById(R.id.textView23);
         TextView emailVis = findViewById(R.id.textView24);
@@ -29,6 +29,14 @@ public class Perfil extends AppCompatActivity {
         Button btnPolitica = findViewById(R.id.btnPolitica);
 
 
+
+//        btnHome2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(Perfil.this, home.class);
+//                startActivity(intent);
+//            }
+//        });
 
         btnPolitica.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,6 +57,27 @@ public class Perfil extends AppCompatActivity {
             emailVis.setText(email);
             numeroVis.setText(numero);
         }
+
+
+//        ImageButton imageButton13 = findViewById(R.id.imageButton13);
+
+//        imageButton13.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(Perfil.this, Carrinho.class);
+//                startActivity(intent);
+//            }
+//        });
+
+//        ImageButton imageButton3 = findViewById(R.id.imageButton3);
+//        imageButton3.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(Perfil.this, Pedidos.class);
+//                startActivity(intent);
+//            }
+//        });
+
 
 
         Button textView32 = findViewById(R.id.textView32);
@@ -102,6 +131,7 @@ public class Perfil extends AppCompatActivity {
         });
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
         bottomNavigationView.setSelectedItemId(R.id.btnPerfil2);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -125,6 +155,7 @@ public class Perfil extends AppCompatActivity {
                 return false;
             }
         });
+
     }
 
 }

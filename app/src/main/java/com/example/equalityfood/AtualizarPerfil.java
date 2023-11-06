@@ -1,6 +1,11 @@
 package com.example.equalityfood;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
+import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -21,6 +26,8 @@ public class AtualizarPerfil extends AppCompatActivity {
     private EditText alterarEmail;
     private Button btnAlterar;
 
+    private Button voltar_button;
+
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
 
@@ -37,12 +44,22 @@ public class AtualizarPerfil extends AppCompatActivity {
         alterarEmail = findViewById(R.id.email);
         btnAlterar = findViewById(R.id.cadastrar_button);
 
+        semInternet();
+
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
             alterarNome.setText(user.getDisplayName());
             alterarEmail.setText(user.getEmail());
             alterarNumero.setText(user.getPhoneNumber());
         }
+
+        voltar_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AtualizarPerfil.this, Perfil.class);
+                startActivity(intent);
+            }
+        });
         btnAlterar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,6 +100,16 @@ public class AtualizarPerfil extends AppCompatActivity {
                             Toast.makeText(AtualizarPerfil.this, "Falha ao atualizar dados. Por favor, tente novamente mais tarde.", Toast.LENGTH_SHORT).show();
                         }
                     });
+        }
+    }
+
+    public void semInternet() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        if (networkInfo == null || !networkInfo.isConnected()) {
+            // Abre a tela de sem internet
+            Intent intent = new Intent(this, telaSemInternet.class);
+            startActivity(intent);
         }
     }
 

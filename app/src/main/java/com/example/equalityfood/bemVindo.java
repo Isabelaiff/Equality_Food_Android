@@ -17,6 +17,7 @@ public class bemVindo extends AppCompatActivity {
         Button btnVamosLa = findViewById(R.id.btnVamosLa);
 
         btnVamosLa.setOnClickListener(new View.OnClickListener() {
+            //pelo botão "btnVamosLa" direciona para tela de login
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(bemVindo.this, Login.class);

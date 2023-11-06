@@ -1,7 +1,10 @@
 package com.example.equalityfood;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -27,12 +30,16 @@ public class Carrinho extends AppCompatActivity {
         Adapter adapter = new Adapter(this, produtos, imgProd, precoProd, cardList);
         lista.setAdapter(adapter);
 
+        semInternet();
+
         ImageView voltarHome = findViewById(R.id.voltar);
 
         voltarHome.setOnClickListener(new View.OnClickListener() {
+            //não pode voltar, por questões de segurança
             @Override
             public void onClick(View v) {
-                finish();
+                Intent intent = new Intent(Carrinho.this, home.class);
+                startActivity(intent);
             }
         });
 
@@ -46,5 +53,15 @@ public class Carrinho extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    public void semInternet() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        if (networkInfo == null || !networkInfo.isConnected()) {
+            // Abre a tela de sem internet
+            Intent intent = new Intent(this, telaSemInternet.class);
+            startActivity(intent);
+        }
     }
 }

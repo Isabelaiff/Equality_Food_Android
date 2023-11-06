@@ -7,17 +7,14 @@ plugins {
 android {
     namespace 'com.example.equalityfood'
     compileSdk 33
-
     defaultConfig {
         applicationId "com.example.equalityfood"
         minSdk 28
         targetSdk 33
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
     buildTypes {
         release {
             minifyEnabled false
