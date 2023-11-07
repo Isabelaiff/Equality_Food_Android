@@ -18,25 +18,16 @@ public class ListaFrango extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_frango);
 
-        ImageButton esqueceuSenha = findViewById(R.id.voltarHome);
+        ImageButton voltar = findViewById(R.id.voltarHome);
 
         semInternet();
 
-        esqueceuSenha.setOnClickListener(new View.OnClickListener() {
+        voltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ListaFrango.this, home.class);
                 startActivity(intent);
-            }
-        });
-
-        Button VerCarrinho = findViewById(R.id.button2);
-
-        VerCarrinho.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ListaFrango.this, Carrinho.class);
-                startActivity(intent);
+                finish();
             }
         });
     }

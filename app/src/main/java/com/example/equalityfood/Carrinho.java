@@ -8,29 +8,28 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
-import java.util.List;
 
 public class Carrinho extends AppCompatActivity {
 
     String[] produtos = {"Lasanha congelada Seara","Picanha Maturata", "Pão de Queijo"};
-    int[] imgProd = {R.drawable.rectangleprod,R.drawable.rectangleprod, R.drawable.rectangleprod};
-    double[] precoProd = {80.00, 100.50, 30};
-    List<Carrinho> cardList;
-
+    Integer[] imgProd = {R.drawable.rectangleprod,R.drawable.rectangleprod, R.drawable.rectangleprod};
+    Double[] precoProd = {80.00, 100.50, 30.0};
+    TextView valortotal;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carrinho);
 
         ListView lista = findViewById(R.id.listaview);
-        Adapter adapter = new Adapter(this, produtos, imgProd, precoProd, cardList);
+        valortotal = findViewById(R.id.total);
+        Adapter adapter = new Adapter(this, produtos, imgProd, precoProd, valortotal);
         lista.setAdapter(adapter);
-
         semInternet();
+        somaTotal(precoProd);
 
         ImageView voltarHome = findViewById(R.id.voltar);
 
@@ -54,7 +53,6 @@ public class Carrinho extends AppCompatActivity {
             }
         });
     }
-
     public void semInternet() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
@@ -63,5 +61,15 @@ public class Carrinho extends AppCompatActivity {
             Intent intent = new Intent(this, telaSemInternet.class);
             startActivity(intent);
         }
+    }
+    public void somaTotal(Double[] precoProd) {
+        double soma = 0.0;
+
+        for (double item : precoProd) {
+                double valor = item;
+                soma += valor;
+                valortotal.setText(String.format("%.2f", soma));
+        }
+
     }
 }

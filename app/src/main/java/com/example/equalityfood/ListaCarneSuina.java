@@ -41,27 +41,18 @@ public class ListaCarneSuina extends AppCompatActivity {
 
         semInternet();
 
-        esqueceuSenha.setOnClickListener(new View.OnClickListener() {
         ImageButton voltar = findViewById(R.id.voltarHome);
 
         voltar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ListaCarneSuina.this, home.class);
-                startActivity(intent);
-            }
-        });
+                                                 @Override
+                                                 public void onClick(View v) {
+                                                     Intent intent = new Intent(ListaCarneSuina.this, home.class);
+                                                     startActivity(intent);
+                                                     finish();
+                                                 }
+                                             });
+                                         }
 
-        Button VerCarrinho = findViewById(R.id.button2);
-
-        VerCarrinho.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ListaCarneSuina.this, Carrinho.class);
-                startActivity(intent);
-            }
-        });
-    }
     public void semInternet() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();

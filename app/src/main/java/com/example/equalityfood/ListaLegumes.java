@@ -18,11 +18,11 @@ public class ListaLegumes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_legumes);
 
-        ImageButton esqueceuSenha = findViewById(R.id.voltarHome);
+        ImageButton voltar = findViewById(R.id.voltarHome);
 
         semInternet();
 
-        esqueceuSenha.setOnClickListener(new View.OnClickListener() {
+        voltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ListaLegumes.this, home.class);

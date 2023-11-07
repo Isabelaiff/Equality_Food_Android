@@ -28,7 +28,7 @@ public class ListaCarneBovina extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             ArrayList<ProdutosAPI> produtosAPI = bundle.getParcelableArrayList("listaDeCarneBovina");
-            for (int i=0; i < produtosAPI.size(); i++ ) {
+            for (int i = 0; i < produtosAPI.size(); i++) {
                 produtos.add(produtosAPI.get(i).getNome());
                 precoProd.add(produtosAPI.get(i).getPreco());
                 descricao.add(produtosAPI.get(i).getDescricao());
@@ -41,25 +41,14 @@ public class ListaCarneBovina extends AppCompatActivity {
         listaCarneBovina.setAdapter(adapter);
 
         ImageView voltar = findViewById(R.id.voltarHome);
-
-        voltar.setOnClickListener(new View.OnClickListener() {
         semInternet();
 
-        esqueceuSenha.setOnClickListener(new View.OnClickListener() {
+        voltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ListaCarneBovina.this, home.class);
                 startActivity(intent);
-            }
-        });
-
-        Button VerCarrinho = findViewById(R.id.button2);
-
-        VerCarrinho.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ListaCarneBovina.this, Carrinho.class);
-                startActivity(intent);
+                finish();
             }
         });
     }
@@ -69,10 +58,10 @@ public class ListaCarneBovina extends AppCompatActivity {
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
         if (networkInfo == null || !networkInfo.isConnected()) {
             // Abre a tela de sem internet
-            Intent intent = new Intent(this, telaSemInternet.class);
+            Intent intent = new Intent(ListaCarneBovina.this, telaSemInternet.class);
             startActivity(intent);
         }
     }
-
-
 }
+
+
