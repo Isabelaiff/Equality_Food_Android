@@ -8,7 +8,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -43,22 +42,15 @@ public class ListaCongelados extends AppCompatActivity {
 
         ImageView voltar = findViewById(R.id.voltarHome);
 
+        semInternet();
+
+
         voltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                semInternet();
-            }
-        });
-
-
-
-        Button VerCarrinho = findViewById(R.id.button2);
-
-        VerCarrinho.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ListaCongelados.this, Carrinho.class);
+                Intent intent = new Intent(ListaCongelados.this, home.class);
                 startActivity(intent);
+                finish();
             }
         });
     }

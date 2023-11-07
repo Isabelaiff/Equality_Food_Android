@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListaCarneBovina extends AppCompatActivity {
+
     List<String> produtos = new ArrayList<>();
     List<String> imgProd = new ArrayList<>();
     List<Double> precoProd = new ArrayList<>();
@@ -41,7 +42,17 @@ public class ListaCarneBovina extends AppCompatActivity {
         AdapterListaProdutos adapter = new AdapterListaProdutos(this, imgProd, produtos, descricao, precoProd);
         lista.setAdapter(adapter);
 
+        ImageView voltar = findViewById(R.id.voltarHome);
         semInternet();
+
+        voltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ListaCarneBovina.this, home.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
     public void semInternet() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);

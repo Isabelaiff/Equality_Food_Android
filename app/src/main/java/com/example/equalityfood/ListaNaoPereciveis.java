@@ -38,8 +38,17 @@ public class ListaNaoPereciveis extends AppCompatActivity {
         ListView lista = findViewById(R.id.lista);
         AdapterListaProdutos adapter = new AdapterListaProdutos(this, imgProd, produtos, descricao, precoProd);
         lista.setAdapter(adapter);
+        ImageButton voltar = findViewById(R.id.voltarHome);
 
         semInternet();
+
+        voltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ListaNaoPereciveis.this, home.class);
+                startActivity(intent);
+            }
+        });
     }
     public void semInternet() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);

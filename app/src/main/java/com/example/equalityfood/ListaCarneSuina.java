@@ -41,6 +41,8 @@ public class ListaCarneSuina extends AppCompatActivity {
         AdapterListaProdutos adapter = new AdapterListaProdutos(this, imgProd, produtos, descricao, precoProd);
         lista.setAdapter(adapter);
 
+        semInternet();
+
         ImageButton voltar = findViewById(R.id.voltarHome);
 
         voltar.setOnClickListener(new View.OnClickListener() {
@@ -50,19 +52,8 @@ public class ListaCarneSuina extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        Button VerCarrinho = findViewById(R.id.button2);
-
-        VerCarrinho.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ListaCarneSuina.this, Carrinho.class);
-                startActivity(intent);
-            }
-        });
-
-        semInternet();
     }
+
 
     public void semInternet() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -73,4 +64,5 @@ public class ListaCarneSuina extends AppCompatActivity {
             startActivity(intent);
         }
     }
+
 }

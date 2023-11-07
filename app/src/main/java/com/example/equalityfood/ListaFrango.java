@@ -35,11 +35,21 @@ public class ListaFrango extends AppCompatActivity {
             }
         }
 
+        ImageButton voltar = findViewById(R.id.voltarHome);
         ListView lista = findViewById(R.id.lista);
         AdapterListaProdutos adapter = new AdapterListaProdutos(this, imgProd, produtos, descricao, precoProd);
         lista.setAdapter(adapter);
 
         semInternet();
+
+        voltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ListaFrango.this, home.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
     public void semInternet() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);

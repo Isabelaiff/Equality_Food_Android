@@ -25,9 +25,16 @@ import java.util.List;
                 super.onCreate(savedInstanceState);
                 setContentView(R.layout.activity_lista_legumes);
                 Bundle bundle = getIntent().getExtras();
+                ImageButton voltar = findViewById(R.id.voltarHome);
+                ListView lista = findViewById(R.id.lista);
+                AdapterListaProdutos adapter = new AdapterListaProdutos(this, imgProd, produtos, descricao, precoProd);
+                lista.setAdapter(adapter);
+
+                semInternet();
+
                 if (bundle != null) {
                     ArrayList<ProdutosAPI> produtosAPI = bundle.getParcelableArrayList("listaDeLegumes");
-                    for (int i=0; i < produtosAPI.size(); i++ ) {
+                    for (int i = 0; i < produtosAPI.size(); i++) {
                         produtos.add(produtosAPI.get(i).getNome());
                         precoProd.add(produtosAPI.get(i).getPreco());
                         descricao.add(produtosAPI.get(i).getDescricao());
@@ -35,12 +42,18 @@ import java.util.List;
                     }
                 }
 
-                ListView lista = findViewById(R.id.lista);
-                AdapterListaProdutos adapter = new AdapterListaProdutos(this, imgProd, produtos, descricao, precoProd);
-                lista.setAdapter(adapter);
 
-                semInternet();
+                voltar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(ListaLegumes.this, home.class);
+                        startActivity(intent);
+                    }
+                });
             }
+
+
+
             public void semInternet() {
                 ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
                 NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
@@ -50,5 +63,4 @@ import java.util.List;
                     startActivity(intent);
                 }
             }
-
         }
