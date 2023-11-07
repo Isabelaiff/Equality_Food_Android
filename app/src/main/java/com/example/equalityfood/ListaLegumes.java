@@ -52,8 +52,6 @@ import java.util.List;
                 });
             }
 
-
-
             public void semInternet() {
                 ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
                 NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
