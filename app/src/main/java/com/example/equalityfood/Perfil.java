@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -27,16 +28,17 @@ public class Perfil extends AppCompatActivity {
         TextView emailVis = findViewById(R.id.textView24);
         TextView numeroVis = findViewById(R.id.textView26);
         Button btnPolitica = findViewById(R.id.btnPolitica);
+        Button alterarLoc = findViewById(R.id.textView31);
+        ImageButton btnAlterarFoto = findViewById(R.id.imageButton12);
 
 
-
-//        btnHome2.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(Perfil.this, home.class);
-//                startActivity(intent);
-//            }
-//        });
+        alterarLoc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Perfil.this, LocalizacaoEntrega.class);
+                startActivity(intent);
+            }
+        });
 
         btnPolitica.setOnClickListener(new View.OnClickListener() {
             @Override

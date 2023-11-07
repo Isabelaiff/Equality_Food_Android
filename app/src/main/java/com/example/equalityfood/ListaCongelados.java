@@ -24,15 +24,16 @@ public class ListaCongelados extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_congelados);
+        semInternet();
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             ArrayList<ProdutosAPI> produtosAPI = bundle.getParcelableArrayList("listaDeProdutos");
-                for (int i=0; i < produtosAPI.size(); i++ ) {
-                       produtos.add(produtosAPI.get(i).getNome());
-                       precoProd.add(produtosAPI.get(i).getPreco());
-                       descricao.add(produtosAPI.get(i).getDescricao());
-                       imgProd.add(produtosAPI.get(i).getImagem());
-                }
+            for (int i = 0; i < produtosAPI.size(); i++) {
+                produtos.add(produtosAPI.get(i).getNome());
+                precoProd.add(produtosAPI.get(i).getPreco());
+                descricao.add(produtosAPI.get(i).getDescricao());
+                imgProd.add(produtosAPI.get(i).getImagem());
+            }
         }
 
         ListView lista = findViewById(R.id.lista);
@@ -40,6 +41,9 @@ public class ListaCongelados extends AppCompatActivity {
         lista.setAdapter(adapter);
 
         ImageView voltar = findViewById(R.id.voltarHome);
+
+        semInternet();
+
 
         voltar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,6 +54,7 @@ public class ListaCongelados extends AppCompatActivity {
             }
         });
     }
+
     public void semInternet() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
@@ -60,4 +65,3 @@ public class ListaCongelados extends AppCompatActivity {
         }
     }
 }
-

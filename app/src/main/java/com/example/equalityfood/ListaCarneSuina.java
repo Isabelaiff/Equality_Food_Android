@@ -8,6 +8,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListaCarneSuina extends AppCompatActivity {
+
     List<String> produtos = new ArrayList<>();
     List<String> imgProd = new ArrayList<>();
     List<Double> precoProd = new ArrayList<>();
@@ -26,8 +28,8 @@ public class ListaCarneSuina extends AppCompatActivity {
         setContentView(R.layout.activity_lista_carne_suina);
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            ArrayList<ProdutosAPI> produtosAPI = bundle.getParcelableArrayList("listaDeProdutos");
-            for (int i=0; i < produtosAPI.size(); i++ ) {
+            ArrayList<ProdutosAPI> produtosAPI = bundle.getParcelableArrayList("listaDeCarneSuina");
+            for (int i = 0; i < produtosAPI.size(); i++) {
                 produtos.add(produtosAPI.get(i).getNome());
                 precoProd.add(produtosAPI.get(i).getPreco());
                 descricao.add(produtosAPI.get(i).getDescricao());
@@ -44,14 +46,14 @@ public class ListaCarneSuina extends AppCompatActivity {
         ImageButton voltar = findViewById(R.id.voltarHome);
 
         voltar.setOnClickListener(new View.OnClickListener() {
-                                                 @Override
-                                                 public void onClick(View v) {
-                                                     Intent intent = new Intent(ListaCarneSuina.this, home.class);
-                                                     startActivity(intent);
-                                                     finish();
-                                                 }
-                                             });
-                                         }
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ListaCarneSuina.this, home.class);
+                startActivity(intent);
+            }
+        });
+    }
+
 
     public void semInternet() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);

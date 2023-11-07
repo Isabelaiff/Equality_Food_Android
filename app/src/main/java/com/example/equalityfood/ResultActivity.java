@@ -7,17 +7,13 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageButton;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListaCarneBovina extends AppCompatActivity {
-
+public class ResultActivity extends AppCompatActivity {
     List<String> produtos = new ArrayList<>();
     List<String> imgProd = new ArrayList<>();
     List<Double> precoProd = new ArrayList<>();
@@ -25,12 +21,13 @@ public class ListaCarneBovina extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        TextView mostResult = findViewById(R.id.textView4);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lista_carne_bovina);
+        setContentView(R.layout.activity_result);
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            ArrayList<ProdutosAPI> produtosAPI = bundle.getParcelableArrayList("listaDeCarneBovina");
-            for (int i = 0; i < produtosAPI.size(); i++) {
+            ArrayList<ProdutosAPI> produtosAPI = bundle.getParcelableArrayList("ResultadoPesquisa");
+            for (int i=0; i < produtosAPI.size(); i++ ) {
                 produtos.add(produtosAPI.get(i).getNome());
                 precoProd.add(produtosAPI.get(i).getPreco());
                 descricao.add(produtosAPI.get(i).getDescricao());
@@ -42,17 +39,7 @@ public class ListaCarneBovina extends AppCompatActivity {
         AdapterListaProdutos adapter = new AdapterListaProdutos(this, imgProd, produtos, descricao, precoProd);
         lista.setAdapter(adapter);
 
-        ImageView voltar = findViewById(R.id.voltarHome);
         semInternet();
-
-        voltar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ListaCarneBovina.this, home.class);
-                startActivity(intent);
-                finish();
-            }
-        });
     }
     public void semInternet() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -61,9 +48,7 @@ public class ListaCarneBovina extends AppCompatActivity {
             // Abre a tela de sem internet
             Intent intent = new Intent(this, telaSemInternet.class);
             startActivity(intent);
-        } else {
-            // Handle the case when internet is available
-            // Add your code here
         }
     }
+
 }
