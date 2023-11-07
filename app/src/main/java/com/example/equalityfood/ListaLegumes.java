@@ -42,7 +42,6 @@ import java.util.List;
                     }
                 }
 
-
                 voltar.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
