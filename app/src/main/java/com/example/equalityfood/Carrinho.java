@@ -66,9 +66,9 @@ public class Carrinho extends AppCompatActivity {
         double soma = 0.0;
 
         for (double item : precoProd) {
-                double valor = item;
-                soma += valor;
-                valortotal.setText(String.format("%.2f", soma));
+            double valor = item;
+            soma += valor;
+            valortotal.setText(String.format("%.2f", soma));
         }
 
     }
