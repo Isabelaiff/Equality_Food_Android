@@ -8,6 +8,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -28,7 +29,7 @@ public class ListaCarneBovina extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             ArrayList<ProdutosAPI> produtosAPI = bundle.getParcelableArrayList("listaDeCarneBovina");
-            for (int i=0; i < produtosAPI.size(); i++ ) {
+            for (int i = 0; i < produtosAPI.size(); i++) {
                 produtos.add(produtosAPI.get(i).getNome());
                 precoProd.add(produtosAPI.get(i).getPreco());
                 descricao.add(produtosAPI.get(i).getDescricao());
@@ -43,19 +44,15 @@ public class ListaCarneBovina extends AppCompatActivity {
         ImageView voltar = findViewById(R.id.voltarHome);
 
         voltar.setOnClickListener(new View.OnClickListener() {
-        semInternet();
-
-        esqueceuSenha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ListaCarneBovina.this, home.class);
-                startActivity(intent);
+                semInternet();
             }
         });
 
-        Button VerCarrinho = findViewById(R.id.button2);
+        Button verCarrinho = findViewById(R.id.button2);
 
-        VerCarrinho.setOnClickListener(new View.OnClickListener() {
+        verCarrinho.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ListaCarneBovina.this, Carrinho.class);
@@ -71,8 +68,9 @@ public class ListaCarneBovina extends AppCompatActivity {
             // Abre a tela de sem internet
             Intent intent = new Intent(this, telaSemInternet.class);
             startActivity(intent);
+        } else {
+            // Handle the case when internet is available
+            // Add your code here
         }
     }
-
-
 }

@@ -8,6 +8,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListaCarneSuina extends AppCompatActivity {
+
     List<String> produtos = new ArrayList<>();
     List<String> imgProd = new ArrayList<>();
     List<Double> precoProd = new ArrayList<>();
@@ -27,7 +29,7 @@ public class ListaCarneSuina extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             ArrayList<ProdutosAPI> produtosAPI = bundle.getParcelableArrayList("listaDeProdutos");
-            for (int i=0; i < produtosAPI.size(); i++ ) {
+            for (int i = 0; i < produtosAPI.size(); i++) {
                 produtos.add(produtosAPI.get(i).getNome());
                 precoProd.add(produtosAPI.get(i).getPreco());
                 descricao.add(produtosAPI.get(i).getDescricao());
@@ -39,9 +41,6 @@ public class ListaCarneSuina extends AppCompatActivity {
         AdapterListaProdutos adapter = new AdapterListaProdutos(this, imgProd, produtos, descricao, precoProd);
         lista.setAdapter(adapter);
 
-        semInternet();
-
-        esqueceuSenha.setOnClickListener(new View.OnClickListener() {
         ImageButton voltar = findViewById(R.id.voltarHome);
 
         voltar.setOnClickListener(new View.OnClickListener() {
@@ -61,7 +60,10 @@ public class ListaCarneSuina extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        semInternet();
     }
+
     public void semInternet() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
@@ -71,5 +73,4 @@ public class ListaCarneSuina extends AppCompatActivity {
             startActivity(intent);
         }
     }
-
 }

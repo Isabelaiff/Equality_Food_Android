@@ -8,6 +8,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -27,12 +28,12 @@ public class ListaCongelados extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             ArrayList<ProdutosAPI> produtosAPI = bundle.getParcelableArrayList("listaDeProdutos");
-                for (int i=0; i < produtosAPI.size(); i++ ) {
-                       produtos.add(produtosAPI.get(i).getNome());
-                       precoProd.add(produtosAPI.get(i).getPreco());
-                       descricao.add(produtosAPI.get(i).getDescricao());
-                       imgProd.add(produtosAPI.get(i).getImagem());
-                }
+            for (int i = 0; i < produtosAPI.size(); i++) {
+                produtos.add(produtosAPI.get(i).getNome());
+                precoProd.add(produtosAPI.get(i).getPreco());
+                descricao.add(produtosAPI.get(i).getDescricao());
+                imgProd.add(produtosAPI.get(i).getImagem());
+            }
         }
 
         ListView lista = findViewById(R.id.lista);
@@ -42,15 +43,13 @@ public class ListaCongelados extends AppCompatActivity {
         ImageView voltar = findViewById(R.id.voltarHome);
 
         voltar.setOnClickListener(new View.OnClickListener() {
-        semInternet();
-
-        esqueceuSenha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ListaCongelados.this, home.class);
-                startActivity(intent);
+                semInternet();
             }
         });
+
+
 
         Button VerCarrinho = findViewById(R.id.button2);
 
@@ -62,6 +61,7 @@ public class ListaCongelados extends AppCompatActivity {
             }
         });
     }
+
     public void semInternet() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
@@ -71,6 +71,4 @@ public class ListaCongelados extends AppCompatActivity {
             startActivity(intent);
         }
     }
-    }
-
 }
