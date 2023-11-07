@@ -153,10 +153,9 @@
         android:layout_width="142dp"
         android:layout_height="142dp"
         android:layout_marginStart="108dp"
-        android:layout_marginTop="352dp"
         app:layout_constraintBottom_toTopOf="@+id/imageView35"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
         app:layout_constraintVertical_bias="0.388"
         app:srcCompat="@drawable/rectangle_33" />
 

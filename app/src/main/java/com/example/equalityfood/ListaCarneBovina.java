@@ -8,6 +8,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -16,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListaCarneBovina extends AppCompatActivity {
-
     List<String> produtos = new ArrayList<>();
     List<String> imgProd = new ArrayList<>();
     List<Double> precoProd = new ArrayList<>();
@@ -37,30 +37,12 @@ public class ListaCarneBovina extends AppCompatActivity {
             }
         }
 
-        ListView listaCarneBovina = findViewById(R.id.listaCarneBovina);
-        AdapterCarneBovina adapter = new AdapterCarneBovina(this, imgProd, produtos, descricao, precoProd);
-        listaCarneBovina.setAdapter(adapter);
+        ListView lista = findViewById(R.id.lista);
+        AdapterListaProdutos adapter = new AdapterListaProdutos(this, imgProd, produtos, descricao, precoProd);
+        lista.setAdapter(adapter);
 
-        ImageView voltar = findViewById(R.id.voltarHome);
-
-        voltar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                semInternet();
-            }
-        });
-
-        Button verCarrinho = findViewById(R.id.button2);
-
-        verCarrinho.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ListaCarneBovina.this, Carrinho.class);
-                startActivity(intent);
-            }
-        });
+        semInternet();
     }
-
     public void semInternet() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();

@@ -9,6 +9,8 @@ import retrofit2.http.Path;
 public interface ApiService {
     @GET("/api/produtos/selecionarPorCategoria/{categoria}")
     Call<List<ProdutosAPI>> GetProdutosByCategoria(@Path("categoria") String categoria);
+    @GET("/api/produtos/selecionarPorNome/{nome}")
+    Call<List<ProdutosAPI>> BuscarPorNome(@Path("nome")String nome);
     @GET("/api/produtos/listar")
     Call<List<ProdutosAPI>> GetAll();
 

@@ -120,9 +120,9 @@ public class home extends AppCompatActivity {
 
                             // Crie um Bundle e coloque a lista nele
                             Bundle bundle = new Bundle();
-                            bundle.putParcelableArrayList("listaDeProdutos", new ArrayList<>(produtosAPI));
+                            bundle.putParcelableArrayList("listaDeNaoPereciveis", new ArrayList<>(produtosAPI));
 
-                            Intent intent = new Intent(home.this, ListaCongelados.class);
+                            Intent intent = new Intent(home.this, ListaNaoPereciveis.class);
                             intent.putExtras(bundle);
                             startActivity(intent);
                         }
@@ -130,6 +130,8 @@ public class home extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<List<ProdutosAPI>> call, Throwable t) {
+                        Log.e("API", "Falha na chamada à API", t);
+                        System.out.println(t);
                         Toast.makeText(getApplicationContext(), "Falha ao tentar vizualizar os produtos, Tente mais tarde!", Toast.LENGTH_LONG).show();
                     }
                 });
@@ -200,8 +202,9 @@ public class home extends AppCompatActivity {
 
                             // Crie um Bundle e coloque a lista nele
                             Bundle bundle = new Bundle();
-                            bundle.putParcelableArrayList("listaDeProdutos", new ArrayList<>(produtosAPI));
+                            bundle.putParcelableArrayList("listaDeCarneSuina", new ArrayList<>(produtosAPI));
                             Intent intent = new Intent(home.this, ListaCarneSuina.class);
+                            intent.putExtras(bundle);
                             startActivity(intent);
                         }
                     }
@@ -237,8 +240,10 @@ public class home extends AppCompatActivity {
 
                             // Crie um Bundle e coloque a lista nele
                             Bundle bundle = new Bundle();
-                            bundle.putParcelableArrayList("listaDeProdutos", new ArrayList<>(produtosAPI));
+                            bundle.putParcelableArrayList("listaDeCarneDeFrango", new ArrayList<>(produtosAPI));
+
                             Intent intent = new Intent(home.this, ListaFrango.class);
+                            intent.putExtras(bundle);
                             startActivity(intent);
                         }
                     }
@@ -275,7 +280,9 @@ public class home extends AppCompatActivity {
                             // Crie um Bundle e coloque a lista nele
                             Bundle bundle = new Bundle();
                             bundle.putParcelableArrayList("listaDeCarneBovina", new ArrayList<>(produtosAPI));
+
                             Intent intent = new Intent(home.this, ListaCarneBovina.class);
+                            intent.putExtras(bundle);
                             startActivity(intent);
                         }
                     }
@@ -287,6 +294,7 @@ public class home extends AppCompatActivity {
                 });
             }
         });
+
 
         ImageView imageView32 = findViewById(R.id.imageView32);
 
@@ -311,8 +319,10 @@ public class home extends AppCompatActivity {
 
                             // Crie um Bundle e coloque a lista nele
                             Bundle bundle = new Bundle();
-                            bundle.putParcelableArrayList("listaDeProdutos", new ArrayList<>(produtosAPI));
+                            bundle.putParcelableArrayList("listaDeLegumes", new ArrayList<>(produtosAPI));
+
                             Intent intent = new Intent(home.this, ListaLegumes.class);
+                            intent.putExtras(bundle);
                             startActivity(intent);
                         }
                     }
@@ -349,8 +359,41 @@ public class home extends AppCompatActivity {
     }
 
     private void performSearch(String query) {
+        //Barra de Pesquisa
         Toast.makeText(this, "Pesquisando por: " + query, Toast.LENGTH_SHORT).show();
-    }
+
+            String urlAPI = "https://api-equality.onrender.com/";
+            //configurar acesso a API
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(urlAPI)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+
+            ApiService apiService = retrofit.create(ApiService.class);
+            Call<List<ProdutosAPI>> call = apiService.BuscarPorNome(query);
+
+            call.enqueue(new Callback<List<ProdutosAPI>>() {
+                @Override
+                public void onResponse(Call<List<ProdutosAPI>> call, Response<List<ProdutosAPI>> response) {
+                    if (response.isSuccessful()) {
+                        List<ProdutosAPI> produtosAPI = response.body();
+
+                        // Crie um Bundle e coloque a lista nele
+                        Bundle bundle = new Bundle();
+                        bundle.putParcelableArrayList("ResultadoPesquisa", new ArrayList<>(produtosAPI));
+
+                        Intent intent = new Intent(home.this, ResultActivity.class);
+                        intent.putExtras(bundle);
+                        startActivity(intent);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<List<ProdutosAPI>> call, Throwable t) {
+                    Toast.makeText(getApplicationContext(), "Falha ao tentar vizualizar os produtos, Tente mais tarde!", Toast.LENGTH_LONG).show();
+                }
+            });
+        }
 
     public void semInternet() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);

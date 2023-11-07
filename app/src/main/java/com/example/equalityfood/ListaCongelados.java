@@ -25,6 +25,7 @@ public class ListaCongelados extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_congelados);
+        semInternet();
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             ArrayList<ProdutosAPI> produtosAPI = bundle.getParcelableArrayList("listaDeProdutos");

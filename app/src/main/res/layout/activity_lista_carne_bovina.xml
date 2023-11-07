@@ -36,27 +36,15 @@
         android:id="@+id/voltarHome"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="76dp"
         android:background="#00FFFFFF"
         android:contentDescription="bota a descrição aqui"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout4"
         app:layout_constraintEnd_toStartOf="@+id/textView4"
-        app:layout_constraintHorizontal_bias="0.106"
+        app:layout_constraintHorizontal_bias="0.142"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/setinha" />
-    <Button
-        android:id="@+id/button2"
-        android:background="@drawable/borda_botao"
-        android:hint="Ver carrinho"
-        android:textColorHint="#FFFFFF"
-        android:textSize="20sp"
-        android:layout_width="230dp"
-        android:layout_height="60dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.954" />
 
     <LinearLayout
         android:id="@+id/linearLayout4"
@@ -71,9 +59,11 @@
         app:layout_constraintVertical_bias="1.0">
 
         <ListView
-            android:id="@+id/listaCarneBovina"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:id="@+id/lista"
+            android:layout_width="734dp"
+            android:layout_height="841dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
