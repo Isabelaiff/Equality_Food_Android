@@ -8,6 +8,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -15,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListaCarneBovina extends AppCompatActivity {
-
     List<String> produtos = new ArrayList<>();
     List<String> imgProd = new ArrayList<>();
     List<Double> precoProd = new ArrayList<>();
@@ -28,7 +29,7 @@ public class ListaCarneBovina extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             ArrayList<ProdutosAPI> produtosAPI = bundle.getParcelableArrayList("listaDeCarneBovina");
-            for (int i=0; i < produtosAPI.size(); i++ ) {
+            for (int i = 0; i < produtosAPI.size(); i++) {
                 produtos.add(produtosAPI.get(i).getNome());
                 precoProd.add(produtosAPI.get(i).getPreco());
                 descricao.add(produtosAPI.get(i).getDescricao());
@@ -36,34 +37,12 @@ public class ListaCarneBovina extends AppCompatActivity {
             }
         }
 
-        ListView listaCarneBovina = findViewById(R.id.listaCarneBovina);
-        AdapterCarneBovina adapter = new AdapterCarneBovina(this, imgProd, produtos, descricao, precoProd);
-        listaCarneBovina.setAdapter(adapter);
+        ListView lista = findViewById(R.id.lista);
+        AdapterListaProdutos adapter = new AdapterListaProdutos(this, imgProd, produtos, descricao, precoProd);
+        lista.setAdapter(adapter);
 
-        ImageView voltar = findViewById(R.id.voltarHome);
-
-        voltar.setOnClickListener(new View.OnClickListener() {
         semInternet();
-
-        esqueceuSenha.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ListaCarneBovina.this, home.class);
-                startActivity(intent);
-            }
-        });
-
-        Button VerCarrinho = findViewById(R.id.button2);
-
-        VerCarrinho.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ListaCarneBovina.this, Carrinho.class);
-                startActivity(intent);
-            }
-        });
     }
-
     public void semInternet() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
@@ -71,8 +50,9 @@ public class ListaCarneBovina extends AppCompatActivity {
             // Abre a tela de sem internet
             Intent intent = new Intent(this, telaSemInternet.class);
             startActivity(intent);
+        } else {
+            // Handle the case when internet is available
+            // Add your code here
         }
     }
-
-
 }

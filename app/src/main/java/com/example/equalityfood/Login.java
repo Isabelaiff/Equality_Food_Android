@@ -21,6 +21,7 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.Status;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,6 +33,20 @@ public class Login extends AppCompatActivity {
 
     private GoogleApiClient googleApiClient;
     private static final int RC_SIGN_IN = 1001;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        FirebaseUser usuarioLogin = auth.getCurrentUser();
+
+        if (usuarioLogin != null){
+            Intent intent = new Intent(Login.this, home.class);
+            startActivity(intent);
+            finish();
+        }
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

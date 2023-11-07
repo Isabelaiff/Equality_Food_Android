@@ -1,6 +1,5 @@
 package com.example.equalityfood;
 
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,11 +15,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import java.util.Calendar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -30,14 +24,17 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.Callback;
 
 public class criarConta extends AppCompatActivity {
 
@@ -214,7 +211,8 @@ public class criarConta extends AppCompatActivity {
                                 });
 
                                 if (user != null) {
-                                    // Armazene o número de telefone no Firebase Realtime Database
+                                    // Armazene o número de telefone no Firebase
+                                    String uid = user.getUid();
                                     DatabaseReference usuariosRef = FirebaseDatabase.getInstance().getReference().child("Usuario").push();
 
 

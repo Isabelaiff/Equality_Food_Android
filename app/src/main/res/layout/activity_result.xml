@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ListaCarneSuina">
+    tools:context=".ResultActivity">
 
     <SearchView
         android:id="@+id/searchView"
@@ -18,19 +18,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" >
+
+    </SearchView>
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="25dp"
-        android:text="Carne Suína"
+        android:text="Resultados para a Pesquisa:"
         android:textColor="@color/black"
         android:textSize="18dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView" />
+        app:layout_constraintTop_toBottomOf="@+id/searchView"
+        app:layout_constraintVertical_bias="0.434" />
 
     <ImageButton
         android:id="@+id/voltarHome"
@@ -39,27 +42,11 @@
         android:layout_marginTop="76dp"
         android:background="#00FFFFFF"
         android:contentDescription="bota a descrição aqui"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout4"
         app:layout_constraintEnd_toStartOf="@+id/textView4"
-        app:layout_constraintHorizontal_bias="0.142"
+        app:layout_constraintHorizontal_bias="0.281"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/setinha"
-        tools:ignore="NotSibling" />
-
-    <Button
-        android:id="@+id/button2"
-        android:background="@drawable/borda_botao"
-        android:hint="Ver carrinho"
-        android:textColorHint="#FFFFFF"
-        android:textSize="20sp"
-        android:layout_width="230dp"
-        android:layout_height="60dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.954" />
+        app:srcCompat="@drawable/setinha" />
 
     <LinearLayout
         android:id="@+id/linearLayout4"

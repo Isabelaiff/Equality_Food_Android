@@ -7,16 +7,13 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListaCarneSuina extends AppCompatActivity {
-
+public class ResultActivity extends AppCompatActivity {
     List<String> produtos = new ArrayList<>();
     List<String> imgProd = new ArrayList<>();
     List<Double> precoProd = new ArrayList<>();
@@ -24,12 +21,13 @@ public class ListaCarneSuina extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        TextView mostResult = findViewById(R.id.textView4);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lista_carne_suina);
+        setContentView(R.layout.activity_result);
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            ArrayList<ProdutosAPI> produtosAPI = bundle.getParcelableArrayList("listaDeCarneSuina");
-            for (int i = 0; i < produtosAPI.size(); i++) {
+            ArrayList<ProdutosAPI> produtosAPI = bundle.getParcelableArrayList("ResultadoPesquisa");
+            for (int i=0; i < produtosAPI.size(); i++ ) {
                 produtos.add(produtosAPI.get(i).getNome());
                 precoProd.add(produtosAPI.get(i).getPreco());
                 descricao.add(produtosAPI.get(i).getDescricao());
@@ -41,29 +39,8 @@ public class ListaCarneSuina extends AppCompatActivity {
         AdapterListaProdutos adapter = new AdapterListaProdutos(this, imgProd, produtos, descricao, precoProd);
         lista.setAdapter(adapter);
 
-        ImageButton voltar = findViewById(R.id.voltarHome);
-
-        voltar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ListaCarneSuina.this, home.class);
-                startActivity(intent);
-            }
-        });
-
-        Button VerCarrinho = findViewById(R.id.button2);
-
-        VerCarrinho.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ListaCarneSuina.this, Carrinho.class);
-                startActivity(intent);
-            }
-        });
-
         semInternet();
     }
-
     public void semInternet() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
@@ -73,4 +50,5 @@ public class ListaCarneSuina extends AppCompatActivity {
             startActivity(intent);
         }
     }
+
 }
