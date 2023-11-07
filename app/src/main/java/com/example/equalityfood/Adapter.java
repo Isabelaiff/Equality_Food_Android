@@ -1,6 +1,12 @@
 package com.example.equalityfood;
 
+import static android.system.Os.remove;
+
+import static java.security.AccessController.getContext;
+
 import android.content.Context;
+import android.os.Bundle;
+import android.system.ErrnoException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +20,8 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import androidx.annotation.NonNull;
+
 import java.util.List;
 
 public class Adapter extends BaseAdapter {
@@ -62,7 +70,7 @@ public class Adapter extends BaseAdapter {
 
         TextView valorTotal = view.findViewById(R.id.total);
         ImageView card = view.findViewById(R.id.imageView2);
-        ImageView removeButton = view.findViewById(R.id.lixo);
+        Button removeButton = view.findViewById(R.id.button);
         ImageView icon = view.findViewById(R.id.imgProd);
         TextView nome = view.findViewById(R.id.produto);
         TextView precoView = view.findViewById(R.id.preco);
