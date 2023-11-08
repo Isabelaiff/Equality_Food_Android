@@ -14,10 +14,6 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
-        viewBinding {
-            enabled = true
-        }
     }
     buildTypes {
         release {
@@ -59,9 +55,5 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-common-java8:2.3.1'
     implementation 'com.google.firebase:firebase-storage:20.2.1'
     implementation 'com.squareup.picasso:picasso:2.8'
-
-
-//    implementation(platform("com.google.firebase:firebase-bom:32.5.0"))
-//    implementation("com.google.firebase:firebase-storage")
 
 }
