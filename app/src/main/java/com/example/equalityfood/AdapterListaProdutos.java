@@ -1,14 +1,18 @@
 package com.example.equalityfood;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -17,20 +21,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterListaProdutos extends BaseAdapter {
+
     private Context applicationContext;
     private LayoutInflater inflater;
     List<String> fotoP;
     List<String> produtos;
     List<String> descri;
     List<Double> valor;
+    List<String> dataVal;
 
-    public AdapterListaProdutos(Context applicationContext,List<String> foto, List<String> produtos, List<String> descricoes, List<Double> valores) {
+    public AdapterListaProdutos(Context applicationContext, List<String> foto, List<String> produtos, List<String> descricoes, List<Double> valores, List<String> validade) {
         this.applicationContext = applicationContext;
         this.fotoP = foto;
         this.produtos = produtos;
         this.descri = descricoes;
         this.valor = valores;
+        this.dataVal = validade;
         this.inflater = LayoutInflater.from(applicationContext);
+
+        // Create an intent to start the Produtos activity
     }
 
     @Override
@@ -64,7 +73,7 @@ public class AdapterListaProdutos extends BaseAdapter {
         Glide.with(view.getContext())
                 .load(fotoP.get(i))
                 .into(icon);
-
         return view;
     }
 }
+

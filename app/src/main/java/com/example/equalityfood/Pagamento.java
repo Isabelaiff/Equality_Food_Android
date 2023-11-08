@@ -30,6 +30,16 @@ public class Pagamento extends AppCompatActivity {
         ImageButton btnCarrinho = findViewById(R.id.imageButton7);
         Button btnPagar = findViewById(R.id.finalizar);
         TextView enderecoFinal = findViewById(R.id.textView31);
+        TextView subtotal = findViewById(R.id.subtotal);
+        TextView TotalFinal = findViewById(R.id.sub);
+
+        Bundle bundle = getIntent().getExtras();
+        String total = bundle.getString("TOTAL");
+        Double valorTotal = Double.parseDouble(total.replace(",", "."));
+        valorTotal += 5;
+        String totalComAcrescimo = String.format("R$%.2f", valorTotal);
+        subtotal.setText("R$" + total);
+        TotalFinal.setText(totalComAcrescimo);
 
         semInternet();
 

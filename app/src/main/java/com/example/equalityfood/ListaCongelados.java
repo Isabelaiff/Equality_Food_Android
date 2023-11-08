@@ -1,5 +1,7 @@
 package com.example.equalityfood;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -8,6 +10,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -19,6 +22,7 @@ public class ListaCongelados extends AppCompatActivity {
     List<String> imgProd = new ArrayList<>();
     List<Double> precoProd = new ArrayList<>();
     List<String> descricao = new ArrayList<>();
+    List<String> dataVal = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,12 +37,30 @@ public class ListaCongelados extends AppCompatActivity {
                 precoProd.add(produtosAPI.get(i).getPreco());
                 descricao.add(produtosAPI.get(i).getDescricao());
                 imgProd.add(produtosAPI.get(i).getImagem());
+                dataVal.add(produtosAPI.get(i).getData_validade());
             }
         }
 
         ListView lista = findViewById(R.id.lista);
-        AdapterListaProdutos adapter = new AdapterListaProdutos(this, imgProd, produtos, descricao, precoProd);
+        AdapterListaProdutos adapter = new AdapterListaProdutos(this, imgProd, produtos, descricao, precoProd, dataVal);
         lista.setAdapter(adapter);
+
+        lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
+                // Pass the product information to the Produtos activity
+                Bundle bundle = new Bundle();
+                bundle.putString("produto", produtos.get(i));
+                bundle.putString("descricao", descricao.get(i));
+                bundle.putDouble("valor", precoProd.get(i));
+                bundle.putString("imagem", imgProd.get(i));
+                bundle.putString("validade", dataVal.get(i));
+
+                Intent intent = new Intent(ListaCongelados.this, Produtos.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
 
         ImageView voltar = findViewById(R.id.voltarHome);
 
