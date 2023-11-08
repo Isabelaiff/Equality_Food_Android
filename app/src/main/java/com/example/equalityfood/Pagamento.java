@@ -12,6 +12,14 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 public class Pagamento extends AppCompatActivity {
 
     @Override
@@ -21,17 +29,35 @@ public class Pagamento extends AppCompatActivity {
 
         ImageButton btnCarrinho = findViewById(R.id.imageButton7);
         Button btnPagar = findViewById(R.id.finalizar);
-        TextView subtotal = findViewById(R.id.subtotal);
-        TextView TotalFinal = findViewById(R.id.sub);
+        TextView enderecoFinal = findViewById(R.id.textView31);
+
         semInternet();
 
-        Bundle bundle = getIntent().getExtras();
-        String total = bundle.getString("TOTAL");
-        Double valorTotal = Double.parseDouble(total.replace(",", "."));
-        valorTotal += 5;
-        String totalComAcrescimo = String.format("R$%.2f", valorTotal);
-        subtotal.setText("R$" + total);
-        TotalFinal.setText(totalComAcrescimo);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            String userId = user.getUid();
+
+            DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("Usuario").child(userId).child("endereco");
+
+            userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        String enderecoRua = String.valueOf(dataSnapshot.child("Rua").getValue());
+                        String enderecoNumero = String.valueOf(dataSnapshot.child("numEndereco").getValue());
+                        String enderecoComp = String.valueOf(dataSnapshot.child("complemento").getValue());
+                        String enderecoCidade = String.valueOf(dataSnapshot.child("Cidade").getValue());
+                        String enderecoBairro = String.valueOf(dataSnapshot.child("Bairro").getValue());
+                        enderecoFinal.setText(enderecoRua + " n°" + enderecoNumero + " " + enderecoComp + " bairro " + enderecoBairro + " cidade " +enderecoCidade);
+                    } else {
+                        System.out.println("endereco cadastrado errado, entre em contato com suporte.");
+                    }
+                }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    System.out.println("Erro ao acessar o banco de dados: " + databaseError.getMessage());
+                }
+            });
+        }
 
         btnCarrinho.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,6 +69,7 @@ public class Pagamento extends AppCompatActivity {
         btnPagar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                semInternet();
                 PopUpQrCode pop = new PopUpQrCode(Pagamento.this);
                 pop.show();
                 onDestroy();

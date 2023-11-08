@@ -40,7 +40,6 @@ public class Carrinho extends AppCompatActivity {
         ImageView voltarHome = findViewById(R.id.voltar);
 
         voltarHome.setOnClickListener(new View.OnClickListener() {
-            //não pode voltar, por questões de segurança
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Carrinho.this, home.class);

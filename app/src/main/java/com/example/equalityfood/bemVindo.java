@@ -22,7 +22,6 @@ public class bemVindo extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(bemVindo.this, Login.class);
                 startActivity(intent);
-
             }
         });
     }
