@@ -58,44 +58,6 @@ public class home extends AppCompatActivity {
                 searchView.setIconified(false);
             }
         });
-//        ImageButton btnPerfil = findViewById(R.id.btnPerfil2);
-//
-//        btnPerfil.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(home.this, Perfil.class);
-//                startActivity(intent);
-//            }
-//        });
-//
-//        ImageButton btnCarrinho = findViewById(R.id.imageButton);
-//
-//        btnCarrinho.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(home.this, Carrinho.class);
-//                startActivity(intent);
-//            }
-//        });
-//
-//        ImageButton btnInicio = findViewById(R.id.menu_page1);
-//
-//        btnInicio.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(this, "Você está nessa página", Toast.LENGTH_SHORT).show();;
-//            }
-//        });
-//
-//        ImageButton imageButton4 = findViewById(R.id.imageButton4);
-
-//        imageButton4.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(home.this, Pedidos.class);
-//                startActivity(intent);
-//            }
-//        });
 
         ImageView naoPerecivel = findViewById(R.id.imageView23);
 
