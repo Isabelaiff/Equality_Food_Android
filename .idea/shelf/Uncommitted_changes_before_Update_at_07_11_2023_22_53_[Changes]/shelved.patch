@@ -1,0 +1,561 @@
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\r\n    id 'com.android.application'\r\n    id 'com.google.gms.google-services'\r\n\r\n}\r\n\r\nandroid {\r\n    namespace 'com.example.equalityfood'\r\n    compileSdk 33\r\n    defaultConfig {\r\n        applicationId \"com.example.equalityfood\"\r\n        minSdk 28\r\n        targetSdk 33\r\n        versionCode 1\r\n        versionName \"1.0\"\r\n        testInstrumentationRunner \"androidx.test.runner.AndroidJUnitRunner\"\r\n    }\r\n    buildTypes {\r\n        release {\r\n            minifyEnabled false\r\n            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'\r\n        }\r\n    }\r\n\r\n    buildFeatures{\r\n        viewBinding true\r\n    }\r\n    compileOptions {\r\n        sourceCompatibility JavaVersion.VERSION_1_8\r\n        targetCompatibility JavaVersion.VERSION_1_8\r\n    }\r\n}\r\n\r\ndependencies {\r\n    implementation 'androidx.appcompat:appcompat:1.6.1'\r\n    implementation 'com.google.android.material:material:1.9.0'\r\n    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'\r\n    implementation 'com.google.android.gms:play-services-base:18.2.0'\r\n    implementation 'androidx.gridlayout:gridlayout:1.0.0'\r\n    implementation 'com.google.firebase:firebase-database:20.2.2'\r\n    implementation 'com.google.firebase:firebase-database-ktx:20.2.2'\r\n    implementation 'com.google.firebase:firebase-auth:22.1.2'\r\n    implementation 'com.android.car.ui:car-ui-lib:2.5.1'\r\n    testImplementation 'junit:junit:4.13.2'\r\n    androidTestImplementation 'androidx.test.ext:junit:1.1.5'\r\n    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'\r\n    implementation 'com.google.android.gms:play-services-auth:19.2.0'\r\n    implementation 'com.google.firebase:firebase-auth:19.2.0'\r\n    implementation 'com.google.android.material:material:1.4.0'\r\n    implementation 'com.squareup.retrofit2:retrofit:2.9.0'\r\n    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'\r\n    implementation 'com.github.bumptech.glide:glide:4.12.0'\r\n    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'\r\n    implementation 'androidx.cardview:cardview:1.0.0'\r\n    implementation 'androidx.core:core:1.7.0'\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/build.gradle b/app/build.gradle
+--- a/app/build.gradle	(revision 2fccf0d1ae2e689aebf7b3f38f7309f9760bcabc)
++++ b/app/build.gradle	(date 1699406341354)
+@@ -53,5 +53,11 @@
+     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+     implementation 'androidx.cardview:cardview:1.0.0'
+     implementation 'androidx.core:core:1.7.0'
++    implementation 'com.google.firebase:firebase-storage:20.2.1'
++    implementation 'com.squareup.picasso:picasso:2.8'
++
++
++//    implementation(platform("com.google.firebase:firebase-bom:32.5.0"))
++//    implementation("com.google.firebase:firebase-storage")
+ 
+ }
+Index: app/src/main/java/com/example/equalityfood/criarConta.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.equalityfood;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.app.DatePickerDialog;\r\nimport android.content.Context;\r\nimport android.content.Intent;\r\nimport android.net.ConnectivityManager;\r\nimport android.net.NetworkInfo;\r\nimport android.os.Bundle;\r\nimport android.util.Log;\r\nimport android.view.View;\r\nimport android.widget.Button;\r\nimport android.widget.EditText;\r\nimport android.widget.ImageButton;\r\nimport android.widget.Toast;\r\n\r\nimport com.google.android.gms.tasks.OnCompleteListener;\r\nimport com.google.android.gms.tasks.Task;\r\nimport com.google.firebase.auth.FirebaseAuth;\r\nimport com.google.firebase.auth.FirebaseUser;\r\nimport com.google.firebase.auth.UserProfileChangeRequest;\r\nimport com.google.firebase.database.DatabaseReference;\r\nimport com.google.firebase.database.FirebaseDatabase;\r\n\r\nimport java.text.ParseException;\r\nimport java.text.SimpleDateFormat;\r\nimport java.util.Calendar;\r\nimport java.util.Date;\r\nimport java.util.HashMap;\r\n\r\nimport retrofit2.Call;\r\nimport retrofit2.Response;\r\nimport retrofit2.Retrofit;\r\nimport retrofit2.converter.gson.GsonConverterFactory;\r\nimport retrofit2.Callback;\r\n\r\npublic class criarConta extends AppCompatActivity {\r\n\r\n    EditText nome;\r\n    EditText dataNasc;\r\n    EditText CPF;\r\n    EditText numTelefone;\r\n    EditText email;\r\n    EditText CEP;\r\n    EditText numEndereco;\r\n    EditText complemento;\r\n    EditText senha;\r\n    EditText confirmarSenha;\r\n    Button cadastrarButton;\r\n    FirebaseDatabase database;\r\n    DatabaseReference EqualityFoodRef;\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_criar_conta);\r\n\r\n        ImageButton voltar = findViewById(R.id.voltar_button);\r\n        nome = findViewById(R.id.nomeCompleto);\r\n        dataNasc = findViewById(R.id.dataNasc);\r\n        CPF = findViewById(R.id.cpf);\r\n        numTelefone = findViewById(R.id.numTelefone);\r\n        email = findViewById(R.id.email);\r\n        CEP = findViewById(R.id.cep);\r\n        numEndereco = findViewById(R.id.numEndereco);\r\n        complemento = findViewById(R.id.complemento);\r\n        senha = findViewById(R.id.senha);\r\n        confirmarSenha = findViewById(R.id.confirmarSenha);\r\n        cadastrarButton = findViewById(R.id.cadastrar_button);\r\n\r\n\r\n        database = FirebaseDatabase.getInstance();\r\n        EqualityFoodRef = database.getReference();\r\n\r\n        semInternet();\r\n\r\n        cadastrarButton.setOnClickListener(new View.OnClickListener() {\r\n       @Override\r\n       public void onClick(View v) {\r\n           Endereco endereco = new Endereco();\r\n           //API VIACEP//\r\n           String urlAPI = \"https://viacep.com.br/ws/\";\r\n           //configurar acesso a API\r\n           Retrofit retrofit = new Retrofit.Builder()\r\n                   .baseUrl(urlAPI)\r\n                   .addConverterFactory(GsonConverterFactory.create())\r\n                   .build();\r\n\r\n           ApiService apiService = retrofit.create(ApiService.class);\r\n           Call<CEP> call = apiService.recuperarCEP(CEP.getText().toString());\r\n\r\n           call.enqueue(new Callback<CEP>() {\r\n               @Override\r\n               public void onResponse(Call<CEP> call, Response<CEP> response) {\r\n                   if (response.isSuccessful()) {\r\n                       CEP cep = response.body();\r\n                       endereco.setRua(cep.getLogradouro());\r\n                       endereco.setBairro(cep.getBairro());\r\n                       endereco.setCidade(cep.getLocalidade());\r\n                       endereco.setUf(cep.getUf());\r\n                       salvarUsuario(endereco);\r\n                   }\r\n               }\r\n\r\n               @Override\r\n               public void onFailure(Call<CEP> call, Throwable t) {\r\n                   Toast.makeText(getApplicationContext(), \"Falha ao cadastrar informações de endereço!\", Toast.LENGTH_SHORT).show();\r\n               }\r\n           });\r\n       }\r\n   });\r\n\r\n        dataNasc.setOnClickListener(v -> mostrarCalendario());\r\n\r\n        voltar.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(criarConta.this, Login.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n    }\r\n\r\n    private void mostrarCalendario() {\r\n        dataNasc.setOnClickListener(v -> {\r\n            Calendar calendar = Calendar.getInstance();\r\n            int year = calendar.get(Calendar.YEAR);\r\n            int month = calendar.get(Calendar.MONTH);\r\n            int day = calendar.get(Calendar.DAY_OF_MONTH);\r\n\r\n            DatePickerDialog datePickerDialog = new DatePickerDialog(this,\r\n                    (view, year1, monthOfYear, dayOfMonth) -> {\r\n                        String selectedDate = String.format(\"%02d/%02d/%04d\", dayOfMonth, monthOfYear + 1, year1);\r\n                        if (dataValida(selectedDate)) {\r\n                            dataNasc.setText(selectedDate);\r\n                        } else {\r\n                            Toast.makeText(getApplicationContext(), \"Data inválida ou formato incorreto. Por favor, insira uma data válida no formato DD/MM/AAAA.\", Toast.LENGTH_SHORT).show();\r\n                        }\r\n                    }, year, month, day);\r\n\r\n            datePickerDialog.getDatePicker().setMaxDate(calendar.getTimeInMillis());\r\n            datePickerDialog.show();\r\n        });\r\n    }\r\n\r\n    private boolean dataValida(String date) {\r\n        String dateFormat = \"dd/MM/yyyy\";\r\n        SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);\r\n        sdf.setLenient(false);\r\n\r\n        try {\r\n            Date parsedDate = sdf.parse(date);\r\n\r\n            if (sdf.format(parsedDate).equals(date)) {\r\n                return true;\r\n            } else {\r\n                return false;\r\n            }\r\n        } catch (ParseException e) {\r\n            return false;\r\n        }\r\n    }\r\n\r\n    private void salvarUsuario(Endereco endereco) {\r\n        final String[] nomeTexto = {nome.getText().toString()};\r\n        String dataNascTexto = dataNasc.getText().toString();\r\n        String cpfTexto = CPF.getText().toString();\r\n        String numTelefoneTexto = numTelefone.getText().toString();\r\n        String emailTexto = email.getText().toString();\r\n        String cepTexto = CEP.getText().toString();\r\n        String numEnderecoTexto = numEndereco.getText().toString();\r\n        String complementoTexto = complemento.getText().toString();\r\n        String senhaTexto = senha.getText().toString();\r\n        String confirmarSenhaTexto = confirmarSenha.getText().toString();\r\n\r\n        if (ValidaCPF.isCPF(cpfTexto) == false){\r\n            Toast.makeText(getApplicationContext(), \"Por favor, coloque um cpf válido.\", Toast.LENGTH_SHORT).show();\r\n        }\r\n        if (!senhaTexto.equals(confirmarSenhaTexto)) {\r\n            Toast.makeText(getApplicationContext(), \"As senhas não correspondem. Por favor, verifique e tente novamente.\", Toast.LENGTH_SHORT).show();\r\n            return; // Não prossiga com o cadastro se as senhas não coincidirem\r\n        }\r\n        if (nomeTexto[0].isEmpty() || dataNascTexto.isEmpty() || cpfTexto.isEmpty() || numTelefoneTexto.isEmpty() ||\r\n                emailTexto.isEmpty() || cepTexto.isEmpty() || numEnderecoTexto.isEmpty() || senhaTexto.isEmpty()) {\r\n            Toast.makeText(getApplicationContext(), \"Por favor, preencha todos os campos obrigatórios.\", Toast.LENGTH_SHORT).show();\r\n        }\r\n        if (!ValidaCPF.isCPF(cpfTexto)) {\r\n            Toast.makeText(getApplicationContext(), \"CPF inválido. Por favor, verifique e tente novamente.\", Toast.LENGTH_SHORT).show();\r\n            return;\r\n        }\r\n        else {\r\n            // Verifique se a data de nascimento é válida\r\n            if (dataValida(dataNascTexto)) {\r\n                FirebaseAuth.getInstance().createUserWithEmailAndPassword(emailTexto, senhaTexto)\r\n                        .addOnCompleteListener(this, task -> {\r\n                            if (task.isSuccessful()) {\r\n                                // Usuário criado com sucesso\r\n                                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();\r\n\r\n                                // Atualizando nome\r\n                                UserProfileChangeRequest profile = new UserProfileChangeRequest.Builder().setDisplayName(nomeTexto[0]).build();\r\n                                user.updateProfile(profile).addOnCompleteListener(new OnCompleteListener<Void>() {\r\n                                    @Override\r\n                                    public void onComplete(@NonNull Task<Void> task) {\r\n                                        if (!task.isSuccessful()){\r\n                                            Log.i(\"ERRO profile\", \"Erro ao atualizar o nome\");\r\n                                        }\r\n                                    }\r\n                                });\r\n\r\n                                if (user != null) {\r\n                                    // Armazene o número de telefone no Firebase\r\n                                    String uid = user.getUid();\r\n                                    DatabaseReference usuariosRef = FirebaseDatabase.getInstance().getReference().child(\"Usuario\").push();\r\n\r\n\r\n                                    // Outros dados do usuário\r\n                                    HashMap<String, String> enderecoMap = new HashMap<>();\r\n                                    enderecoMap.put(\"CEP\", cepTexto);\r\n                                    enderecoMap.put(\"numEndereco\", numEnderecoTexto);\r\n                                    enderecoMap.put(\"Rua\", endereco.getRua());\r\n                                    enderecoMap.put(\"Bairro\", endereco.getBairro());\r\n                                    enderecoMap.put(\"Cidade\", endereco.getCidade());\r\n                                    enderecoMap.put(\"UF\", endereco.getUf());\r\n\r\n//\r\n                                    if (!complementoTexto.isEmpty()) {\r\n                                        enderecoMap.put(\"complemento\", complementoTexto);\r\n                                    }\r\n\r\n                                    usuariosRef.child(\"endereco\").setValue(enderecoMap);\r\n                                    usuariosRef.child(\"nome\").setValue(nomeTexto[0]);\r\n                                    usuariosRef.child(\"dataNasc\").setValue(dataNascTexto);\r\n                                    usuariosRef.child(\"CPF\").setValue(cpfTexto);\r\n                                    usuariosRef.child(\"numTelefone\").setValue(numTelefoneTexto);\r\n                                    usuariosRef.child(\"email\").setValue(emailTexto);\r\n\r\n                                    // Usuário autenticado com sucesso e informações armazenadas no banco de dados\r\n                                    Toast.makeText(getApplicationContext(), \"Cadastro realizado com sucesso!\", Toast.LENGTH_SHORT).show();\r\n\r\n                                    Intent intent = new Intent(criarConta.this, PoliticaPrivacidade.class);\r\n                                    startActivity(intent);\r\n                                }\r\n                            } else {\r\n                                // Falha ao criar usuário\r\n                                Toast.makeText(getApplicationContext(), \"Falha ao criar usuário: \" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();\r\n                            }\r\n                        });\r\n\r\n            } else {\r\n                // A data de nascimento não é válida, exiba uma mensagem de erro\r\n                Toast.makeText(getApplicationContext(), \"Data de nascimento inválida ou formato incorreto. Por favor, insira uma data válida no formato DD/MM/AAAA.\", Toast.LENGTH_SHORT).show();\r\n            }\r\n        }\r\n\r\n        }\r\n    public void semInternet() {\r\n        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);\r\n        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();\r\n        if (networkInfo == null || !networkInfo.isConnected()) {\r\n            // Abre a tela de sem internet\r\n            Intent intent = new Intent(this, telaSemInternet.class);\r\n            startActivity(intent);\r\n        }\r\n    }\r\n    }\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/equalityfood/criarConta.java b/app/src/main/java/com/example/equalityfood/criarConta.java
+--- a/app/src/main/java/com/example/equalityfood/criarConta.java	(revision 2fccf0d1ae2e689aebf7b3f38f7309f9760bcabc)
++++ b/app/src/main/java/com/example/equalityfood/criarConta.java	(date 1699380148779)
+@@ -213,7 +213,7 @@
+                                 if (user != null) {
+                                     // Armazene o número de telefone no Firebase
+                                     String uid = user.getUid();
+-                                    DatabaseReference usuariosRef = FirebaseDatabase.getInstance().getReference().child("Usuario").push();
++                                    DatabaseReference usuariosRef = FirebaseDatabase.getInstance().getReference().child("Usuario").child(uid);
+ 
+ 
+                                     // Outros dados do usuário
+Index: app/src/main/java/com/example/equalityfood/Perfil.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.equalityfood;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\nimport android.view.MenuItem;\r\nimport android.view.View;\r\nimport android.widget.Button;\r\nimport android.widget.ImageButton;\r\nimport android.widget.TextView;\r\n\r\nimport com.google.android.material.bottomnavigation.BottomNavigationView;\r\nimport com.google.firebase.auth.FirebaseAuth;\r\nimport com.google.firebase.auth.FirebaseUser;\r\n\r\npublic class Perfil extends AppCompatActivity {\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_perfil);\r\n\r\n//        ImageButton btnHome2 = findViewById(R.id.btnHome);\r\n\r\n        TextView nomeVis = findViewById(R.id.textView23);\r\n        TextView emailVis = findViewById(R.id.textView24);\r\n        TextView numeroVis = findViewById(R.id.textView26);\r\n        Button btnPolitica = findViewById(R.id.btnPolitica);\r\n        Button alterarLoc = findViewById(R.id.textView31);\r\n        ImageButton btnAlterarFoto = findViewById(R.id.imageButton12);\r\n\r\n\r\n        alterarLoc.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(Perfil.this, LocalizacaoEntrega.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n        btnPolitica.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(Perfil.this, PoliticaPrivacidade.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();\r\n\r\n        if (user != null) {\r\n            String nome = user.getDisplayName();\r\n            String email = user.getEmail();\r\n            String numero = user.getPhoneNumber();\r\n\r\n            nomeVis.setText(nome);\r\n            emailVis.setText(email);\r\n            numeroVis.setText(numero);\r\n        }\r\n\r\n\r\n//        ImageButton imageButton13 = findViewById(R.id.imageButton13);\r\n\r\n//        imageButton13.setOnClickListener(new View.OnClickListener() {\r\n//            @Override\r\n//            public void onClick(View v) {\r\n//                Intent intent = new Intent(Perfil.this, Carrinho.class);\r\n//                startActivity(intent);\r\n//            }\r\n//        });\r\n\r\n//        ImageButton imageButton3 = findViewById(R.id.imageButton3);\r\n//        imageButton3.setOnClickListener(new View.OnClickListener() {\r\n//            @Override\r\n//            public void onClick(View v) {\r\n//                Intent intent = new Intent(Perfil.this, Pedidos.class);\r\n//                startActivity(intent);\r\n//            }\r\n//        });\r\n\r\n\r\n\r\n        Button textView32 = findViewById(R.id.textView32);\r\n        textView32.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(Perfil.this, EsqueceuSenha.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n\r\n        Button textView30 = findViewById(R.id.btnPolitica);\r\n        textView30.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(Perfil.this, PoliticaPrivacidade.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n//        ImageButton imageButton12 = findViewById(R.id.imageButton12);\r\n//        imageButton12.setOnClickListener(new View.OnClickListener() {\r\n//            @Override\r\n//            public void onClick(View v) {\r\n//                Intent intent = new Intent(Perfil.this, Foto.class);\r\n//                startActivity(intent);\r\n//            }\r\n//        });\r\n\r\n        Button editarInfo = findViewById(R.id.button);\r\n        editarInfo.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(Perfil.this, AtualizarPerfil.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n        Button logout = findViewById(R.id.logout_button);\r\n\r\n        logout.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                FirebaseAuth.getInstance().signOut();\r\n\r\n                Intent intent = new Intent(Perfil.this, Login.class);\r\n                startActivity(intent);\r\n                finish();\r\n            }\r\n        });\r\n\r\n        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);\r\n\r\n        bottomNavigationView.setSelectedItemId(R.id.btnPerfil2);\r\n        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {\r\n            @Override\r\n            public boolean onNavigationItemSelected(@NonNull MenuItem item) {\r\n                switch (item.getItemId()) {\r\n                    case R.id.btnPerfil2:\r\n                        return true;\r\n                    case R.id.imageButton4:\r\n                        startActivity(new Intent(getApplicationContext(), Pedidos.class));\r\n                        overridePendingTransition(0, 0);\r\n                        return true;\r\n                    case R.id.imageButton:\r\n                        startActivity(new Intent(getApplicationContext(), Carrinho.class));\r\n                        overridePendingTransition(0, 0);\r\n                        return true;\r\n                    case R.id.menu_page1:\r\n                        startActivity(new Intent(getApplicationContext(), home.class));\r\n                        overridePendingTransition(0, 0);\r\n                        return true;\r\n                }\r\n                return false;\r\n            }\r\n        });\r\n\r\n    }\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/equalityfood/Perfil.java b/app/src/main/java/com/example/equalityfood/Perfil.java
+--- a/app/src/main/java/com/example/equalityfood/Perfil.java	(revision 2fccf0d1ae2e689aebf7b3f38f7309f9760bcabc)
++++ b/app/src/main/java/com/example/equalityfood/Perfil.java	(date 1699407644005)
+@@ -2,35 +2,72 @@
+ 
+ import androidx.annotation.NonNull;
+ import androidx.appcompat.app.AppCompatActivity;
++import androidx.core.app.ActivityCompat;
++import androidx.core.content.ContextCompat;
+ 
++import android.app.Activity;
+ import android.content.Intent;
++import android.content.pm.PackageManager;
++import android.graphics.Bitmap;
++import android.net.Uri;
+ import android.os.Bundle;
++import android.provider.MediaStore;
+ import android.view.MenuItem;
+ import android.view.View;
+ import android.widget.Button;
+ import android.widget.ImageButton;
++import android.widget.ImageView;
+ import android.widget.TextView;
+ 
++import com.google.android.gms.tasks.OnCompleteListener;
++import com.google.firebase.auth.UserProfileChangeRequest;
++import com.google.firebase.storage.FirebaseStorage;
++import com.google.firebase.storage.StorageReference;
++
++import com.google.android.gms.tasks.OnFailureListener;
++import com.google.android.gms.tasks.OnSuccessListener;
++import com.google.android.gms.tasks.Task;
+ import com.google.android.material.bottomnavigation.BottomNavigationView;
+ import com.google.firebase.auth.FirebaseAuth;
+ import com.google.firebase.auth.FirebaseUser;
++import com.google.firebase.storage.UploadTask;
++import com.squareup.picasso.Picasso;
++
++import android.Manifest;
++import android.widget.Toast;
++
++import java.io.ByteArrayOutputStream;
++
+ 
+ public class Perfil extends AppCompatActivity {
+ 
++    ImageView fotoDePerfil;
++    private static final int REQUEST_CAMERA_PERMISSION = 1;
++    private static final int REQUEST_IMAGE_CAPTURE = 1;
++
++    private StorageReference mStorageRef;
++
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+         setContentView(R.layout.activity_perfil);
+ 
+-//        ImageButton btnHome2 = findViewById(R.id.btnHome);
+-
++        mStorageRef = FirebaseStorage.getInstance().getReference();
+         TextView nomeVis = findViewById(R.id.textView23);
+         TextView emailVis = findViewById(R.id.textView24);
+         TextView numeroVis = findViewById(R.id.textView26);
+         Button btnPolitica = findViewById(R.id.btnPolitica);
+         Button alterarLoc = findViewById(R.id.textView31);
+         ImageButton btnAlterarFoto = findViewById(R.id.imageButton12);
++        fotoDePerfil = findViewById(R.id.imageView34);
+ 
++        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
++
++        if (user != null && user.getPhotoUrl() != null) {
++            // Se o usuário tem uma foto de perfil configurada, carregue-a usando Picasso
++            String photoUrl = user.getPhotoUrl().toString();
++            Picasso.get().load(photoUrl).into(fotoDePerfil);
++        }
+ 
+         alterarLoc.setOnClickListener(new View.OnClickListener() {
+             @Override
+@@ -48,7 +85,6 @@
+             }
+         });
+ 
+-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+ 
+         if (user != null) {
+             String nome = user.getDisplayName();
+@@ -158,6 +194,110 @@
+             }
+         });
+ 
++        btnAlterarFoto.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View v) {
++                if (ContextCompat.checkSelfPermission(Perfil.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
++                    ActivityCompat.requestPermissions(Perfil.this, new String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA_PERMISSION);
++                } else {
++                    iniciarAtividadeCamera();
++                }
++            }
++        });
++
++
+     }
++
++    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
++
++    @Override
++    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
++        super.onActivityResult(requestCode, resultCode, data);
++        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
++            Bundle extras = data.getExtras();
++            if (extras != null) {
++                Bitmap imageBitmap = (Bitmap) extras.get("data");
++
++                // Salva a imagem no Firebase Storage
++                salvarImagemNoFirebaseStorage(imageBitmap);
++
++                // Carrega a imagem do URL e define no ImageView usando Picasso
++                if (user != null && user.getPhotoUrl() != null) {
++                    fotoDePerfil.setImageBitmap(imageBitmap);
++//                    String photoUrl = user.getPhotoUrl().toString();
++//                    Picasso.get().load(photoUrl).into(fotoDePerfil);
++                }
++            }
++        }
++    }
++
++    private void iniciarAtividadeCamera() {
++        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
++        if (intent.resolveActivity(getPackageManager()) != null) {
++            startActivityForResult(intent, REQUEST_IMAGE_CAPTURE);
++        }
++    }
++    private void salvarImagemNoFirebaseStorage(Bitmap imageBitmap) {
++        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
++        if (user != null) {
++            String userId = user.getUid();
++
++            //Converte a imagem para um formato que pode ser armazenado
++            ByteArrayOutputStream baos = new ByteArrayOutputStream();
++            imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
++            byte[] imageData = baos.toByteArray();
++
++            //Define o caminho no Firebase Storage onde a imagem será salva
++            StorageReference storageRef = FirebaseStorage.getInstance().getReference();
++            StorageReference imageRef = storageRef.child("perfis")
++                    .child(userId)
++                    .child("foto_de_perfil.jpg");
++
++            //Faz o upload da imagem
++            UploadTask uploadTask = imageRef.putBytes(imageData);
++            uploadTask.addOnFailureListener(new OnFailureListener() {
++                @Override
++                public void onFailure(@NonNull Exception exception) {
++                    System.out.println("Falha");
++                }
++            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
++                @Override
++                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
++                    imageRef.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
++                        @Override
++                        public void onComplete(@NonNull Task<Uri> task) {
++                            Uri url = task.getResult();
++
++                            // Precisa salvar essa URL no BD.
++                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
++
++                            if (user != null) {
++                                // Atualize o campo photoUrl do usuário com a URL da imagem
++                                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
++                                        .setPhotoUri(url)
++                                        .build();
++
++                                user.updateProfile(profileUpdates)
++                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
++                                            @Override
++                                            public void onComplete(@NonNull Task<Void> task) {
++                                                if (task.isSuccessful()) {
++                                                    // Sucesso ao atualizar a photoUrl do usuário
++                                                    Toast.makeText(Perfil.this, "Foto de perfil alterada com sucesso! Ela pode levar alguns segundos para atualizar", Toast.LENGTH_LONG).show();
++                                                } else {
++                                                    // Falha ao atualizar a photoUrl do usuário
++                                                    Toast.makeText(Perfil.this, "Falha ao atualizar foto de perfil", Toast.LENGTH_LONG).show();
+ 
++                                                }
++                                            }
++                                        });
++                            }
++
++//                            Toast.makeText(Perfil.this, "URL:" + url, Toast.LENGTH_LONG).show();
++                        }
++                    });
++                }
++            });
++        }
++    }
+ }
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_perfil.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    android:background=\"#F6F6F6\"\r\n    android:backgroundTint=\"#F6F6F6\"\r\n    android:orientation=\"vertical\"\r\n    tools:context=\".Perfil\">\r\n\r\n\r\n    <ImageView\r\n        android:id=\"@+id/imageView2\"\r\n        android:layout_width=\"779dp\"\r\n        android:layout_height=\"529dp\"\r\n        android:layout_marginBottom=\"564dp\"\r\n        android:src=\"@drawable/cabecalho\"\r\n        app:layout_constraintBottom_toTopOf=\"@+id/frameLayout\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.454\"\r\n        app:layout_constraintStart_toStartOf=\"parent\" />\r\n\r\n    <ImageView\r\n        android:id=\"@+id/imageView34\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:src=\"@drawable/foto_de_perfil\"\r\n        app:layout_constraintBottom_toTopOf=\"@+id/textView23\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.472\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\"\r\n        app:layout_constraintVertical_bias=\"0.941\" />\r\n\r\n    <ImageButton\r\n        android:id=\"@+id/imageButton12\"\r\n        android:layout_width=\"49dp\"\r\n        android:layout_height=\"51dp\"\r\n        android:background=\"#00E91E63\"\r\n        android:contentDescription=\"bota a descrição aqui\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.541\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"@+id/imageView2\"\r\n        app:layout_constraintVertical_bias=\"0.301\"\r\n        app:srcCompat=\"@drawable/edit_line2\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView23\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"384dp\"\r\n        android:layout_marginBottom=\"113dp\"\r\n        android:text=\"Leozin\"\r\n        android:textColor=\"#0D0D0D\"\r\n        android:textSize=\"23sp\"\r\n        android:textStyle=\"bold\"\r\n        app:layout_constraintBottom_toBottomOf=\"@+id/imageView2\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.482\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"@+id/imageView2\"\r\n        app:layout_constraintVertical_bias=\"1.0\" />\r\n\r\n    <LinearLayout\r\n        android:id=\"@+id/linearLayout3\"\r\n        android:layout_width=\"370dp\"\r\n        android:layout_height=\"40dp\"\r\n        android:layout_marginTop=\"16dp\"\r\n        android:orientation=\"horizontal\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.459\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/textView23\">\r\n\r\n        <TextView\r\n            android:id=\"@+id/textView24\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginLeft=\"60dp\"\r\n            android:text=\"seuemail@dominio.com\"\r\n            android:textColor=\"#0D0D0D\"\r\n            android:textSize=\"16sp\" />\r\n\r\n        <TextView\r\n            android:id=\"@+id/textView26\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginLeft=\"5dp\"\r\n            android:text=\"+xx 12345 6789\"\r\n            android:textColor=\"#0D0D0D\"\r\n            android:textSize=\"16sp\" />\r\n\r\n    </LinearLayout>\r\n\r\n    <FrameLayout\r\n        android:id=\"@+id/frameLayout\"\r\n        android:layout_width=\"0dp\"\r\n        android:layout_height=\"0dp\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"@+id/bottom_navigation\" />\r\n\r\n    <com.google.android.material.bottomnavigation.BottomNavigationView\r\n        android:id=\"@+id/bottom_navigation\"\r\n        android:layout_width=\"774dp\"\r\n        android:layout_height=\"65dp\"\r\n        android:background=\"#F5991A\"\r\n        app:itemTextColor=\"@drawable/selector\"\r\n        app:itemIconTint=\"@drawable/selector\"\r\n        app:labelVisibilityMode=\"labeled\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:menu=\"@menu/menu_drawer\"/>\r\n\r\n\r\n    <ImageView\r\n        android:id=\"@+id/imageView42\"\r\n        android:layout_width=\"541dp\"\r\n        android:layout_height=\"132dp\"\r\n        android:layout_marginBottom=\"12dp\"\r\n        app:layout_constraintBottom_toTopOf=\"@+id/imageView43\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.502\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:srcCompat=\"@drawable/fundoperfil\" />\r\n\r\n    <ImageView\r\n        android:id=\"@+id/imageView22\"\r\n        android:layout_width=\"40dp\"\r\n        android:layout_height=\"40dp\"\r\n        android:src=\"@drawable/editinfo\"\r\n        app:layout_constraintEnd_toStartOf=\"@+id/button\"\r\n        app:layout_constraintHorizontal_bias=\"0.613\"\r\n        app:layout_constraintStart_toStartOf=\"@+id/imageView42\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/imageView2\" />\r\n\r\n    <Button\r\n        android:id=\"@+id/button\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"48dp\"\r\n        android:layout_marginEnd=\"244dp\"\r\n        android:layout_marginBottom=\"4dp\"\r\n        android:background=\"#00FFFFFF\"\r\n        android:backgroundTint=\"#F7F7F7\"\r\n        android:hint=\"Editar informações \"\r\n        android:textColorHint=\"#0D0D0D\"\r\n        android:textSize=\"18sp\"\r\n        app:layout_constraintBottom_toTopOf=\"@+id/textView31\"\r\n        app:layout_constraintEnd_toEndOf=\"@+id/imageView42\" />\r\n\r\n    <Button\r\n        android:id=\"@+id/textView31\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"48dp\"\r\n        android:layout_marginEnd=\"164dp\"\r\n        android:layout_marginBottom=\"16dp\"\r\n        android:background=\"#00FFFFFF\"\r\n        android:backgroundTint=\"#F7F7F7\"\r\n        android:hint=\"Alterar localização de entrega\"\r\n        android:textColorHint=\"#0D0D0D\"\r\n        android:textSize=\"18sp\"\r\n        app:layout_constraintBottom_toBottomOf=\"@+id/imageView42\"\r\n        app:layout_constraintEnd_toEndOf=\"@+id/imageView42\" />\r\n\r\n    <ImageView\r\n        android:id=\"@+id/imageView43\"\r\n        android:layout_width=\"541dp\"\r\n        android:layout_height=\"132dp\"\r\n        android:layout_marginTop=\"84dp\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.502\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/imageView22\"\r\n        app:srcCompat=\"@drawable/fundoperfil\" />\r\n\r\n    <ImageView\r\n        android:id=\"@+id/imageView13\"\r\n        android:layout_width=\"541dp\"\r\n        android:layout_height=\"132dp\"\r\n        app:layout_constraintBottom_toTopOf=\"@+id/logout_button\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.502\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/imageView43\"\r\n        app:layout_constraintVertical_bias=\"0.428\"\r\n        app:srcCompat=\"@drawable/fundoperfil\" />\r\n\r\n    <ImageView\r\n        android:id=\"@+id/imageView27\"\r\n        android:layout_width=\"40dp\"\r\n        android:layout_height=\"40dp\"\r\n        android:src=\"@drawable/icon_senha\"\r\n        app:layout_constraintBottom_toTopOf=\"@+id/imageView26\"\r\n        app:layout_constraintEnd_toStartOf=\"@+id/textView32\"\r\n        app:layout_constraintHorizontal_bias=\"0.73\"\r\n        app:layout_constraintStart_toStartOf=\"@+id/imageView43\"\r\n        app:layout_constraintTop_toTopOf=\"@+id/imageView43\"\r\n        app:layout_constraintVertical_bias=\"0.75\" />\r\n\r\n    <ImageView\r\n        android:id=\"@+id/imageView28\"\r\n        android:layout_width=\"43dp\"\r\n        android:layout_height=\"47dp\"\r\n        android:src=\"@drawable/senha2\"\r\n        app:layout_constraintBottom_toBottomOf=\"@+id/imageView42\"\r\n        app:layout_constraintEnd_toStartOf=\"@+id/textView31\"\r\n        app:layout_constraintHorizontal_bias=\"0.687\"\r\n        app:layout_constraintStart_toStartOf=\"@+id/imageView42\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/imageView22\"\r\n        app:layout_constraintVertical_bias=\"0.48\" />\r\n\r\n    <Button\r\n        android:id=\"@+id/textView32\"\r\n        android:layout_width=\"124dp\"\r\n        android:layout_height=\"47dp\"\r\n        android:layout_marginEnd=\"292dp\"\r\n        android:background=\"#00FFFFFF\"\r\n        android:backgroundTint=\"#F7F7F7\"\r\n        android:hint=\"Alterar senha\"\r\n        android:textColorHint=\"#0D0D0D\"\r\n        android:textSize=\"18sp\"\r\n        app:layout_constraintBottom_toTopOf=\"@+id/btnPolitica\"\r\n        app:layout_constraintEnd_toEndOf=\"@+id/imageView43\"\r\n        app:layout_constraintTop_toTopOf=\"@+id/imageView43\"\r\n        app:layout_constraintVertical_bias=\"0.666\" />\r\n\r\n    <ImageView\r\n        android:id=\"@+id/imageView26\"\r\n        android:layout_width=\"40dp\"\r\n        android:layout_height=\"40dp\"\r\n        android:layout_marginStart=\"64dp\"\r\n        android:layout_marginBottom=\"24dp\"\r\n        android:src=\"@drawable/politica\"\r\n        app:layout_constraintBottom_toBottomOf=\"@+id/imageView43\"\r\n        app:layout_constraintStart_toStartOf=\"@+id/imageView43\" />\r\n\r\n    <Button\r\n        android:id=\"@+id/btnPolitica\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"48dp\"\r\n        android:layout_marginEnd=\"228dp\"\r\n        android:layout_marginBottom=\"16dp\"\r\n        android:background=\"#00FFFFFF\"\r\n        android:backgroundTint=\"#F7F7F7\"\r\n        android:hint=\"Política de Privacidade\"\r\n        android:textColorHint=\"#0D0D0D\"\r\n        android:textSize=\"18sp\"\r\n        app:layout_constraintBottom_toBottomOf=\"@+id/imageView43\"\r\n        app:layout_constraintEnd_toEndOf=\"@+id/imageView43\" />\r\n\r\n    <ImageView\r\n        android:id=\"@+id/imageView24\"\r\n        android:layout_width=\"40dp\"\r\n        android:layout_height=\"50dp\"\r\n        android:src=\"@drawable/tema\"\r\n        app:layout_constraintBottom_toTopOf=\"@+id/imageView25\"\r\n        app:layout_constraintEnd_toStartOf=\"@+id/textView28\"\r\n        app:layout_constraintHorizontal_bias=\"0.673\"\r\n        app:layout_constraintStart_toStartOf=\"@+id/imageView13\"\r\n        app:layout_constraintTop_toTopOf=\"@+id/imageView13\"\r\n        app:layout_constraintVertical_bias=\"0.571\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView28\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginEnd=\"84dp\"\r\n        android:text=\"Tema\"\r\n        android:textColor=\"#0D0D0D\"\r\n        android:textSize=\"18sp\"\r\n        app:layout_constraintBottom_toTopOf=\"@+id/textView34\"\r\n        app:layout_constraintEnd_toStartOf=\"@+id/button3\"\r\n        app:layout_constraintTop_toTopOf=\"@+id/imageView13\"\r\n        app:layout_constraintVertical_bias=\"0.436\" />\r\n\r\n    <Button\r\n        android:id=\"@+id/button3\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"48dp\"\r\n        android:layout_marginTop=\"16dp\"\r\n        android:layout_marginEnd=\"168dp\"\r\n        android:background=\"#00FFFFFF\"\r\n        android:backgroundTint=\"#F7F7F7\"\r\n        android:hint=\"Modo Escuro\"\r\n        android:textColorHint=\"#5A5D61\"\r\n        android:textSize=\"18sp\"\r\n        app:layout_constraintEnd_toEndOf=\"@+id/imageView13\"\r\n        app:layout_constraintTop_toTopOf=\"@+id/imageView13\" />\r\n\r\n    <ImageView\r\n        android:id=\"@+id/imageView25\"\r\n        android:layout_width=\"40dp\"\r\n        android:layout_height=\"40dp\"\r\n        android:layout_marginEnd=\"32dp\"\r\n        android:layout_marginBottom=\"24dp\"\r\n        android:src=\"@drawable/icon_fale_conosco\"\r\n        app:layout_constraintBottom_toBottomOf=\"@+id/imageView13\"\r\n        app:layout_constraintEnd_toStartOf=\"@+id/textView29\"\r\n        app:layout_constraintHorizontal_bias=\"1.0\"\r\n        app:layout_constraintStart_toStartOf=\"@+id/imageView13\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView29\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginEnd=\"20dp\"\r\n        android:layout_marginBottom=\"28dp\"\r\n        android:text=\"Fale Conosco\"\r\n        android:textColor=\"#0D0D0D\"\r\n        android:textSize=\"18sp\"\r\n        app:layout_constraintBottom_toBottomOf=\"@+id/imageView13\"\r\n        app:layout_constraintEnd_toStartOf=\"@+id/textView34\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView34\"\r\n        android:layout_width=\"230dp\"\r\n        android:layout_height=\"48dp\"\r\n        android:layout_marginEnd=\"44dp\"\r\n        android:layout_marginBottom=\"4dp\"\r\n        android:clickable=\"true\"\r\n        android:contextClickable=\"true\"\r\n        android:text=\"@string/equalityfood_outlook_com\"\r\n        android:textColor=\"#000000\"\r\n        android:textSize=\"18sp\"\r\n        app:layout_constraintBottom_toBottomOf=\"@+id/imageView13\"\r\n        app:layout_constraintEnd_toEndOf=\"@+id/imageView13\" />\r\n\r\n    <Button\r\n        android:id=\"@+id/logout_button\"\r\n        android:layout_width=\"180dp\"\r\n        android:layout_height=\"50dp\"\r\n        android:layout_marginLeft=\"120dp\"\r\n        android:layout_marginBottom=\"156dp\"\r\n        android:background=\"@drawable/borda_botao\"\r\n        android:hint=\"Sair do aplicativo\"\r\n        android:textColorHint=\"@color/white\"\r\n        android:textSize=\"16sp\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.362\"\r\n        app:layout_constraintStart_toStartOf=\"parent\" />\r\n\r\n\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_perfil.xml b/app/src/main/res/layout/activity_perfil.xml
+--- a/app/src/main/res/layout/activity_perfil.xml	(revision 2fccf0d1ae2e689aebf7b3f38f7309f9760bcabc)
++++ b/app/src/main/res/layout/activity_perfil.xml	(date 1699408190435)
+@@ -22,10 +22,12 @@
+         app:layout_constraintStart_toStartOf="parent" />
+ 
+     <ImageView
++        android:layout_width="150dp"
++        android:layout_height="150dp"
+         android:id="@+id/imageView34"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+         android:src="@drawable/foto_de_perfil"
++        android:background="@drawable/rounded_imageview"
++        android:clipToOutline="true"
+         app:layout_constraintBottom_toTopOf="@+id/textView23"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintHorizontal_bias="0.472"
+Index: app/src/main/java/com/example/equalityfood/AtualizarPerfil.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.equalityfood;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.content.Context;\r\nimport android.content.Intent;\r\nimport android.net.ConnectivityManager;\r\nimport android.net.NetworkInfo;\r\nimport android.os.Bundle;\r\nimport android.text.TextUtils;\r\nimport android.view.View;\r\nimport android.widget.Button;\r\nimport android.widget.EditText;\r\nimport android.widget.Toast;\r\n\r\nimport com.google.firebase.auth.FirebaseAuth;\r\nimport com.google.firebase.auth.FirebaseUser;\r\nimport com.google.firebase.auth.UserProfileChangeRequest;\r\nimport com.google.firebase.database.DatabaseReference;\r\nimport com.google.firebase.database.FirebaseDatabase;\r\n\r\npublic class AtualizarPerfil extends AppCompatActivity {\r\n\r\n    private EditText alterarNome;\r\n    private EditText alterarNumero;\r\n    private EditText alterarEmail;\r\n    private Button btnAlterar;\r\n\r\n    private Button voltar_button;\r\n\r\n    private FirebaseAuth mAuth;\r\n    private DatabaseReference mDatabase;\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_atualizar_perfil);\r\n\r\n        mAuth = FirebaseAuth.getInstance();\r\n        mDatabase = FirebaseDatabase.getInstance().getReference();\r\n\r\n        alterarNome = findViewById(R.id.nomeCompleto);\r\n        alterarNumero = findViewById(R.id.numTelefone);\r\n        alterarEmail = findViewById(R.id.email);\r\n        btnAlterar = findViewById(R.id.cadastrar_button);\r\n\r\n        semInternet();\r\n\r\n        FirebaseUser user = mAuth.getCurrentUser();\r\n        if (user != null) {\r\n            alterarNome.setText(user.getDisplayName());\r\n            alterarEmail.setText(user.getEmail());\r\n            alterarNumero.setText(user.getPhoneNumber());\r\n        }\r\n\r\n        voltar_button.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View view) {\r\n                Intent intent = new Intent(AtualizarPerfil.this, Perfil.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n        btnAlterar.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                // Obtenha os novos dados dos campos de texto\r\n                String novoNome = alterarNome.getText().toString().trim();\r\n                String novoNumero = alterarNumero.getText().toString().trim();\r\n                String novoEmail = alterarEmail.getText().toString().trim();\r\n\r\n                // Valide os campos (adicione validações conforme necessário)\r\n                if (TextUtils.isEmpty(novoNome) || TextUtils.isEmpty(novoNumero) || TextUtils.isEmpty(novoEmail)) {\r\n                    Toast.makeText(AtualizarPerfil.this, \"Por favor, preencha todos os campos.\", Toast.LENGTH_SHORT).show();\r\n                } else {\r\n                    // Atualize os dados do usuário\r\n                    atualizarDados(novoNome, novoNumero, novoEmail);\r\n                }\r\n            }\r\n        });\r\n    }\r\n\r\n    private void atualizarDados(String novoNome, String novoNumero, String novoEmail) {\r\n        FirebaseUser user = mAuth.getCurrentUser();\r\n        if (user != null) {\r\n            String userID = user.getUid();\r\n            DatabaseReference usuarioRef = mDatabase.child(\"usuarios\").child(userID);\r\n\r\n            user.updateProfile(new UserProfileChangeRequest.Builder()\r\n                            .setDisplayName(novoNome)\r\n                            .build())\r\n                    .addOnCompleteListener(task -> {\r\n                        if (task.isSuccessful()) {\r\n                            usuarioRef.child(\"nome\").setValue(novoNome);\r\n                            usuarioRef.child(\"numero\").setValue(novoNumero);\r\n                            usuarioRef.child(\"email\").setValue(novoEmail);\r\n\r\n                            Toast.makeText(AtualizarPerfil.this, \"Dados atualizados com sucesso!\", Toast.LENGTH_SHORT).show();\r\n                        } else {\r\n                            // Falha ao atualizar dados\r\n                            Toast.makeText(AtualizarPerfil.this, \"Falha ao atualizar dados. Por favor, tente novamente mais tarde.\", Toast.LENGTH_SHORT).show();\r\n                        }\r\n                    });\r\n        }\r\n    }\r\n\r\n    public void semInternet() {\r\n        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);\r\n        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();\r\n        if (networkInfo == null || !networkInfo.isConnected()) {\r\n            // Abre a tela de sem internet\r\n            Intent intent = new Intent(this, telaSemInternet.class);\r\n            startActivity(intent);\r\n        }\r\n    }\r\n\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/equalityfood/AtualizarPerfil.java b/app/src/main/java/com/example/equalityfood/AtualizarPerfil.java
+--- a/app/src/main/java/com/example/equalityfood/AtualizarPerfil.java	(revision 2fccf0d1ae2e689aebf7b3f38f7309f9760bcabc)
++++ b/app/src/main/java/com/example/equalityfood/AtualizarPerfil.java	(date 1699368843950)
+@@ -11,6 +11,7 @@
+ import android.view.View;
+ import android.widget.Button;
+ import android.widget.EditText;
++import android.widget.ImageButton;
+ import android.widget.Toast;
+ 
+ import com.google.firebase.auth.FirebaseAuth;
+@@ -26,7 +27,7 @@
+     private EditText alterarEmail;
+     private Button btnAlterar;
+ 
+-    private Button voltar_button;
++    private ImageButton voltar_button;
+ 
+     private FirebaseAuth mAuth;
+     private DatabaseReference mDatabase;
+@@ -43,6 +44,7 @@
+         alterarNumero = findViewById(R.id.numTelefone);
+         alterarEmail = findViewById(R.id.email);
+         btnAlterar = findViewById(R.id.cadastrar_button);
++        voltar_button = findViewById(R.id.voltar_button);
+ 
+         semInternet();
+ 
+@@ -82,8 +84,8 @@
+     private void atualizarDados(String novoNome, String novoNumero, String novoEmail) {
+         FirebaseUser user = mAuth.getCurrentUser();
+         if (user != null) {
+-            String userID = user.getUid();
+-            DatabaseReference usuarioRef = mDatabase.child("usuarios").child(userID);
++            String uid = user.getUid();
++            DatabaseReference usuarioRef = FirebaseDatabase.getInstance().getReference("Usuario").child(uid);
+ 
+             user.updateProfile(new UserProfileChangeRequest.Builder()
+                             .setDisplayName(novoNome)
+Index: app/src/main/java/com/example/equalityfood/LocalizacaoEntrega.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.equalityfood;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.content.Context;\r\nimport android.content.Intent;\r\nimport android.net.ConnectivityManager;\r\nimport android.net.NetworkInfo;\r\nimport android.os.Bundle;\r\nimport android.view.View;\r\nimport android.widget.Button;\r\nimport android.widget.EditText;\r\nimport android.widget.ImageButton;\r\nimport android.widget.Toast;\r\n\r\nimport com.google.firebase.auth.FirebaseAuth;\r\nimport com.google.firebase.auth.FirebaseUser;\r\nimport com.google.firebase.database.DatabaseReference;\r\nimport com.google.firebase.database.FirebaseDatabase;\r\n\r\nimport java.util.HashMap;\r\n\r\npublic class LocalizacaoEntrega extends AppCompatActivity {\r\n\r\n    ImageButton voltar;\r\n    Button btnAlterarLoc;\r\n    EditText novoCEP;\r\n    EditText novoNum;\r\n    EditText novoComplemento;\r\n    private FirebaseAuth mAuth;\r\n\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_localizacao_entrega);\r\n\r\n        semInternet();\r\n\r\n        mAuth = FirebaseAuth.getInstance();\r\n\r\n        voltar = findViewById(R.id.voltar_button);\r\n        btnAlterarLoc = findViewById(R.id.btnAlterarLoc);\r\n        novoCEP = findViewById(R.id.novoCEP);\r\n        novoNum = findViewById(R.id.novoNumero);\r\n        novoComplemento = findViewById(R.id.novoComplemento);\r\n        mAuth = FirebaseAuth.getInstance();\r\n\r\n        btnAlterarLoc.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                FirebaseUser user = mAuth.getCurrentUser();\r\n                if (user != null) {\r\n                    String uid = user.getUid();\r\n\r\n                    String novoCEPTexto = novoCEP.getText().toString();\r\n                    String novoNumTexto = novoNum.getText().toString();\r\n                    String novoComplementoTexto = novoComplemento.getText().toString();\r\n\r\n                    DatabaseReference usuarioRef = FirebaseDatabase.getInstance().getReference(\"Usuario\").child(uid);\r\n                    HashMap<String, Object> enderecoMap = new HashMap<>();\r\n                    enderecoMap.put(\"CEP\", novoCEPTexto);\r\n                    enderecoMap.put(\"numEndereco\", novoNumTexto);\r\n                    enderecoMap.put(\"complemento\", novoComplementoTexto);\r\n\r\n                    usuarioRef.child(\"endereco\").updateChildren(enderecoMap);\r\n\r\n                    Toast.makeText(getApplicationContext(), \"Informações de localização atualizadas com sucesso!\", Toast.LENGTH_SHORT).show();\r\n                } else {\r\n                    Intent intent = new Intent(LocalizacaoEntrega.this, Perfil.class);\r\n                    startActivity(intent);\r\n                    finish();\r\n                }\r\n            }\r\n        });\r\n\r\n        voltar.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(LocalizacaoEntrega.this, Perfil.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n    }\r\n\r\n    public void semInternet() {\r\n        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);\r\n        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();\r\n        if (networkInfo == null || !networkInfo.isConnected()) {\r\n            // Abre a tela de sem internet\r\n            Intent intent = new Intent(this, telaSemInternet.class);\r\n            startActivity(intent);\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/equalityfood/LocalizacaoEntrega.java b/app/src/main/java/com/example/equalityfood/LocalizacaoEntrega.java
+--- a/app/src/main/java/com/example/equalityfood/LocalizacaoEntrega.java	(revision 2fccf0d1ae2e689aebf7b3f38f7309f9760bcabc)
++++ b/app/src/main/java/com/example/equalityfood/LocalizacaoEntrega.java	(date 1699368690949)
+@@ -20,6 +20,12 @@
+ 
+ import java.util.HashMap;
+ 
++import retrofit2.Call;
++import retrofit2.Callback;
++import retrofit2.Response;
++import retrofit2.Retrofit;
++import retrofit2.converter.gson.GsonConverterFactory;
++
+ public class LocalizacaoEntrega extends AppCompatActivity {
+ 
+     ImageButton voltar;
+@@ -49,38 +55,104 @@
+         btnAlterarLoc.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+-                FirebaseUser user = mAuth.getCurrentUser();
+-                if (user != null) {
+-                    String uid = user.getUid();
++                // Código para verificar a conexão com a internet
++                semInternet();
++
++                // Obtenha o CEP inserido pelo usuário
++                String novoCEPTexto = novoCEP.getText().toString();
++
++                // API VIACEP
++                String urlAPI = "https://viacep.com.br/ws/";
++
++                // Configurar acesso à API
++                Retrofit retrofit = new Retrofit.Builder()
++                        .baseUrl(urlAPI)
++                        .addConverterFactory(GsonConverterFactory.create())
++                        .build();
++
++                ApiService apiService = retrofit.create(ApiService.class);
++                Call<CEP> call = apiService.recuperarCEP(novoCEPTexto);
++
++                call.enqueue(new Callback<CEP>() {
++                    @Override
++                    public void onResponse(Call<CEP> call, Response<CEP> response) {
++                        if (response.isSuccessful()) {
++                            CEP cep = response.body();
++
++                            // Obtenha os outros detalhes de endereço do usuário, como número e complemento
++                            String novoNumTexto = novoNum.getText().toString();
++                            String novoComplementoTexto = novoComplemento.getText().toString();
++
++                            // Atualize o endereço no Firebase
++                            FirebaseUser user = mAuth.getCurrentUser();
++                            if (user != null) {
++                                String uid = user.getUid();
+ 
+-                    String novoCEPTexto = novoCEP.getText().toString();
+-                    String novoNumTexto = novoNum.getText().toString();
+-                    String novoComplementoTexto = novoComplemento.getText().toString();
+-
+-                    DatabaseReference usuarioRef = FirebaseDatabase.getInstance().getReference("Usuario").child(uid);
+-                    HashMap<String, Object> enderecoMap = new HashMap<>();
+-                    enderecoMap.put("CEP", novoCEPTexto);
+-                    enderecoMap.put("numEndereco", novoNumTexto);
+-                    enderecoMap.put("complemento", novoComplementoTexto);
++                                DatabaseReference usuarioRef = FirebaseDatabase.getInstance().getReference("Usuario").child(uid);
++                                HashMap<String, Object> enderecoMap = new HashMap<>();
++                                enderecoMap.put("CEP", novoCEPTexto);
++                                enderecoMap.put("numEndereco", novoNumTexto);
++                                enderecoMap.put("complemento", novoComplementoTexto);
++                                enderecoMap.put("Rua", cep.getLogradouro());
++                                enderecoMap.put("Bairro", cep.getBairro());
++                                enderecoMap.put("Cidade", cep.getLocalidade());
++                                enderecoMap.put("UF", cep.getUf());
+ 
+-                    usuarioRef.child("endereco").updateChildren(enderecoMap);
++                                usuarioRef.child("endereco").updateChildren(enderecoMap);
+ 
+-                    Toast.makeText(getApplicationContext(), "Informações de localização atualizadas com sucesso!", Toast.LENGTH_SHORT).show();
+-                } else {
+-                    Intent intent = new Intent(LocalizacaoEntrega.this, Perfil.class);
+-                    startActivity(intent);
+-                    finish();
+-                }
+-            }
+-        });
++                                Toast.makeText(getApplicationContext(), "Informações de localização atualizadas com sucesso!", Toast.LENGTH_SHORT).show();
++                            } else {
++                                Intent intent = new Intent(LocalizacaoEntrega.this, Perfil.class);
++                                startActivity(intent);
++                                finish();
++                            }
++                        }
++                    }
+ 
+-        voltar.setOnClickListener(new View.OnClickListener() {
+-            @Override
+-            public void onClick(View v) {
+-                Intent intent = new Intent(LocalizacaoEntrega.this, Perfil.class);
+-                startActivity(intent);
++                    @Override
++                    public void onFailure(Call<CEP> call, Throwable t) {
++                        Toast.makeText(getApplicationContext(), "Falha ao atualizar informações de endereço!", Toast.LENGTH_SHORT).show();
++                    }
++                });
+             }
+         });
++
++
++//        btnAlterarLoc.setOnClickListener(new View.OnClickListener() {
++//            @Override
++//            public void onClick(View v) {
++//                FirebaseUser user = mAuth.getCurrentUser();
++//                if (user != null) {
++//                    String uid = user.getUid();
++//
++//                    String novoCEPTexto = novoCEP.getText().toString();
++//                    String novoNumTexto = novoNum.getText().toString();
++//                    String novoComplementoTexto = novoComplemento.getText().toString();
++//
++//                    DatabaseReference usuarioRef = FirebaseDatabase.getInstance().getReference("Usuario").child(uid);
++//                    HashMap<String, Object> enderecoMap = new HashMap<>();
++//                    enderecoMap.put("CEP", novoCEPTexto);
++//                    enderecoMap.put("numEndereco", novoNumTexto);
++//                    enderecoMap.put("complemento", novoComplementoTexto);
++//
++//                    usuarioRef.child("endereco").updateChildren(enderecoMap);
++//
++//                    Toast.makeText(getApplicationContext(), "Informações de localização atualizadas com sucesso!", Toast.LENGTH_SHORT).show();
++//                } else {
++//                    Intent intent = new Intent(LocalizacaoEntrega.this, Perfil.class);
++//                    startActivity(intent);
++//                    finish();
++//                }
++//            }
++//        });
++//
++//        voltar.setOnClickListener(new View.OnClickListener() {
++//            @Override
++//            public void onClick(View v) {
++//                Intent intent = new Intent(LocalizacaoEntrega.this, Perfil.class);
++//                startActivity(intent);
++//            }
++//        });
+ 
+     }
+ 
+Index: app/google-services.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\r\n  \"project_info\": {\r\n    \"project_number\": \"953824687911\",\r\n    \"firebase_url\": \"https://dbequalityfood-default-rtdb.firebaseio.com\",\r\n    \"project_id\": \"dbequalityfood\",\r\n    \"storage_bucket\": \"dbequalityfood.appspot.com\"\r\n  },\r\n  \"client\": [\r\n    {\r\n      \"client_info\": {\r\n        \"mobilesdk_app_id\": \"1:953824687911:android:a04cc83984e9a343701b02\",\r\n        \"android_client_info\": {\r\n          \"package_name\": \"com.example.equalityfood\"\r\n        }\r\n      },\r\n      \"oauth_client\": [],\r\n      \"api_key\": [\r\n        {\r\n          \"current_key\": \"AIzaSyBcqqHMvkFAJ-5y1cSi99MczfPV7XhO9TU\"\r\n        }\r\n      ],\r\n      \"services\": {\r\n        \"appinvite_service\": {\r\n          \"other_platform_oauth_client\": []\r\n        }\r\n      }\r\n    }\r\n  ],\r\n  \"configuration_version\": \"1\"\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/google-services.json b/app/google-services.json
+--- a/app/google-services.json	(revision 2fccf0d1ae2e689aebf7b3f38f7309f9760bcabc)
++++ b/app/google-services.json	(date 1699398808355)
+@@ -13,7 +13,12 @@
+           "package_name": "com.example.equalityfood"
+         }
+       },
+-      "oauth_client": [],
++      "oauth_client": [
++        {
++          "client_id": "953824687911-ndsev3496g6m2rprmidoqgsj67ubje14.apps.googleusercontent.com",
++          "client_type": 3
++        }
++      ],
+       "api_key": [
+         {
+           "current_key": "AIzaSyBcqqHMvkFAJ-5y1cSi99MczfPV7XhO9TU"
+@@ -21,7 +26,12 @@
+       ],
+       "services": {
+         "appinvite_service": {
+-          "other_platform_oauth_client": []
++          "other_platform_oauth_client": [
++            {
++              "client_id": "953824687911-ndsev3496g6m2rprmidoqgsj67ubje14.apps.googleusercontent.com",
++              "client_type": 3
++            }
++          ]
+         }
+       }
+     }
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\">\r\n\r\n    <uses-permission android:name=\"android.permission.INTERNET\" />\r\n    <uses-permission android:name=\"android.permission.CAMERA\" />\r\n\r\n    <uses-feature android:name=\"android.hardware.camera\" />\r\n    <uses-feature android:name=\"android.hardware.camera.autofocus\" />\r\n\r\n    <uses-permission android:name=\"android.permission.CAMERA\" />\r\n\r\n    <uses-feature android:name=\"android.hardware.camera\" />\r\n    <uses-feature android:name=\"android.hardware.camera.autofocus\" />\r\n\r\n    <uses-permission android:name=\"android.permission.INTERNET\" />\r\n    <uses-permission android:name=\"android.permission.CAMERA\" />\r\n    <uses-feature android:name=\"android.hardware.camera\" />\r\n    <uses-feature android:name=\"android.hardware.camera.autofocus\" />\r\n    <uses-permission android:name=\"android.permission.SENDTO\" />\r\n    <uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />\r\n\r\n    <application\r\n        android:allowBackup=\"true\"\r\n        android:dataExtractionRules=\"@xml/data_extraction_rules\"\r\n        android:fullBackupContent=\"@xml/backup_rules\"\r\n        android:icon=\"@mipmap/logo\"\r\n        android:label=\"@string/app_name\"\r\n        android:supportsRtl=\"true\"\r\n        android:theme=\"@style/Theme.AppCompat.DayNight.NoActionBar\"\r\n        tools:targetApi=\"31\"\r\n        tools:ignore=\"ExtraText\">\r\n        <activity\r\n            android:name=\".AdapterCarneBovina\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".AlterarSenha\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".VerificarCodigo\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".telaSemInternet\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".Foto\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".PoliticaPrivacidade\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".ListaCarneBovina\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".ListaFrango\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".ListaCarneSuina\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".ListaLegumes\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".ListaNaoPereciveis\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".AdapterPedidos\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".Pedidos\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".PopUpConfirmacaoPedido\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".LocalizacaoEntrega\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".AtualizarPerfil\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".AdapterListaProdutos\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".ListaCongelados\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".Produtos\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".Pagamento\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".Adapter\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".Carrinho\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".abertura\"\r\n            android:exported=\"true\">\r\n            <intent-filter>\r\n                <action android:name=\"android.intent.action.MAIN\" />\r\n\r\n                <category android:name=\"android.intent.category.LAUNCHER\" />\r\n            </intent-filter>\r\n        </activity>\r\n        <activity\r\n            android:name=\".criarConta\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".EsqueceuSenha\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".Perfil\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".home\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".bemVindo\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".PopUpQrCode\"\r\n            android:exported=\"false\">\r\n        </activity>\r\n        <activity\r\n            android:name=\".Login\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".TabFragment\"\r\n            android:exported=\"false\">\r\n        </activity>\r\n            android:exported=\"false\">\r\n        <activity\r\n            android:name=\".PedidoFragmento\"\r\n            android:exported=\"false\"\r\n            tools:ignore=\"WrongManifestParent\">\r\n        </activity>\r\n    </application>\r\n    </manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml
+--- a/app/src/main/AndroidManifest.xml	(revision 2fccf0d1ae2e689aebf7b3f38f7309f9760bcabc)
++++ b/app/src/main/AndroidManifest.xml	(date 1699398622861)
+@@ -13,12 +13,19 @@
+     <uses-feature android:name="android.hardware.camera" />
+     <uses-feature android:name="android.hardware.camera.autofocus" />
+ 
++
++
+     <uses-permission android:name="android.permission.INTERNET" />
+     <uses-permission android:name="android.permission.CAMERA" />
+     <uses-feature android:name="android.hardware.camera" />
+     <uses-feature android:name="android.hardware.camera.autofocus" />
++    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
++    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+     <uses-permission android:name="android.permission.SENDTO" />
+     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
++    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
++    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
++    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+ 
+     <application
+         android:allowBackup="true"
+@@ -137,5 +144,6 @@
+             android:exported="false"
+             tools:ignore="WrongManifestParent">
+         </activity>
++
+     </application>
+     </manifest>
+\ No newline at end of file
+Index: app/src/main/res/drawable/rounded_imageview.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/drawable/rounded_imageview.xml b/app/src/main/res/drawable/rounded_imageview.xml
+new file mode 100644
+--- /dev/null	(date 1699392748121)
++++ b/app/src/main/res/drawable/rounded_imageview.xml	(date 1699392748121)
+@@ -0,0 +1,4 @@
++<shape xmlns:android="http://schemas.android.com/apk/res/android">
++    <solid android:color="#FFFFFF" /> <!-- Cor de fundo da forma -->
++    <corners android:radius="250dp" /> <!-- Raio da borda -->
++</shape>
