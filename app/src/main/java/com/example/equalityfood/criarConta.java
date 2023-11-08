@@ -175,9 +175,6 @@ public class criarConta extends AppCompatActivity {
         String senhaTexto = senha.getText().toString();
         String confirmarSenhaTexto = confirmarSenha.getText().toString();
 
-        if (ValidaCPF.isCPF(cpfTexto) == false){
-            Toast.makeText(getApplicationContext(), "Por favor, coloque um cpf válido.", Toast.LENGTH_SHORT).show();
-        }
         if (!senhaTexto.equals(confirmarSenhaTexto)) {
             Toast.makeText(getApplicationContext(), "As senhas não correspondem. Por favor, verifique e tente novamente.", Toast.LENGTH_SHORT).show();
             return; // Não prossiga com o cadastro se as senhas não coincidirem
@@ -213,8 +210,7 @@ public class criarConta extends AppCompatActivity {
                                 if (user != null) {
                                     // Armazene o número de telefone no Firebase
                                     String uid = user.getUid();
-                                    DatabaseReference usuariosRef = FirebaseDatabase.getInstance().getReference().child("Usuario").push();
-
+                                    DatabaseReference usuariosRef = FirebaseDatabase.getInstance().getReference().child("Usuario").child(uid);
 
                                     // Outros dados do usuário
                                     HashMap<String, String> enderecoMap = new HashMap<>();
@@ -225,7 +221,6 @@ public class criarConta extends AppCompatActivity {
                                     enderecoMap.put("Cidade", endereco.getCidade());
                                     enderecoMap.put("UF", endereco.getUf());
 
-//
                                     if (!complementoTexto.isEmpty()) {
                                         enderecoMap.put("complemento", complementoTexto);
                                     }

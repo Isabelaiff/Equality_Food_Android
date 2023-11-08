@@ -2,9 +2,11 @@ package com.example.equalityfood;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,6 +18,7 @@ public class Produtos  extends AppCompatActivity {
     ImageView imageView;
     TextView textView22;
     TextView textView25;
+    ImageButton imageButton2;
     String img;
 
 
@@ -28,6 +31,7 @@ public class Produtos  extends AppCompatActivity {
         imageView = findViewById(R.id.imageView);
         textView22 = findViewById(R.id.textView22);
         textView25 = findViewById(R.id.textView25);
+        imageButton2 = findViewById(R.id.imageButton2);
 
         Bundle bundle = getIntent().getExtras();
 
@@ -44,5 +48,14 @@ public class Produtos  extends AppCompatActivity {
         Glide.with(this)
                 .load(img)
                 .into(imageView);
+
+        imageButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Produtos.this, home.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 }

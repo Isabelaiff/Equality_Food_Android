@@ -61,7 +61,6 @@ public class AdapterListaProdutos extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         view = inflater.inflate(R.layout.activity_adapter_lista_produtos, null);
 
-        LinearLayout linear = view.findViewById(R.id.linear);
         TextView prod = view.findViewById(R.id.textView);
         TextView desc = view.findViewById(R.id.textView2);
         TextView val = view.findViewById(R.id.textView3);

@@ -1,0 +1,563 @@
+Index: app/src/main/java/com/example/equalityfood/EsqueceuSenha.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.equalityfood;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\nimport android.view.View;\r\nimport android.widget.Button;\r\nimport android.widget.EditText;\r\nimport android.widget.Toast;\r\nimport com.google.android.gms.tasks.OnCompleteListener;\r\nimport com.google.android.gms.tasks.Task;\r\nimport com.google.firebase.auth.FirebaseAuth;\r\nimport com.google.firebase.auth.SignInMethodQueryResult;\r\nimport com.google.firebase.database.DataSnapshot;\r\nimport com.google.firebase.database.DatabaseError;\r\nimport com.google.firebase.database.DatabaseReference;\r\nimport com.google.firebase.database.FirebaseDatabase;\r\nimport com.google.firebase.database.ValueEventListener;\r\n\r\nimport android.widget.ImageButton;\r\n\r\npublic class EsqueceuSenha extends AppCompatActivity {\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_esqueceu_senha);\r\n\r\n        FirebaseAuth auth = FirebaseAuth.getInstance();\r\n\r\n        Button btnCodigo = findViewById(R.id.btnCodigo);\r\n        EditText inputEmail = findViewById(R.id.inputEmail);\r\n        ImageButton btnVoltar = findViewById(R.id.voltar_button2);\r\n\r\n        btnVoltar.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                finish();\r\n            }\r\n        });\r\n\r\n        btnCodigo.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                String email = inputEmail.getText().toString();\r\n\r\n                if (email.isEmpty()) {\r\n                    Toast.makeText(EsqueceuSenha.this, \"Por favor, insira seu e-mail.\", Toast.LENGTH_SHORT).show();\r\n                } else {\r\n                    auth.sendPasswordResetEmail(email)\r\n                            .addOnCompleteListener(new OnCompleteListener<Void>() {\r\n                                @Override\r\n                                public void onComplete(@NonNull Task<Void> task) {\r\n                                    if (task.isSuccessful()) {\r\n                                        Toast.makeText(EsqueceuSenha.this, \"E-mail de redefinição de senha enviado. Verifique seu e-mail.\", Toast.LENGTH_SHORT).show();\r\n                                        Intent intent = new Intent(EsqueceuSenha.this, Login.class);\r\n                                        startActivity(intent);\r\n                                        finish();\r\n                                    } else {\r\n                                        Toast.makeText(EsqueceuSenha.this, \"Falha ao enviar e-mail de redefinição de senha. Por favor, tente novamente mais tarde.\", Toast.LENGTH_SHORT).show();\r\n                                    }\r\n                                }\r\n                            });\r\n                }\r\n            }\r\n        });\r\n    }\r\n}\r\n\r\n\r\n//Código com verficação de cadastro (!!não está funcionando!!) tenho que ajustar\r\n\r\n//public class EsqueceuSenha extends AppCompatActivity {\r\n//\r\n//    @Override\r\n//    protected void onCreate(Bundle savedInstanceState) {\r\n//        super.onCreate(savedInstanceState);\r\n//        setContentView(R.layout.activity_esqueceu_senha);\r\n//\r\n//        FirebaseAuth auth = FirebaseAuth.getInstance();\r\n//        FirebaseDatabase database = FirebaseDatabase.getInstance();\r\n//\r\n//        Button btnCodigo = findViewById(R.id.btnCodigo);\r\n//        EditText inputEmail = findViewById(R.id.inputEmail);\r\n//        ImageButton btnVoltar = findViewById(R.id.voltar_button2);\r\n//\r\n//        btnVoltar.setOnClickListener(new View.OnClickListener() {\r\n//            @Override\r\n//            public void onClick(View v) {\r\n//                Intent intent = new Intent(EsqueceuSenha.this, Login.class);\r\n//                startActivity(intent);\r\n//            }\r\n//        });\r\n//\r\n//        btnCodigo.setOnClickListener(new View.OnClickListener() {\r\n//            @Override\r\n//            public void onClick(View v) {\r\n//                String email = inputEmail.getText().toString();\r\n//\r\n//                if (email.isEmpty()) {\r\n//                    Toast.makeText(EsqueceuSenha.this, \"Por favor, insira seu e-mail.\", Toast.LENGTH_SHORT).show();\r\n//                } else {\r\n//                    DatabaseReference usersRef = database.getReference(\"usuarios\");\r\n//                    usersRef.orderByChild(\"email\").equalTo(email).addListenerForSingleValueEvent(new ValueEventListener() {\r\n//                        @Override\r\n//                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {\r\n//                            if (dataSnapshot.exists()) {\r\n//                                // E-mail está cadastrado, enviar e-mail de redefinição de senha\r\n//                                auth.sendPasswordResetEmail(email)\r\n//                                        .addOnCompleteListener(new OnCompleteListener<Void>() {\r\n//                                            @Override\r\n//                                            public void onComplete(@NonNull Task<Void> task) {\r\n//                                                if (task.isSuccessful()) {\r\n//                                                    Toast.makeText(EsqueceuSenha.this, \"E-mail de redefinição de senha enviado. Verifique seu e-mail.\", Toast.LENGTH_SHORT).show();\r\n//                                                    Intent intent = new Intent(EsqueceuSenha.this, Login.class);\r\n//                                                    startActivity(intent);\r\n//                                                    finish();\r\n//                                                } else {\r\n//                                                    Toast.makeText(EsqueceuSenha.this, \"Falha ao enviar e-mail de redefinição de senha. Por favor, tente novamente mais tarde.\", Toast.LENGTH_SHORT).show();\r\n//                                                }\r\n//                                            }\r\n//                                        });\r\n//                            } else {\r\n//                                // E-mail não está cadastrado\r\n//                                Toast.makeText(EsqueceuSenha.this, \"Este e-mail não está cadastrado.\", Toast.LENGTH_SHORT).show();\r\n//                            }\r\n//                        }\r\n//\r\n//                        @Override\r\n//                        public void onCancelled(@NonNull DatabaseError databaseError) {\r\n//                            Toast.makeText(EsqueceuSenha.this, \"Erro ao verificar o e-mail. Por favor, tente novamente mais tarde.\", Toast.LENGTH_SHORT).show();\r\n//                        }\r\n//                    });\r\n//                }\r\n//            }\r\n//        });\r\n//    }\r\n//}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/equalityfood/EsqueceuSenha.java b/app/src/main/java/com/example/equalityfood/EsqueceuSenha.java
+--- a/app/src/main/java/com/example/equalityfood/EsqueceuSenha.java	(revision 1af71eafd62120cda88f404d8db61464a35e0a51)
++++ b/app/src/main/java/com/example/equalityfood/EsqueceuSenha.java	(date 1699124544400)
+@@ -34,6 +34,7 @@
+         ImageButton btnVoltar = findViewById(R.id.voltar_button2);
+ 
+         btnVoltar.setOnClickListener(new View.OnClickListener() {
++            //por segurança o usuario não pode voltar para tela anterior
+             @Override
+             public void onClick(View v) {
+                 finish();
+@@ -41,6 +42,7 @@
+         });
+ 
+         btnCodigo.setOnClickListener(new View.OnClickListener() {
++            //inicia função esqueceu a senha
+             @Override
+             public void onClick(View v) {
+                 String email = inputEmail.getText().toString();
+Index: app/src/main/java/com/example/equalityfood/AtualizarPerfil.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.equalityfood;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.os.Bundle;\r\n\r\npublic class AtualizarPerfil extends AppCompatActivity {\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_atualizar_perfil);\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/equalityfood/AtualizarPerfil.java b/app/src/main/java/com/example/equalityfood/AtualizarPerfil.java
+--- a/app/src/main/java/com/example/equalityfood/AtualizarPerfil.java	(revision 1af71eafd62120cda88f404d8db61464a35e0a51)
++++ b/app/src/main/java/com/example/equalityfood/AtualizarPerfil.java	(date 1699124062844)
+@@ -2,6 +2,10 @@
+ 
+ import androidx.appcompat.app.AppCompatActivity;
+ 
++import android.content.Context;
++import android.content.Intent;
++import android.net.ConnectivityManager;
++import android.net.NetworkInfo;
+ import android.os.Bundle;
+ 
+ public class AtualizarPerfil extends AppCompatActivity {
+@@ -11,4 +15,15 @@
+         super.onCreate(savedInstanceState);
+         setContentView(R.layout.activity_atualizar_perfil);
+     }
++
++//    Sem internet
++    public void semInternet(){
++        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
++        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
++
++        if (networkInfo == null || !networkInfo.isConnected()) {
++            Intent intent = new Intent(AtualizarPerfil.this, telaSemInternet.class);
++            startActivity(intent);
++        }
++    }
+ }
+\ No newline at end of file
+Index: app/src/main/java/com/example/equalityfood/home.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.equalityfood;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\nimport android.view.View;\r\nimport android.widget.ImageButton;\r\nimport android.widget.SearchView;\r\nimport android.widget.Toast;\r\n\r\npublic class home extends AppCompatActivity {\r\n\r\n    private SearchView searchView;\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_home);\r\n        searchView = findViewById(R.id.searchView);\r\n\r\n        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {\r\n            @Override\r\n            public boolean onQueryTextSubmit(String query) {\r\n                performSearch(query);\r\n                return true;\r\n            }\r\n\r\n            @Override\r\n            public boolean onQueryTextChange(String newText) {\r\n                return false;\r\n            }\r\n        });\r\n\r\n        searchView.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View view) {\r\n                searchView.setIconified(false);\r\n            }\r\n        });\r\n        ImageButton btnPerfil = findViewById(R.id.btnPerfil2);\r\n\r\n        btnPerfil.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(home.this, Perfil.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n        ImageButton btnCarrinho = findViewById(R.id.imageButton);\r\n\r\n        btnCarrinho.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(home.this, Carrinho.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n        ImageButton btnCongelados = findViewById(R.id.imageButton9);\r\n\r\n        btnCongelados.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(home.this, ListaCongelados.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n        ImageButton imageButton4 = findViewById(R.id.imageButton4);\r\n\r\n        imageButton4.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(home.this, Pedidos.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n        ImageButton imageButton5 = findViewById(R.id.imageButton5);\r\n\r\n        imageButton5.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(home.this, ListaNaoPereciveis.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n\r\n\r\n        ImageButton imageButton10 = findViewById(R.id.imageButton10);\r\n\r\n        imageButton10.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(home.this, ListaLegumes.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n\r\n\r\n        ImageButton imageButton11 = findViewById(R.id.imageButton11);\r\n\r\n        imageButton11.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(home.this, ListaCarneSuina.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n        ImageButton imageButton14 = findViewById(R.id.imageButton14);\r\n\r\n        imageButton14.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(home.this, ListaFrango.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n        ImageButton imageButton15 = findViewById(R.id.imageButton15);\r\n\r\n        imageButton15.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(home.this, ListaCarneBovina.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n\r\n\r\n\r\n\r\n\r\n    }\r\n    private void performSearch(String query) {\r\n        Toast.makeText(this, \"Pesquisando por: \" + query, Toast.LENGTH_SHORT).show();\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/equalityfood/home.java b/app/src/main/java/com/example/equalityfood/home.java
+--- a/app/src/main/java/com/example/equalityfood/home.java	(revision 1af71eafd62120cda88f404d8db61464a35e0a51)
++++ b/app/src/main/java/com/example/equalityfood/home.java	(date 1699124544438)
+@@ -2,7 +2,10 @@
+ 
+ import androidx.appcompat.app.AppCompatActivity;
+ 
++import android.content.Context;
+ import android.content.Intent;
++import android.net.ConnectivityManager;
++import android.net.NetworkInfo;
+ import android.os.Bundle;
+ import android.view.View;
+ import android.widget.ImageButton;
+@@ -19,6 +22,9 @@
+         setContentView(R.layout.activity_home);
+         searchView = findViewById(R.id.searchView);
+ 
++        //sem internet
++        semInternet();
++
+         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+             @Override
+             public boolean onQueryTextSubmit(String query) {
+@@ -142,4 +148,13 @@
+         Toast.makeText(this, "Pesquisando por: " + query, Toast.LENGTH_SHORT).show();
+     }
+ 
++    public void semInternet(){
++        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
++        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
++
++        if (networkInfo == null || !networkInfo.isConnected()) {
++            Intent intent = new Intent(home.this, telaSemInternet.class);
++            startActivity(intent);
++        }
++    }
+ }
+Index: app/src/main/java/com/example/equalityfood/criarConta.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.equalityfood;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.app.DatePickerDialog;\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\nimport android.view.View;\r\nimport android.widget.Button;\r\nimport android.widget.EditText;\r\nimport android.widget.ImageButton;\r\nimport android.widget.Toast;\r\nimport java.text.ParseException;\r\nimport java.text.SimpleDateFormat;\r\nimport java.util.Date;\r\n\r\nimport java.util.Calendar;\r\nimport com.google.firebase.auth.FirebaseAuth;\r\nimport com.google.firebase.auth.FirebaseUser;\r\nimport com.google.firebase.auth.UserProfileChangeRequest;\r\nimport com.google.firebase.database.DatabaseReference;\r\nimport com.google.firebase.database.FirebaseDatabase;\r\n\r\n\r\nimport java.util.HashMap;\r\n\r\npublic class criarConta extends AppCompatActivity {\r\n\r\n    EditText nome;\r\n    EditText dataNasc;\r\n    EditText CPF;\r\n    EditText numTelefone;\r\n    EditText email;\r\n    EditText CEP;\r\n    EditText numEndereco;\r\n    EditText complemento;\r\n    EditText senha;\r\n    EditText confirmarSenha;\r\n    Button cadastrarButton;\r\n    FirebaseDatabase database;\r\n    DatabaseReference EqualityFoodRef;\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_criar_conta);\r\n\r\n        ImageButton voltar = findViewById(R.id.voltar_button);\r\n        nome = findViewById(R.id.nomeCompleto);\r\n        dataNasc = findViewById(R.id.dataNasc);\r\n        CPF = findViewById(R.id.cpf);\r\n        numTelefone = findViewById(R.id.numTelefone);\r\n        email = findViewById(R.id.email);\r\n        CEP = findViewById(R.id.cep);\r\n        numEndereco = findViewById(R.id.numEndereco);\r\n        complemento = findViewById(R.id.complemento);\r\n        senha = findViewById(R.id.senha);\r\n        confirmarSenha = findViewById(R.id.confirmarSenha);\r\n        cadastrarButton = findViewById(R.id.cadastrar_button);\r\n\r\n\r\n        database = FirebaseDatabase.getInstance();\r\n        EqualityFoodRef = database.getReference();\r\n\r\n//        EditText phoneNumberEditText = findViewById(R.id.numTelefone);\r\n//        MaskWatcher phoneNumberMaskWatcher = new MaskWatcher();\r\n//        phoneNumberEditText.addTextChangedListener(phoneNumberMaskWatcher);\r\n\r\n\r\n        cadastrarButton.setOnClickListener(v -> {\r\n            salvarUsuario();\r\n        });\r\n\r\n        dataNasc.setOnClickListener(v -> mostrarCalendario());\r\n\r\n        voltar.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(criarConta.this, Login.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n    }\r\n\r\n    private void mostrarCalendario() {\r\n        dataNasc.setOnClickListener(v -> {\r\n            Calendar calendar = Calendar.getInstance();\r\n            int year = calendar.get(Calendar.YEAR);\r\n            int month = calendar.get(Calendar.MONTH);\r\n            int day = calendar.get(Calendar.DAY_OF_MONTH);\r\n\r\n            DatePickerDialog datePickerDialog = new DatePickerDialog(this,\r\n                    (view, year1, monthOfYear, dayOfMonth) -> {\r\n                        String selectedDate = String.format(\"%02d/%02d/%04d\", dayOfMonth, monthOfYear + 1, year1);\r\n                        if (dataValida(selectedDate)) {\r\n                            dataNasc.setText(selectedDate);\r\n                        } else {\r\n                            Toast.makeText(getApplicationContext(), \"Data inválida ou formato incorreto. Por favor, insira uma data válida no formato DD/MM/AAAA.\", Toast.LENGTH_SHORT).show();\r\n                        }\r\n                    }, year, month, day);\r\n\r\n            datePickerDialog.getDatePicker().setMaxDate(calendar.getTimeInMillis());\r\n            datePickerDialog.show();\r\n        });\r\n    }\r\n\r\n    private boolean dataValida(String date) {\r\n        String dateFormat = \"dd/MM/yyyy\";\r\n        SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);\r\n        sdf.setLenient(false);\r\n\r\n        try {\r\n            Date parsedDate = sdf.parse(date);\r\n\r\n            if (sdf.format(parsedDate).equals(date)) {\r\n                return true;\r\n            } else {\r\n                return false;\r\n            }\r\n        } catch (ParseException e) {\r\n            return false;\r\n        }\r\n    }\r\n\r\n    private void salvarUsuario() {\r\n        String nomeTexto = nome.getText().toString();\r\n        String dataNascTexto = dataNasc.getText().toString();\r\n        String cpfTexto = CPF.getText().toString();\r\n        String numTelefoneTexto = numTelefone.getText().toString();\r\n        String emailTexto = email.getText().toString();\r\n        String cepTexto = CEP.getText().toString();\r\n        String numEnderecoTexto = numEndereco.getText().toString();\r\n        String complementoTexto = complemento.getText().toString();\r\n        String senhaTexto = senha.getText().toString();\r\n\r\n        String confirmarSenhaTexto = confirmarSenha.getText().toString();\r\n\r\n        if (ValidarCPF.isCPF(cpfTexto) == false){\r\n            Toast.makeText(getApplicationContext(), \"Por favor, coloque um cpf válido.\", Toast.LENGTH_SHORT).show();\r\n        }\r\n        if (!senhaTexto.equals(confirmarSenhaTexto)) {\r\n            Toast.makeText(getApplicationContext(), \"As senhas não correspondem. Por favor, verifique e tente novamente.\", Toast.LENGTH_SHORT).show();\r\n            return; // Não prossiga com o cadastro se as senhas não coincidirem\r\n        }\r\n        if (nomeTexto.isEmpty() || dataNascTexto.isEmpty() || cpfTexto.isEmpty() || numTelefoneTexto.isEmpty() ||\r\n                emailTexto.isEmpty() || cepTexto.isEmpty() || numEnderecoTexto.isEmpty() || senhaTexto.isEmpty()) {\r\n            Toast.makeText(getApplicationContext(), \"Por favor, preencha todos os campos obrigatórios.\", Toast.LENGTH_SHORT).show();\r\n        } else {\r\n            // Verifique se a data de nascimento é válida\r\n            if (dataValida(dataNascTexto)) {\r\n                FirebaseAuth.getInstance().createUserWithEmailAndPassword(emailTexto, senhaTexto)\r\n                        .addOnCompleteListener(this, task -> {\r\n                            if (task.isSuccessful()) {\r\n                                // Usuário criado com sucesso\r\n                                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();\r\n                                if (user != null) {\r\n                                    // Armazene o número de telefone no Firebase Realtime Database\r\n                                    DatabaseReference usuariosRef = FirebaseDatabase.getInstance().getReference().child(\"Usuario\").push();\r\n\r\n                                    // Outros dados do usuário\r\n                                    HashMap<String, String> enderecoMap = new HashMap<>();\r\n                                    enderecoMap.put(\"CEP\", cepTexto);\r\n                                    enderecoMap.put(\"numEndereco\", numEnderecoTexto);\r\n\r\n                                    if (!complementoTexto.isEmpty()) {\r\n                                        enderecoMap.put(\"complemento\", complementoTexto);\r\n                                    }\r\n\r\n                                    usuariosRef.child(\"endereco\").setValue(enderecoMap);\r\n                                    usuariosRef.child(\"nome\").setValue(nomeTexto);\r\n                                    usuariosRef.child(\"dataNasc\").setValue(dataNascTexto);\r\n                                    usuariosRef.child(\"CPF\").setValue(cpfTexto);\r\n                                    usuariosRef.child(\"numTelefone\").setValue(numTelefoneTexto);\r\n                                    usuariosRef.child(\"email\").setValue(emailTexto);\r\n\r\n                                    // Usuário autenticado com sucesso e informações armazenadas no banco de dados\r\n                                    Toast.makeText(getApplicationContext(), \"Cadastro realizado com sucesso!\", Toast.LENGTH_SHORT).show();\r\n\r\n                                    Intent intent = new Intent(criarConta.this, PoliticaPrivacidade.class);\r\n                                    startActivity(intent);\r\n                                }\r\n                            } else {\r\n                                // Falha ao criar usuário\r\n                                Toast.makeText(getApplicationContext(), \"Falha ao criar usuário: \" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();\r\n                            }\r\n                        });\r\n\r\n            } else {\r\n                // A data de nascimento não é válida, exiba uma mensagem de erro\r\n                Toast.makeText(getApplicationContext(), \"Data de nascimento inválida ou formato incorreto. Por favor, insira uma data válida no formato DD/MM/AAAA.\", Toast.LENGTH_SHORT).show();\r\n            }\r\n        }\r\n\r\n        }\r\n    }\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/equalityfood/criarConta.java b/app/src/main/java/com/example/equalityfood/criarConta.java
+--- a/app/src/main/java/com/example/equalityfood/criarConta.java	(revision 1af71eafd62120cda88f404d8db61464a35e0a51)
++++ b/app/src/main/java/com/example/equalityfood/criarConta.java	(date 1699124544423)
+@@ -45,6 +45,7 @@
+         super.onCreate(savedInstanceState);
+         setContentView(R.layout.activity_criar_conta);
+ 
++        //captura elementos para criação
+         ImageButton voltar = findViewById(R.id.voltar_button);
+         nome = findViewById(R.id.nomeCompleto);
+         dataNasc = findViewById(R.id.dataNasc);
+@@ -58,7 +59,7 @@
+         confirmarSenha = findViewById(R.id.confirmarSenha);
+         cadastrarButton = findViewById(R.id.cadastrar_button);
+ 
+-
++        //conecta com o banco
+         database = FirebaseDatabase.getInstance();
+         EqualityFoodRef = database.getReference();
+ 
+@@ -74,6 +75,7 @@
+         dataNasc.setOnClickListener(v -> mostrarCalendario());
+ 
+         voltar.setOnClickListener(new View.OnClickListener() {
++            //volta para tela de login
+             @Override
+             public void onClick(View v) {
+                 Intent intent = new Intent(criarConta.this, Login.class);
+Index: app/src/main/java/com/example/equalityfood/bemVindo.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.equalityfood;\r\n\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\nimport android.view.View;\r\nimport android.widget.Button;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\npublic class bemVindo extends AppCompatActivity {\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_bem_vindo);\r\n\r\n        Button btnVamosLa = findViewById(R.id.btnVamosLa);\r\n\r\n        btnVamosLa.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(bemVindo.this, home.class);\r\n                startActivity(intent);\r\n\r\n            }\r\n        });\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/equalityfood/bemVindo.java b/app/src/main/java/com/example/equalityfood/bemVindo.java
+--- a/app/src/main/java/com/example/equalityfood/bemVindo.java	(revision 1af71eafd62120cda88f404d8db61464a35e0a51)
++++ b/app/src/main/java/com/example/equalityfood/bemVindo.java	(date 1699124544453)
+@@ -17,6 +17,7 @@
+         Button btnVamosLa = findViewById(R.id.btnVamosLa);
+ 
+         btnVamosLa.setOnClickListener(new View.OnClickListener() {
++            //abre a tela principal
+             @Override
+             public void onClick(View v) {
+                 Intent intent = new Intent(bemVindo.this, home.class);
+Index: app/src/main/java/com/example/equalityfood/Carrinho.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.equalityfood;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\nimport android.view.View;\r\nimport android.widget.Button;\r\nimport android.widget.ImageButton;\r\nimport android.widget.ListView;\r\npublic class Carrinho extends AppCompatActivity {\r\n\r\n    String[] produtos = {\"Lasanha congelada Seara\",\"Picanha Maturata\"};\r\n    int[] imgProd = {R.drawable.rectangleprod,R.drawable.rectangleprod};\r\n    double[] precoProd = {80.00, 100.50};\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_carrinho);\r\n\r\n        ListView lista = findViewById(R.id.listaview);\r\n        Adapter adapter = new Adapter(this, produtos, imgProd, precoProd);\r\n        lista.setAdapter(adapter);\r\n\r\n        ImageButton voltarHome = findViewById(R.id.imageButton6);\r\n\r\n        voltarHome.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(Carrinho.this, home.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n\r\n        Button btnCarrinho = findViewById(R.id.finalizar);\r\n\r\n        btnCarrinho.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(Carrinho.this, Pagamento.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/equalityfood/Carrinho.java b/app/src/main/java/com/example/equalityfood/Carrinho.java
+--- a/app/src/main/java/com/example/equalityfood/Carrinho.java	(revision 1af71eafd62120cda88f404d8db61464a35e0a51)
++++ b/app/src/main/java/com/example/equalityfood/Carrinho.java	(date 1699124544380)
+@@ -25,6 +25,7 @@
+         ImageButton voltarHome = findViewById(R.id.imageButton6);
+ 
+         voltarHome.setOnClickListener(new View.OnClickListener() {
++            //volta para tela principal
+             @Override
+             public void onClick(View v) {
+                 Intent intent = new Intent(Carrinho.this, home.class);
+@@ -36,6 +37,7 @@
+         Button btnCarrinho = findViewById(R.id.finalizar);
+ 
+         btnCarrinho.setOnClickListener(new View.OnClickListener() {
++            //direciona para tela de pagamento
+             @Override
+             public void onClick(View v) {
+                 Intent intent = new Intent(Carrinho.this, Pagamento.class);
+Index: app/src/main/java/com/example/equalityfood/Pedidos.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.equalityfood;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\nimport android.view.View;\r\nimport android.widget.ImageButton;\r\nimport android.widget.ListView;\r\nimport android.widget.TextView;\r\n\r\npublic class Pedidos extends AppCompatActivity {\r\n\r\n\r\n    String[] status = {\"Entregue\"};\r\n    String[] Data = {\"dd/mes/ano\"};\r\n    double[] precoPedido = {80.00};\r\n\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_pedidos);\r\n\r\n        ListView lista = findViewById(R.id.listaviewpedidos);\r\n        AdapterPedidos adapter = new AdapterPedidos(this, status, Data, precoPedido);\r\n        lista.setAdapter(adapter);\r\n\r\n        ImageButton btnHome2 = findViewById(R.id.btnHome2);\r\n        btnHome2.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(Pedidos.this, home.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n        ImageButton btnPerfil2 = findViewById(R.id.btnPerfil2);\r\n        btnPerfil2.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(Pedidos.this, Perfil.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n        ImageButton imageButton = findViewById(R.id.imageButton);\r\n        imageButton.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(Pedidos.this, Carrinho.class);\r\n                startActivity(intent);\r\n\r\n//                ListView list = (ListView) findViewById(android.R.id.list);\r\n//                TextView emptyView = (TextView) findViewById(android.R.id.empty);\r\n//                list.setEmptyView(emptyView);\r\n            }\r\n        });\r\n\r\n\r\n        ImageButton close = findViewById(R.id.close);\r\n        close.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                finish();\r\n            }\r\n        });\r\n\r\n\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/equalityfood/Pedidos.java b/app/src/main/java/com/example/equalityfood/Pedidos.java
+--- a/app/src/main/java/com/example/equalityfood/Pedidos.java	(revision 1af71eafd62120cda88f404d8db61464a35e0a51)
++++ b/app/src/main/java/com/example/equalityfood/Pedidos.java	(date 1699123436810)
+@@ -2,7 +2,10 @@
+ 
+ import androidx.appcompat.app.AppCompatActivity;
+ 
++import android.content.Context;
+ import android.content.Intent;
++import android.net.ConnectivityManager;
++import android.net.NetworkInfo;
+ import android.os.Bundle;
+ import android.view.View;
+ import android.widget.ImageButton;
+@@ -22,6 +25,8 @@
+         super.onCreate(savedInstanceState);
+         setContentView(R.layout.activity_pedidos);
+ 
++        semInternet();
++
+         ListView lista = findViewById(R.id.listaviewpedidos);
+         AdapterPedidos adapter = new AdapterPedidos(this, status, Data, precoPedido);
+         lista.setAdapter(adapter);
+@@ -68,4 +73,14 @@
+ 
+ 
+     }
++
++    public void semInternet(){
++        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
++        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
++
++        if (networkInfo == null || !networkInfo.isConnected()) {
++            Intent intent = new Intent(Pedidos.this, telaSemInternet.class);
++            startActivity(intent);
++        }
++    }
+ }
+\ No newline at end of file
+Index: app/src/main/java/com/example/equalityfood/abertura.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.equalityfood;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\nimport android.os.Handler;\r\n\r\npublic class abertura extends AppCompatActivity {\r\n\r\n    private static final int SPLASH_TIMEOUT = 2000;\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_abertura);\r\n\r\n        new Handler().postDelayed(new Runnable() {\r\n            @Override\r\n            public void run() {\r\n                Intent intent = new Intent(abertura.this, Login.class);\r\n                startActivity(intent);\r\n                finish();\r\n            }\r\n        }, SPLASH_TIMEOUT);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/equalityfood/abertura.java b/app/src/main/java/com/example/equalityfood/abertura.java
+--- a/app/src/main/java/com/example/equalityfood/abertura.java	(revision 1af71eafd62120cda88f404d8db61464a35e0a51)
++++ b/app/src/main/java/com/example/equalityfood/abertura.java	(date 1699124062867)
+@@ -15,6 +15,8 @@
+         setContentView(R.layout.activity_abertura);
+ 
+         new Handler().postDelayed(new Runnable() {
++
++            //Abre a tela de login
+             @Override
+             public void run() {
+                 Intent intent = new Intent(abertura.this, Login.class);
+Index: app/src/main/java/com/example/equalityfood/ListaFrango.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.equalityfood;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\nimport android.view.View;\r\nimport android.widget.Button;\r\nimport android.widget.ImageButton;\r\n\r\npublic class ListaFrango extends AppCompatActivity {\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_lista_frango);\r\n\r\n        ImageButton esqueceuSenha = findViewById(R.id.imageButton8);\r\n\r\n        esqueceuSenha.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(ListaFrango.this, home.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n        Button VerCarrinho = findViewById(R.id.button2);\r\n\r\n        VerCarrinho.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(ListaFrango.this, Carrinho.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n    }\r\n\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/equalityfood/ListaFrango.java b/app/src/main/java/com/example/equalityfood/ListaFrango.java
+--- a/app/src/main/java/com/example/equalityfood/ListaFrango.java	(revision 1af71eafd62120cda88f404d8db61464a35e0a51)
++++ b/app/src/main/java/com/example/equalityfood/ListaFrango.java	(date 1699122581775)
+@@ -2,7 +2,10 @@
+ 
+ import androidx.appcompat.app.AppCompatActivity;
+ 
++import android.content.Context;
+ import android.content.Intent;
++import android.net.ConnectivityManager;
++import android.net.NetworkInfo;
+ import android.os.Bundle;
+ import android.view.View;
+ import android.widget.Button;
+@@ -17,6 +20,7 @@
+ 
+         ImageButton esqueceuSenha = findViewById(R.id.imageButton8);
+ 
++        semInternet();
+         esqueceuSenha.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+@@ -34,7 +38,16 @@
+                 startActivity(intent);
+             }
+         });
++    }
++
++    public void semInternet(){
++        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
++        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
++
++        if (networkInfo == null || !networkInfo.isConnected()) {
++            Intent intent = new Intent(ListaFrango.this, telaSemInternet.class);
++            startActivity(intent);
++        }
+     }
+ 
+-
+ }
+\ No newline at end of file
+Index: app/src/main/java/com/example/equalityfood/ListaLegumes.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.equalityfood;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\nimport android.view.View;\r\nimport android.widget.Button;\r\nimport android.widget.ImageButton;\r\n\r\npublic class ListaLegumes extends AppCompatActivity {\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_lista_legumes);\r\n\r\n        ImageButton esqueceuSenha = findViewById(R.id.imageButton8);\r\n\r\n        esqueceuSenha.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(ListaLegumes.this, home.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n        Button VerCarrinho = findViewById(R.id.button2);\r\n\r\n        VerCarrinho.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(ListaLegumes.this, Carrinho.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n    }\r\n\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/equalityfood/ListaLegumes.java b/app/src/main/java/com/example/equalityfood/ListaLegumes.java
+--- a/app/src/main/java/com/example/equalityfood/ListaLegumes.java	(revision 1af71eafd62120cda88f404d8db61464a35e0a51)
++++ b/app/src/main/java/com/example/equalityfood/ListaLegumes.java	(date 1699122581798)
+@@ -2,7 +2,10 @@
+ 
+ import androidx.appcompat.app.AppCompatActivity;
+ 
++import android.content.Context;
+ import android.content.Intent;
++import android.net.ConnectivityManager;
++import android.net.NetworkInfo;
+ import android.os.Bundle;
+ import android.view.View;
+ import android.widget.Button;
+@@ -17,6 +20,7 @@
+ 
+         ImageButton esqueceuSenha = findViewById(R.id.imageButton8);
+ 
++        semInternet();
+         esqueceuSenha.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+@@ -34,7 +38,16 @@
+                 startActivity(intent);
+             }
+         });
++    }
++
++    public void semInternet(){
++        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
++        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
++
++        if (networkInfo == null || !networkInfo.isConnected()) {
++            Intent intent = new Intent(ListaLegumes.this, telaSemInternet.class);
++            startActivity(intent);
++        }
+     }
+ 
+-
+ }
+\ No newline at end of file
+Index: app/src/main/java/com/example/equalityfood/ListaCarneSuina.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.equalityfood;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\nimport android.view.View;\r\nimport android.widget.Button;\r\nimport android.widget.ImageButton;\r\n\r\npublic class ListaCarneSuina extends AppCompatActivity {\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_lista_carne_suina);\r\n\r\n        ImageButton esqueceuSenha = findViewById(R.id.imageButton8);\r\n\r\n        esqueceuSenha.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(ListaCarneSuina.this, home.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n        Button VerCarrinho = findViewById(R.id.button2);\r\n\r\n        VerCarrinho.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(ListaCarneSuina.this, Carrinho.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n    }\r\n\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/equalityfood/ListaCarneSuina.java b/app/src/main/java/com/example/equalityfood/ListaCarneSuina.java
+--- a/app/src/main/java/com/example/equalityfood/ListaCarneSuina.java	(revision 1af71eafd62120cda88f404d8db61464a35e0a51)
++++ b/app/src/main/java/com/example/equalityfood/ListaCarneSuina.java	(date 1699122581907)
+@@ -2,7 +2,10 @@
+ 
+ import androidx.appcompat.app.AppCompatActivity;
+ 
++import android.content.Context;
+ import android.content.Intent;
++import android.net.ConnectivityManager;
++import android.net.NetworkInfo;
+ import android.os.Bundle;
+ import android.view.View;
+ import android.widget.Button;
+@@ -17,6 +20,7 @@
+ 
+         ImageButton esqueceuSenha = findViewById(R.id.imageButton8);
+ 
++        semInternet();
+         esqueceuSenha.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+@@ -34,7 +38,16 @@
+                 startActivity(intent);
+             }
+         });
++    }
++
++    public void semInternet(){
++        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
++        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
++
++        if (networkInfo == null || !networkInfo.isConnected()) {
++            Intent intent = new Intent(ListaCarneSuina.this, telaSemInternet.class);
++            startActivity(intent);
++        }
+     }
+ 
+-
+ }
+\ No newline at end of file
+Index: app/src/main/java/com/example/equalityfood/ListaNaoPereciveis.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.equalityfood;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\nimport android.view.View;\r\nimport android.widget.Button;\r\nimport android.widget.ImageButton;\r\n\r\npublic class ListaNaoPereciveis extends AppCompatActivity {\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_lista_nao_pereciveis);\r\n\r\n        ImageButton esqueceuSenha = findViewById(R.id.imageButton8);\r\n\r\n        esqueceuSenha.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(ListaNaoPereciveis.this, home.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n        Button VerCarrinho = findViewById(R.id.button2);\r\n\r\n        VerCarrinho.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(ListaNaoPereciveis.this, Carrinho.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n    }\r\n\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/equalityfood/ListaNaoPereciveis.java b/app/src/main/java/com/example/equalityfood/ListaNaoPereciveis.java
+--- a/app/src/main/java/com/example/equalityfood/ListaNaoPereciveis.java	(revision 1af71eafd62120cda88f404d8db61464a35e0a51)
++++ b/app/src/main/java/com/example/equalityfood/ListaNaoPereciveis.java	(date 1699122581858)
+@@ -2,7 +2,10 @@
+ 
+ import androidx.appcompat.app.AppCompatActivity;
+ 
++import android.content.Context;
+ import android.content.Intent;
++import android.net.ConnectivityManager;
++import android.net.NetworkInfo;
+ import android.os.Bundle;
+ import android.view.View;
+ import android.widget.Button;
+@@ -17,6 +20,7 @@
+ 
+         ImageButton esqueceuSenha = findViewById(R.id.imageButton8);
+ 
++        semInternet();
+         esqueceuSenha.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+@@ -34,7 +38,16 @@
+                 startActivity(intent);
+             }
+         });
++    }
++
++    public void semInternet(){
++        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
++        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
++
++        if (networkInfo == null || !networkInfo.isConnected()) {
++            Intent intent = new Intent(ListaNaoPereciveis.this, telaSemInternet.class);
++            startActivity(intent);
++        }
+     }
+ 
+-
+ }
+\ No newline at end of file
+Index: app/src/main/java/com/example/equalityfood/ListaCongelados.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.equalityfood;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\nimport android.view.View;\r\nimport android.widget.Button;\r\nimport android.widget.ImageButton;\r\n\r\npublic class ListaCongelados extends AppCompatActivity {\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_lista_congelados);\r\n\r\n        ImageButton esqueceuSenha = findViewById(R.id.imageButton8);\r\n\r\n        esqueceuSenha.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(ListaCongelados.this, home.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n        Button VerCarrinho = findViewById(R.id.button2);\r\n\r\n        VerCarrinho.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(ListaCongelados.this, Carrinho.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n    }\r\n\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/equalityfood/ListaCongelados.java b/app/src/main/java/com/example/equalityfood/ListaCongelados.java
+--- a/app/src/main/java/com/example/equalityfood/ListaCongelados.java	(revision 1af71eafd62120cda88f404d8db61464a35e0a51)
++++ b/app/src/main/java/com/example/equalityfood/ListaCongelados.java	(date 1699122581872)
+@@ -2,7 +2,10 @@
+ 
+ import androidx.appcompat.app.AppCompatActivity;
+ 
++import android.content.Context;
+ import android.content.Intent;
++import android.net.ConnectivityManager;
++import android.net.NetworkInfo;
+ import android.os.Bundle;
+ import android.view.View;
+ import android.widget.Button;
+@@ -17,6 +20,8 @@
+ 
+         ImageButton esqueceuSenha = findViewById(R.id.imageButton8);
+ 
++        semInternet();
++
+         esqueceuSenha.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+@@ -34,7 +39,16 @@
+                 startActivity(intent);
+             }
+         });
++    }
++
++    public void semInternet(){
++        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
++        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
++
++        if (networkInfo == null || !networkInfo.isConnected()) {
++            Intent intent = new Intent(ListaCongelados.this, telaSemInternet.class);
++            startActivity(intent);
++        }
+     }
+ 
+-
+ }
+\ No newline at end of file
+Index: app/src/main/java/com/example/equalityfood/Perfil.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.equalityfood;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\nimport android.view.View;\r\nimport android.widget.Button;\r\nimport android.widget.ImageButton;\r\nimport android.widget.TextView;\r\nimport com.google.firebase.auth.FirebaseAuth;\r\nimport com.google.firebase.auth.FirebaseUser;\r\n\r\npublic class Perfil extends AppCompatActivity {\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_perfil);\r\n\r\n        ImageButton btnHome2 = findViewById(R.id.btnHome);\r\n\r\n        TextView nomeVis = findViewById(R.id.textView23);\r\n        TextView emailVis = findViewById(R.id.textView24);\r\n        TextView numeroVis = findViewById(R.id.textView26);\r\n        Button btnPolitica = findViewById(R.id.btnPolitica);\r\n\r\n\r\n\r\n        btnHome2.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(Perfil.this, home.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n        btnPolitica.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(Perfil.this, PoliticaPrivacidade.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();\r\n\r\n        if (user != null) {\r\n            String nome = user.getDisplayName();\r\n            String email = user.getEmail();\r\n            String numero = user.getPhoneNumber();\r\n\r\n            nomeVis.setText(nome);\r\n            emailVis.setText(email);\r\n                numeroVis.setText(numero);\r\n        }\r\n\r\n\r\n        ImageButton imageButton13 = findViewById(R.id.imageButton13);\r\n\r\n        imageButton13.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(Perfil.this, Carrinho.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n        ImageButton imageButton3 = findViewById(R.id.imageButton3);\r\n        imageButton3.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(Perfil.this, Pedidos.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n\r\n\r\n        Button textView32 = findViewById(R.id.textView32);\r\n        textView32.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(Perfil.this, EsqueceuSenha.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n\r\n        Button textView30 = findViewById(R.id.btnPolitica);\r\n        textView30.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(Perfil.this, PoliticaPrivacidade.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/equalityfood/Perfil.java b/app/src/main/java/com/example/equalityfood/Perfil.java
+--- a/app/src/main/java/com/example/equalityfood/Perfil.java	(revision 1af71eafd62120cda88f404d8db61464a35e0a51)
++++ b/app/src/main/java/com/example/equalityfood/Perfil.java	(date 1699123436827)
+@@ -2,7 +2,10 @@
+ 
+ import androidx.appcompat.app.AppCompatActivity;
+ 
++import android.content.Context;
+ import android.content.Intent;
++import android.net.ConnectivityManager;
++import android.net.NetworkInfo;
+ import android.os.Bundle;
+ import android.view.View;
+ import android.widget.Button;
+Index: app/src/main/java/com/example/equalityfood/ListaCarneBovina.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.equalityfood;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\nimport android.view.View;\r\nimport android.widget.Button;\r\nimport android.widget.ImageButton;\r\n\r\npublic class ListaCarneBovina extends AppCompatActivity {\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_lista_carne_bovina);\r\n\r\n        ImageButton esqueceuSenha = findViewById(R.id.imageButton8);\r\n\r\n        esqueceuSenha.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(ListaCarneBovina.this, home.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n        Button VerCarrinho = findViewById(R.id.button2);\r\n\r\n        VerCarrinho.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(ListaCarneBovina.this, Carrinho.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n    }\r\n\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/equalityfood/ListaCarneBovina.java b/app/src/main/java/com/example/equalityfood/ListaCarneBovina.java
+--- a/app/src/main/java/com/example/equalityfood/ListaCarneBovina.java	(revision 1af71eafd62120cda88f404d8db61464a35e0a51)
++++ b/app/src/main/java/com/example/equalityfood/ListaCarneBovina.java	(date 1699122581892)
+@@ -2,7 +2,10 @@
+ 
+ import androidx.appcompat.app.AppCompatActivity;
+ 
++import android.content.Context;
+ import android.content.Intent;
++import android.net.ConnectivityManager;
++import android.net.NetworkInfo;
+ import android.os.Bundle;
+ import android.view.View;
+ import android.widget.Button;
+@@ -17,6 +20,7 @@
+ 
+         ImageButton esqueceuSenha = findViewById(R.id.imageButton8);
+ 
++        semInternet();
+         esqueceuSenha.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+@@ -34,7 +38,16 @@
+                 startActivity(intent);
+             }
+         });
++    }
++
++    public void semInternet(){
++        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
++        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
++
++        if (networkInfo == null || !networkInfo.isConnected()) {
++            Intent intent = new Intent(ListaCarneBovina.this, telaSemInternet.class);
++            startActivity(intent);
++        }
+     }
+ 
+-
+ }
+\ No newline at end of file

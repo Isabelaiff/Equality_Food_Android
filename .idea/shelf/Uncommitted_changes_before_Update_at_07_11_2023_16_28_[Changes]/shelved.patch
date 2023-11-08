@@ -1,0 +1,104 @@
+Index: app/src/main/java/com/example/equalityfood/arrumar.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.equalityfood;\r\n\r\npublic class arrumar {\r\n    /*\r\n    somar valor total do carrinho\r\n    menu de navegação\r\n    tela de login aparecer email\r\n    tela perfil não aparece o numero\r\n     entender quais são as telas que o usuario não pode voltar e motivo\r\n     */\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/equalityfood/arrumar.java b/app/src/main/java/com/example/equalityfood/arrumar.java
+--- a/app/src/main/java/com/example/equalityfood/arrumar.java	(revision 57fda3607df268290878369f4c47d47dfe8d059f)
++++ b/app/src/main/java/com/example/equalityfood/arrumar.java	(date 1699379137962)
+@@ -1,11 +1,0 @@
+-package com.example.equalityfood;
+-
+-public class arrumar {
+-    /*
+-    somar valor total do carrinho
+-    menu de navegação
+-    tela de login aparecer email
+-    tela perfil não aparece o numero
+-     entender quais são as telas que o usuario não pode voltar e motivo
+-     */
+-}
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\r\n    id 'com.android.application'\r\n    id 'com.google.gms.google-services'\r\n\r\n}\r\n\r\nandroid {\r\n    namespace 'com.example.equalityfood'\r\n    compileSdk 33\r\n    defaultConfig {\r\n        applicationId \"com.example.equalityfood\"\r\n        minSdk 28\r\n        targetSdk 33\r\n        versionCode 1\r\n        versionName \"1.0\"\r\n        testInstrumentationRunner \"androidx.test.runner.AndroidJUnitRunner\"\r\n    }\r\n    buildTypes {\r\n        release {\r\n            minifyEnabled false\r\n            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'\r\n        }\r\n    }\r\n    compileOptions {\r\n        sourceCompatibility JavaVersion.VERSION_1_8\r\n        targetCompatibility JavaVersion.VERSION_1_8\r\n    }\r\n}\r\n\r\ndependencies {\r\n    implementation 'androidx.appcompat:appcompat:1.6.1'\r\n    implementation 'com.google.android.material:material:1.9.0'\r\n    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'\r\n    implementation 'com.google.android.gms:play-services-base:18.2.0'\r\n    implementation 'androidx.gridlayout:gridlayout:1.0.0'\r\n    implementation 'com.google.firebase:firebase-database:20.2.2'\r\n    implementation 'com.google.firebase:firebase-database-ktx:20.2.2'\r\n    implementation 'com.google.firebase:firebase-auth:22.1.2'\r\n    implementation 'com.android.car.ui:car-ui-lib:2.5.1'\r\n    testImplementation 'junit:junit:4.13.2'\r\n    androidTestImplementation 'androidx.test.ext:junit:1.1.5'\r\n    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'\r\n    implementation 'com.google.android.gms:play-services-auth:19.2.0'\r\n    implementation 'com.google.firebase:firebase-auth:19.2.0'\r\n    implementation 'com.google.android.material:material:1.4.0'\r\n\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/build.gradle b/app/build.gradle
+--- a/app/build.gradle	(revision 57fda3607df268290878369f4c47d47dfe8d059f)
++++ b/app/build.gradle	(date 1699381262584)
+@@ -37,12 +37,11 @@
+     implementation 'com.google.firebase:firebase-database-ktx:20.2.2'
+     implementation 'com.google.firebase:firebase-auth:22.1.2'
+     implementation 'com.android.car.ui:car-ui-lib:2.5.1'
++    implementation 'com.google.firebase:firebase-analytics:20.1.2'
+     testImplementation 'junit:junit:4.13.2'
+     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+     implementation 'com.google.android.gms:play-services-auth:19.2.0'
+     implementation 'com.google.firebase:firebase-auth:19.2.0'
+     implementation 'com.google.android.material:material:1.4.0'
+-
+-
+ }
+\ No newline at end of file
+Index: app/google-services.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\r\n  \"project_info\": {\r\n    \"project_number\": \"953824687911\",\r\n    \"firebase_url\": \"https://dbequalityfood-default-rtdb.firebaseio.com\",\r\n    \"project_id\": \"dbequalityfood\",\r\n    \"storage_bucket\": \"dbequalityfood.appspot.com\"\r\n  },\r\n  \"client\": [\r\n    {\r\n      \"client_info\": {\r\n        \"mobilesdk_app_id\": \"1:953824687911:android:a04cc83984e9a343701b02\",\r\n        \"android_client_info\": {\r\n          \"package_name\": \"com.example.equalityfood\"\r\n        }\r\n      },\r\n      \"oauth_client\": [],\r\n      \"api_key\": [\r\n        {\r\n          \"current_key\": \"AIzaSyBcqqHMvkFAJ-5y1cSi99MczfPV7XhO9TU\"\r\n        }\r\n      ],\r\n      \"services\": {\r\n        \"appinvite_service\": {\r\n          \"other_platform_oauth_client\": []\r\n        }\r\n      }\r\n    }\r\n  ],\r\n  \"configuration_version\": \"1\"\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/google-services.json b/app/google-services.json
+--- a/app/google-services.json	(revision 57fda3607df268290878369f4c47d47dfe8d059f)
++++ b/app/google-services.json	(date 1699380733687)
+@@ -13,7 +13,12 @@
+           "package_name": "com.example.equalityfood"
+         }
+       },
+-      "oauth_client": [],
++      "oauth_client": [
++        {
++          "client_id": "953824687911-ndsev3496g6m2rprmidoqgsj67ubje14.apps.googleusercontent.com",
++          "client_type": 3
++        }
++      ],
+       "api_key": [
+         {
+           "current_key": "AIzaSyBcqqHMvkFAJ-5y1cSi99MczfPV7XhO9TU"
+@@ -21,7 +26,12 @@
+       ],
+       "services": {
+         "appinvite_service": {
+-          "other_platform_oauth_client": []
++          "other_platform_oauth_client": [
++            {
++              "client_id": "953824687911-ndsev3496g6m2rprmidoqgsj67ubje14.apps.googleusercontent.com",
++              "client_type": 3
++            }
++          ]
+         }
+       }
+     }
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ExternalStorageConfigurationManager\" enabled=\"true\" />\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_11\" project-jdk-name=\"jbr-17\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/build/classes\" />\r\n  </component>\r\n  <component name=\"ProjectType\">\r\n    <option name=\"id\" value=\"Android\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision 57fda3607df268290878369f4c47d47dfe8d059f)
++++ b/.idea/misc.xml	(date 1699380796881)
+@@ -1,7 +1,7 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ExternalStorageConfigurationManager" enabled="true" />
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="jbr-17" project-jdk-type="JavaSDK">
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_17_PREVIEW" project-jdk-name="jbr-17" project-jdk-type="JavaSDK">
+     <output url="file://$PROJECT_DIR$/build/classes" />
+   </component>
+   <component name="ProjectType">
