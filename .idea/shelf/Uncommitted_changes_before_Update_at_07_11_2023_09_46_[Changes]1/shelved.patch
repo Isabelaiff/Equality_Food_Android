@@ -1,0 +1,247 @@
+Index: app/src/main/java/com/example/equalityfood/Perfil.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.equalityfood;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\nimport android.view.MenuItem;\r\nimport android.view.View;\r\nimport android.widget.Button;\r\nimport android.widget.TextView;\r\n\r\nimport com.google.android.material.bottomnavigation.BottomNavigationView;\r\nimport com.google.firebase.auth.FirebaseAuth;\r\nimport com.google.firebase.auth.FirebaseUser;\r\n\r\npublic class Perfil extends AppCompatActivity {\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_perfil);\r\n\r\n//        ImageButton btnHome2 = findViewById(R.id.btnHome);\r\n\r\n        TextView nomeVis = findViewById(R.id.textView23);\r\n        TextView emailVis = findViewById(R.id.textView24);\r\n        TextView numeroVis = findViewById(R.id.textView26);\r\n        Button btnPolitica = findViewById(R.id.btnPolitica);\r\n\r\n\r\n\r\n//        btnHome2.setOnClickListener(new View.OnClickListener() {\r\n//            @Override\r\n//            public void onClick(View v) {\r\n//                Intent intent = new Intent(Perfil.this, home.class);\r\n//                startActivity(intent);\r\n//            }\r\n//        });\r\n\r\n        btnPolitica.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(Perfil.this, PoliticaPrivacidade.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();\r\n\r\n        if (user != null) {\r\n            String nome = user.getDisplayName();\r\n            String email = user.getEmail();\r\n            String numero = user.getPhoneNumber();\r\n\r\n            nomeVis.setText(nome);\r\n            emailVis.setText(email);\r\n            numeroVis.setText(numero);\r\n        }\r\n\r\n\r\n//        ImageButton imageButton13 = findViewById(R.id.imageButton13);\r\n\r\n//        imageButton13.setOnClickListener(new View.OnClickListener() {\r\n//            @Override\r\n//            public void onClick(View v) {\r\n//                Intent intent = new Intent(Perfil.this, Carrinho.class);\r\n//                startActivity(intent);\r\n//            }\r\n//        });\r\n\r\n//        ImageButton imageButton3 = findViewById(R.id.imageButton3);\r\n//        imageButton3.setOnClickListener(new View.OnClickListener() {\r\n//            @Override\r\n//            public void onClick(View v) {\r\n//                Intent intent = new Intent(Perfil.this, Pedidos.class);\r\n//                startActivity(intent);\r\n//            }\r\n//        });\r\n\r\n\r\n\r\n        Button textView32 = findViewById(R.id.textView32);\r\n        textView32.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(Perfil.this, EsqueceuSenha.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n\r\n        Button textView30 = findViewById(R.id.btnPolitica);\r\n        textView30.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(Perfil.this, PoliticaPrivacidade.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n//        ImageButton imageButton12 = findViewById(R.id.imageButton12);\r\n//        imageButton12.setOnClickListener(new View.OnClickListener() {\r\n//            @Override\r\n//            public void onClick(View v) {\r\n//                Intent intent = new Intent(Perfil.this, Foto.class);\r\n//                startActivity(intent);\r\n//            }\r\n//        });\r\n\r\n        Button editarInfo = findViewById(R.id.button);\r\n        editarInfo.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(Perfil.this, AtualizarPerfil.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n        Button logout = findViewById(R.id.logout_button);\r\n\r\n        logout.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                FirebaseAuth.getInstance().signOut();\r\n\r\n                Intent intent = new Intent(Perfil.this, Login.class);\r\n                startActivity(intent);\r\n                finish();\r\n            }\r\n        });\r\n\r\n        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);\r\n\r\n        bottomNavigationView.setSelectedItemId(R.id.btnPerfil2);\r\n        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {\r\n            @Override\r\n            public boolean onNavigationItemSelected(@NonNull MenuItem item) {\r\n                switch (item.getItemId()) {\r\n                    case R.id.btnPerfil2:\r\n                        return true;\r\n                    case R.id.imageButton4:\r\n                        startActivity(new Intent(getApplicationContext(), Pedidos.class));\r\n                        overridePendingTransition(0, 0);\r\n                        return true;\r\n                    case R.id.imageButton:\r\n                        startActivity(new Intent(getApplicationContext(), Carrinho.class));\r\n                        overridePendingTransition(0, 0);\r\n                        return true;\r\n                    case R.id.menu_page1:\r\n                        startActivity(new Intent(getApplicationContext(), home.class));\r\n                        overridePendingTransition(0, 0);\r\n                        return true;\r\n                }\r\n                return false;\r\n            }\r\n        });\r\n\r\n    }\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/equalityfood/Perfil.java b/app/src/main/java/com/example/equalityfood/Perfil.java
+--- a/app/src/main/java/com/example/equalityfood/Perfil.java	
++++ b/app/src/main/java/com/example/equalityfood/Perfil.java	
+@@ -8,6 +8,7 @@
+ import android.view.MenuItem;
+ import android.view.View;
+ import android.widget.Button;
++import android.widget.ImageButton;
+ import android.widget.TextView;
+ 
+ import com.google.android.material.bottomnavigation.BottomNavigationView;
+@@ -27,16 +28,17 @@
+         TextView emailVis = findViewById(R.id.textView24);
+         TextView numeroVis = findViewById(R.id.textView26);
+         Button btnPolitica = findViewById(R.id.btnPolitica);
++        Button alterarLoc = findViewById(R.id.textView31);
++        ImageButton btnAlterarFoto = findViewById(R.id.imageButton12);
+ 
+ 
+-
+-//        btnHome2.setOnClickListener(new View.OnClickListener() {
+-//            @Override
+-//            public void onClick(View v) {
+-//                Intent intent = new Intent(Perfil.this, home.class);
+-//                startActivity(intent);
+-//            }
+-//        });
++        alterarLoc.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View v) {
++                Intent intent = new Intent(Perfil.this, LocalizacaoEntrega.class);
++                startActivity(intent);
++            }
++        });
+ 
+         btnPolitica.setOnClickListener(new View.OnClickListener() {
+             @Override
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\r\n    id 'com.android.application'\r\n    id 'com.google.gms.google-services'\r\n\r\n}\r\n\r\nandroid {\r\n    namespace 'com.example.equalityfood'\r\n    compileSdk 33\r\n    defaultConfig {\r\n        applicationId \"com.example.equalityfood\"\r\n        minSdk 28\r\n        targetSdk 33\r\n        versionCode 1\r\n        versionName \"1.0\"\r\n        testInstrumentationRunner \"androidx.test.runner.AndroidJUnitRunner\"\r\n    }\r\n    buildTypes {\r\n        release {\r\n            minifyEnabled false\r\n            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'\r\n        }\r\n    }\r\n\r\n    buildFeatures{\r\n        viewBinding true\r\n    }\r\n    compileOptions {\r\n        sourceCompatibility JavaVersion.VERSION_1_8\r\n        targetCompatibility JavaVersion.VERSION_1_8\r\n    }\r\n}\r\n\r\ndependencies {\r\n    implementation 'androidx.appcompat:appcompat:1.6.1'\r\n    implementation 'com.google.android.material:material:1.9.0'\r\n    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'\r\n    implementation 'com.google.android.gms:play-services-base:18.2.0'\r\n    implementation 'androidx.gridlayout:gridlayout:1.0.0'\r\n    implementation 'com.google.firebase:firebase-database:20.2.2'\r\n    implementation 'com.google.firebase:firebase-database-ktx:20.2.2'\r\n    implementation 'com.google.firebase:firebase-auth:22.1.2'\r\n    implementation 'com.android.car.ui:car-ui-lib:2.5.1'\r\n    testImplementation 'junit:junit:4.13.2'\r\n    androidTestImplementation 'androidx.test.ext:junit:1.1.5'\r\n    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'\r\n    implementation 'com.google.android.gms:play-services-auth:19.2.0'\r\n    implementation 'com.google.firebase:firebase-auth:19.2.0'\r\n    implementation 'com.google.android.material:material:1.4.0'\r\n    implementation 'androidx.cardview:cardview:1.0.0'\r\n    implementation 'androidx.core:core:1.7.0'\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/build.gradle b/app/build.gradle
+--- a/app/build.gradle	
++++ b/app/build.gradle	
+@@ -50,4 +50,4 @@
+     implementation 'androidx.cardview:cardview:1.0.0'
+     implementation 'androidx.core:core:1.7.0'
+ 
+-}
+\ No newline at end of file
++}
+Index: app/src/main/java/com/example/equalityfood/AtualizarPerfil.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.equalityfood;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.content.Context;\r\nimport android.content.Intent;\r\nimport android.net.ConnectivityManager;\r\nimport android.net.NetworkInfo;\r\nimport android.os.Bundle;\r\nimport android.text.TextUtils;\r\nimport android.view.View;\r\nimport android.widget.Button;\r\nimport android.widget.EditText;\r\nimport android.widget.Toast;\r\n\r\nimport com.google.firebase.auth.FirebaseAuth;\r\nimport com.google.firebase.auth.FirebaseUser;\r\nimport com.google.firebase.auth.UserProfileChangeRequest;\r\nimport com.google.firebase.database.DatabaseReference;\r\nimport com.google.firebase.database.FirebaseDatabase;\r\n\r\npublic class AtualizarPerfil extends AppCompatActivity {\r\n\r\n    private EditText alterarNome;\r\n    private EditText alterarNumero;\r\n    private EditText alterarEmail;\r\n    private Button btnAlterar;\r\n\r\n    private Button voltar_button;\r\n\r\n    private FirebaseAuth mAuth;\r\n    private DatabaseReference mDatabase;\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_atualizar_perfil);\r\n\r\n        mAuth = FirebaseAuth.getInstance();\r\n        mDatabase = FirebaseDatabase.getInstance().getReference();\r\n\r\n        alterarNome = findViewById(R.id.nomeCompleto);\r\n        alterarNumero = findViewById(R.id.numTelefone);\r\n        alterarEmail = findViewById(R.id.email);\r\n        btnAlterar = findViewById(R.id.cadastrar_button);\r\n\r\n        semInternet();\r\n\r\n        FirebaseUser user = mAuth.getCurrentUser();\r\n        if (user != null) {\r\n            alterarNome.setText(user.getDisplayName());\r\n            alterarEmail.setText(user.getEmail());\r\n            alterarNumero.setText(user.getPhoneNumber());\r\n        }\r\n\r\n        voltar_button.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View view) {\r\n                Intent intent = new Intent(AtualizarPerfil.this, Perfil.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n        btnAlterar.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                // Obtenha os novos dados dos campos de texto\r\n                String novoNome = alterarNome.getText().toString().trim();\r\n                String novoNumero = alterarNumero.getText().toString().trim();\r\n                String novoEmail = alterarEmail.getText().toString().trim();\r\n\r\n                // Valide os campos (adicione validações conforme necessário)\r\n                if (TextUtils.isEmpty(novoNome) || TextUtils.isEmpty(novoNumero) || TextUtils.isEmpty(novoEmail)) {\r\n                    Toast.makeText(AtualizarPerfil.this, \"Por favor, preencha todos os campos.\", Toast.LENGTH_SHORT).show();\r\n                } else {\r\n                    // Atualize os dados do usuário\r\n                    atualizarDados(novoNome, novoNumero, novoEmail);\r\n                }\r\n            }\r\n        });\r\n    }\r\n\r\n    private void atualizarDados(String novoNome, String novoNumero, String novoEmail) {\r\n        FirebaseUser user = mAuth.getCurrentUser();\r\n        if (user != null) {\r\n            String userID = user.getUid();\r\n            DatabaseReference usuarioRef = mDatabase.child(\"usuarios\").child(userID);\r\n\r\n            user.updateProfile(new UserProfileChangeRequest.Builder()\r\n                            .setDisplayName(novoNome)\r\n                            .build())\r\n                    .addOnCompleteListener(task -> {\r\n                        if (task.isSuccessful()) {\r\n                            usuarioRef.child(\"nome\").setValue(novoNome);\r\n                            usuarioRef.child(\"numero\").setValue(novoNumero);\r\n                            usuarioRef.child(\"email\").setValue(novoEmail);\r\n\r\n                            Toast.makeText(AtualizarPerfil.this, \"Dados atualizados com sucesso!\", Toast.LENGTH_SHORT).show();\r\n                        } else {\r\n                            // Falha ao atualizar dados\r\n                            Toast.makeText(AtualizarPerfil.this, \"Falha ao atualizar dados. Por favor, tente novamente mais tarde.\", Toast.LENGTH_SHORT).show();\r\n                        }\r\n                    });\r\n        }\r\n    }\r\n\r\n    public void semInternet() {\r\n        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);\r\n        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();\r\n        if (networkInfo == null || !networkInfo.isConnected()) {\r\n            // Abre a tela de sem internet\r\n            Intent intent = new Intent(this, telaSemInternet.class);\r\n            startActivity(intent);\r\n        }\r\n    }\r\n\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/equalityfood/AtualizarPerfil.java b/app/src/main/java/com/example/equalityfood/AtualizarPerfil.java
+--- a/app/src/main/java/com/example/equalityfood/AtualizarPerfil.java	
++++ b/app/src/main/java/com/example/equalityfood/AtualizarPerfil.java	
+@@ -39,10 +39,10 @@
+         mAuth = FirebaseAuth.getInstance();
+         mDatabase = FirebaseDatabase.getInstance().getReference();
+ 
+-        alterarNome = findViewById(R.id.nomeCompleto);
+-        alterarNumero = findViewById(R.id.numTelefone);
+-        alterarEmail = findViewById(R.id.email);
+-        btnAlterar = findViewById(R.id.cadastrar_button);
++        alterarNome = findViewById(R.id.novoCEP);
++        alterarNumero = findViewById(R.id.novoNumero);
++        alterarEmail = findViewById(R.id.novoComplemento);
++        btnAlterar = findViewById(R.id.btnAlterarLoc);
+ 
+         semInternet();
+ 
+Index: .idea/deploymentTargetDropDown.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"deploymentTargetDropDown\">\r\n    <targetSelectedWithDropDown>\r\n      <Target>\r\n        <type value=\"QUICK_BOOT_TARGET\" />\r\n        <deviceKey>\r\n          <Key>\r\n            <type value=\"VIRTUAL_DEVICE_PATH\" />\r\n            <value value=\"C:\\Users\\guilhermemarques-ieg\\.android\\avd\\Pixel_6_Pro_API_27.avd\" />\r\n          </Key>\r\n        </deviceKey>\r\n      </Target>\r\n    </targetSelectedWithDropDown>\r\n    <timeTargetWasSelectedWithDropDown value=\"2023-11-04T21:37:21.812957200Z\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/deploymentTargetDropDown.xml b/.idea/deploymentTargetDropDown.xml
+--- a/.idea/deploymentTargetDropDown.xml	
++++ b/.idea/deploymentTargetDropDown.xml	
+@@ -7,11 +7,11 @@
+         <deviceKey>
+           <Key>
+             <type value="VIRTUAL_DEVICE_PATH" />
+-            <value value="C:\Users\guilhermemarques-ieg\.android\avd\Pixel_6_Pro_API_27.avd" />
++            <value value="C:\Users\isabellaluiz-ieg\.android\avd\10.1_WXGA_Tablet_API_34.avd" />
+           </Key>
+         </deviceKey>
+       </Target>
+     </targetSelectedWithDropDown>
+-    <timeTargetWasSelectedWithDropDown value="2023-11-04T21:37:21.812957200Z" />
++    <timeTargetWasSelectedWithDropDown value="2023-11-06T23:46:42.344813600Z" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: app/src/main/java/com/example/equalityfood/LocalizacaoEntrega.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.equalityfood;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.content.Context;\r\nimport android.content.Intent;\r\nimport android.net.ConnectivityManager;\r\nimport android.net.NetworkInfo;\r\nimport android.os.Bundle;\r\nimport android.view.View;\r\nimport android.widget.Button;\r\nimport android.widget.ImageButton;\r\n\r\npublic class LocalizacaoEntrega extends AppCompatActivity {\r\n\r\n    ImageButton voltar = findViewById(R.id.imageButton5);\r\n    Button concluido = findViewById(R.id.btnCodigo);\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_localizacao_entrega);\r\n\r\n        semInternet();\r\n\r\n        voltar.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(LocalizacaoEntrega.this, Perfil.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n        concluido.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(LocalizacaoEntrega.this, Perfil.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n    }\r\n\r\n    public void semInternet() {\r\n        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);\r\n        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();\r\n        if (networkInfo == null || !networkInfo.isConnected()) {\r\n            // Abre a tela de sem internet\r\n            Intent intent = new Intent(this, telaSemInternet.class);\r\n            startActivity(intent);\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/equalityfood/LocalizacaoEntrega.java b/app/src/main/java/com/example/equalityfood/LocalizacaoEntrega.java
+--- a/app/src/main/java/com/example/equalityfood/LocalizacaoEntrega.java	
++++ b/app/src/main/java/com/example/equalityfood/LocalizacaoEntrega.java	
+@@ -9,12 +9,26 @@
+ import android.os.Bundle;
+ import android.view.View;
+ import android.widget.Button;
++import android.widget.EditText;
+ import android.widget.ImageButton;
++import android.widget.Toast;
++
++import com.google.firebase.auth.FirebaseAuth;
++import com.google.firebase.auth.FirebaseUser;
++import com.google.firebase.database.DatabaseReference;
++import com.google.firebase.database.FirebaseDatabase;
++
++import java.util.HashMap;
+ 
+ public class LocalizacaoEntrega extends AppCompatActivity {
+ 
+-    ImageButton voltar = findViewById(R.id.imageButton5);
+-    Button concluido = findViewById(R.id.btnCodigo);
++    ImageButton voltar;
++    Button btnAlterarLoc;
++    EditText novoCEP;
++    EditText novoNum;
++    EditText novoComplemento;
++    private FirebaseAuth mAuth;
++
+ 
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+@@ -23,21 +37,51 @@
+ 
+         semInternet();
+ 
+-        voltar.setOnClickListener(new View.OnClickListener() {
++        mAuth = FirebaseAuth.getInstance();
++
++        voltar = findViewById(R.id.voltar_button);
++        btnAlterarLoc = findViewById(R.id.btnAlterarLoc);
++        novoCEP = findViewById(R.id.novoCEP);
++        novoNum = findViewById(R.id.novoNumero);
++        novoComplemento = findViewById(R.id.novoComplemento);
++        mAuth = FirebaseAuth.getInstance();
++
++        btnAlterarLoc.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+-                Intent intent = new Intent(LocalizacaoEntrega.this, Perfil.class);
+-                startActivity(intent);
++                FirebaseUser user = mAuth.getCurrentUser();
++                if (user != null) {
++                    String uid = user.getUid();
++
++                    String novoCEPTexto = novoCEP.getText().toString();
++                    String novoNumTexto = novoNum.getText().toString();
++                    String novoComplementoTexto = novoComplemento.getText().toString();
++
++                    DatabaseReference usuarioRef = FirebaseDatabase.getInstance().getReference("Usuario").child(uid);
++                    HashMap<String, Object> enderecoMap = new HashMap<>();
++                    enderecoMap.put("CEP", novoCEPTexto);
++                    enderecoMap.put("numEndereco", novoNumTexto);
++                    enderecoMap.put("complemento", novoComplementoTexto);
++
++                    usuarioRef.child("endereco").updateChildren(enderecoMap);
++
++                    Toast.makeText(getApplicationContext(), "Informações de localização atualizadas com sucesso!", Toast.LENGTH_SHORT).show();
++                } else {
++                    Intent intent = new Intent(LocalizacaoEntrega.this, Perfil.class);
++                    startActivity(intent);
++                    finish();
++                }
+             }
+         });
+ 
+-        concluido.setOnClickListener(new View.OnClickListener() {
++        voltar.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 Intent intent = new Intent(LocalizacaoEntrega.this, Perfil.class);
+                 startActivity(intent);
+             }
+         });
++
+     }
+ 
+     public void semInternet() {
+Index: app/src/main/res/layout/activity_esqueceu_senha.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".EsqueceuSenha\">\r\n\r\n    <ImageView\r\n        android:id=\"@+id/imageView6\"\r\n        android:layout_width=\"725dp\"\r\n        android:layout_height=\"360dp\"\r\n        android:layout_marginBottom=\"752dp\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.444\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:srcCompat=\"@drawable/cabecalho\" />\r\n\r\n    <ImageButton\r\n        android:id=\"@+id/voltar_button2\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"344dp\"\r\n        android:background=\"#F9F9F9\"\r\n        android:contentDescription=\"X\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.068\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\"\r\n        app:srcCompat=\"@drawable/header\" />\r\n\r\n    <EditText\r\n        android:id=\"@+id/inputEmail\"\r\n        android:layout_width=\"475dp\"\r\n        android:layout_height=\"54dp\"\r\n        android:layout_marginTop=\"228dp\"\r\n        android:textColor=\"@color/black\"\r\n        android:textSize=\"14sp\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/textView\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView5\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginEnd=\"488dp\"\r\n        android:text=\"Digite seu e-mail\"\r\n        app:layout_constraintBottom_toTopOf=\"@+id/inputEmail\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/textView\"\r\n        app:layout_constraintVertical_bias=\"1.0\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"133dp\"\r\n        android:layout_marginTop=\"344dp\"\r\n        android:layout_marginEnd=\"134dp\"\r\n        android:text=\"Alterar senha\"\r\n        android:textColor=\"@color/black\"\r\n        android:textSize=\"34sp\"\r\n        android:textStyle=\"normal\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n    <Button\r\n        android:id=\"@+id/btnCodigo\"\r\n        android:layout_width=\"307dp\"\r\n        android:layout_height=\"60dp\"\r\n        android:backgroundTint=\"#8F0404\"\r\n        android:hint=\"Enviar email de alteração\"\r\n        android:background=\"@drawable/borda_botao\"\r\n        android:textColorHint=\"#FFFFFF\"\r\n        android:textSize=\"20sp\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/inputEmail\"\r\n        app:layout_constraintVertical_bias=\"0.124\" />\r\n\r\n</androidx.constraintlayout.widget.ConstraintLayout>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_esqueceu_senha.xml b/app/src/main/res/layout/activity_esqueceu_senha.xml
+--- a/app/src/main/res/layout/activity_esqueceu_senha.xml	
++++ b/app/src/main/res/layout/activity_esqueceu_senha.xml	
+@@ -37,6 +37,7 @@
+         android:layout_marginTop="228dp"
+         android:textColor="@color/black"
+         android:textSize="14sp"
++        android:hint="+5511000000000"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/textView" />
+@@ -46,6 +47,7 @@
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginEnd="488dp"
++        android:inputType="phone"
+         android:text="Digite seu e-mail"
+         app:layout_constraintBottom_toTopOf="@+id/inputEmail"
+         app:layout_constraintEnd_toEndOf="parent"
+@@ -72,7 +74,7 @@
+         android:layout_width="307dp"
+         android:layout_height="60dp"
+         android:backgroundTint="#8F0404"
+-        android:hint="Enviar email de alteração"
++        android:hint="Enviar e-mail de alteração"
+         android:background="@drawable/borda_botao"
+         android:textColorHint="#FFFFFF"
+         android:textSize="20sp"
+@@ -83,3 +85,5 @@
+         app:layout_constraintVertical_bias="0.124" />
+ 
+ </androidx.constraintlayout.widget.ConstraintLayout>
++
++

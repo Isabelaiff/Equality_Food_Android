@@ -213,7 +213,8 @@ public class criarConta extends AppCompatActivity {
                                 if (user != null) {
                                     // Armazene o número de telefone no Firebase
                                     String uid = user.getUid();
-                                    DatabaseReference usuariosRef = FirebaseDatabase.getInstance().getReference().child("Usuario").push();
+                                    DatabaseReference usuariosRef = FirebaseDatabase.getInstance().getReference().child("Usuario").child(uid);
+
 
 
                                     // Outros dados do usuário

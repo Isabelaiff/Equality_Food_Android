@@ -60,6 +60,7 @@ public class Adapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup parent) {
         view = inflater.inflate(R.layout.activity_adapter, null);
 
+
         TextView valorTotal = view.findViewById(R.id.total);
         ImageView card = view.findViewById(R.id.imageView2);
         ImageView removeButton = view.findViewById(R.id.lixo);

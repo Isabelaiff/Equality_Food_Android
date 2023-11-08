@@ -30,6 +30,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/voltar">
 
+<!--        <LinearLayout-->
+<!--            android:id="@+id/linearLayout"-->
+<!--            android:layout_width="762dp"-->
+<!--            android:layout_height="602dp"-->
+<!--            android:orientation="vertical">-->
+
+<!--            <ListView-->
+<!--                android:id="@+id/listaview"-->
+<!--                android:layout_width="762dp"-->
+<!--                android:layout_height="636dp"-->
+<!--                android:textAlignment="center" />-->
+<!--        </LinearLayout>-->
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="762dp"
@@ -42,6 +54,7 @@
                 android:layout_height="636dp"
                 android:textAlignment="center" />
         </LinearLayout>
+
     </ScrollView>
 
     <ImageView
