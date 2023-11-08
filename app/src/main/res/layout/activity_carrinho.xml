@@ -23,8 +23,8 @@
         app:layout_constraintVertical_bias="0.039" />
 
     <ScrollView
-        android:layout_width="752dp"
-        android:layout_height="831dp"
+        android:layout_width="760dp"
+        android:layout_height="881dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,13 +45,13 @@
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="762dp"
-            android:layout_height="602dp"
+            android:layout_height="402dp"
             android:orientation="vertical">
 
             <ListView
                 android:id="@+id/listaview"
                 android:layout_width="762dp"
-                android:layout_height="636dp"
+                android:layout_height="619dp"
                 android:textAlignment="center" />
         </LinearLayout>
 

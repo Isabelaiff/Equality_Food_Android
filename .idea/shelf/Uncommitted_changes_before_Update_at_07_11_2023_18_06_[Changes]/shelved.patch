@@ -1,0 +1,436 @@
+Index: app/src/main/java/com/example/equalityfood/Adapter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.equalityfood;\r\n\r\nimport android.content.Context;\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.widget.BaseAdapter;\r\nimport android.widget.Button;\r\nimport android.widget.ImageView;\r\nimport android.widget.TextView;\r\n\r\nimport java.util.List;\r\n\r\npublic class Adapter extends BaseAdapter {\r\n    private Context applicationContext;\r\n    private LayoutInflater inflater;\r\n    private String[] prod;\r\n    private int[] img;\r\n    private int[] qtdvetor;\r\n    private double[] precoVet;\r\n    private List<Carrinho> cardList;\r\n\r\n\r\n    public Adapter(Context applicationContext, String[] prod, int[] img, double[] preco, List<Carrinho> cardList) {\r\n        this.applicationContext = applicationContext;\r\n        this.prod = prod;\r\n        this.img = img;\r\n        this.precoVet = preco;\r\n        this.cardList = cardList;\r\n        this.inflater = LayoutInflater.from(applicationContext);\r\n    }\r\n\r\n    @Override\r\n    public int getCount() {\r\n        return prod.length;\r\n    }\r\n\r\n    @Override\r\n    public Object getItem(int position) {\r\n        return prod.length;\r\n    }\r\n\r\n    @Override\r\n    public long getItemId(int position) {\r\n        return position;\r\n    }\r\n\r\n    @Override\r\n    public View getView(int i, View view, ViewGroup parent) {\r\n        view = inflater.inflate(R.layout.activity_adapter, null);\r\n\r\n        ImageView card = view.findViewById(R.id.imageView2);\r\n        ImageView removeButton = view.findViewById(R.id.lixo);\r\n        ImageView icon = view.findViewById(R.id.imgProd);\r\n        TextView nome = view.findViewById(R.id.produto);\r\n        TextView precoView = view.findViewById(R.id.preco);\r\n        TextView textViewQtd = view.findViewById(R.id.qtd);\r\n        Button buttonIncrement = view.findViewById(R.id.mais);\r\n        Button button = view.findViewById(R.id.menos);\r\n        TextView valor = view.findViewById(R.id.produto2);\r\n        TextView moeda = view.findViewById(R.id.moeda);\r\n\r\n        nome.setText(prod[i]);\r\n        precoView.setText(String.valueOf(precoVet[i]));\r\n        icon.setImageResource(img[i]);\r\n        textViewQtd.setText(\"1\");\r\n\r\n\r\n        removeButton.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                removeButton.setVisibility(View.GONE);\r\n                icon.setVisibility(View.GONE);\r\n                nome.setVisibility(View.GONE);\r\n                precoView.setVisibility(View.GONE);\r\n                textViewQtd.setVisibility(View.GONE);\r\n                buttonIncrement.setVisibility(View.GONE);\r\n                button.setVisibility(View.GONE);\r\n                valor.setVisibility(View.GONE);\r\n                card.setVisibility(View.GONE);\r\n                moeda.setVisibility(View.GONE);\r\n\r\n            }\r\n        });\r\n\r\n        buttonIncrement.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View view) {\r\n                int qtd = Integer.parseInt(textViewQtd.getText().toString());\r\n                qtd++;\r\n\r\n                textViewQtd.setText(String.valueOf(qtd));\r\n            }\r\n        });\r\n\r\n        button.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View view) {\r\n                int qtd = Integer.parseInt(textViewQtd.getText().toString());\r\n\r\n                if (qtd > 1) {\r\n                    qtd--;\r\n                    textViewQtd.setText(String.valueOf(qtd));\r\n                }\r\n            }\r\n        });\r\n\r\n        return view;\r\n        }\r\n\r\n    }\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/equalityfood/Adapter.java b/app/src/main/java/com/example/equalityfood/Adapter.java
+--- a/app/src/main/java/com/example/equalityfood/Adapter.java	(revision 3932deb79a9ece743cd096ac87e7bb15d0603f51)
++++ b/app/src/main/java/com/example/equalityfood/Adapter.java	(date 1699390886204)
+@@ -1,6 +1,12 @@
+ package com.example.equalityfood;
+ 
++import static android.system.Os.remove;
++
++import static java.security.AccessController.getContext;
++
+ import android.content.Context;
++import android.os.Bundle;
++import android.system.ErrnoException;
+ import android.view.LayoutInflater;
+ import android.view.View;
+ import android.view.ViewGroup;
+@@ -9,6 +15,8 @@
+ import android.widget.ImageView;
+ import android.widget.TextView;
+ 
++import androidx.annotation.NonNull;
++
+ import java.util.List;
+ 
+ public class Adapter extends BaseAdapter {
+@@ -50,15 +58,13 @@
+         view = inflater.inflate(R.layout.activity_adapter, null);
+ 
+         ImageView card = view.findViewById(R.id.imageView2);
+-        ImageView removeButton = view.findViewById(R.id.lixo);
++        Button removeButton = view.findViewById(R.id.button);
+         ImageView icon = view.findViewById(R.id.imgProd);
+         TextView nome = view.findViewById(R.id.produto);
+         TextView precoView = view.findViewById(R.id.preco);
+         TextView textViewQtd = view.findViewById(R.id.qtd);
+         Button buttonIncrement = view.findViewById(R.id.mais);
+         Button button = view.findViewById(R.id.menos);
+-        TextView valor = view.findViewById(R.id.produto2);
+-        TextView moeda = view.findViewById(R.id.moeda);
+ 
+         nome.setText(prod[i]);
+         precoView.setText(String.valueOf(precoVet[i]));
+@@ -66,22 +72,13 @@
+         textViewQtd.setText("1");
+ 
+ 
+-        removeButton.setOnClickListener(new View.OnClickListener() {
+-            @Override
+-            public void onClick(View v) {
+-                removeButton.setVisibility(View.GONE);
+-                icon.setVisibility(View.GONE);
+-                nome.setVisibility(View.GONE);
+-                precoView.setVisibility(View.GONE);
+-                textViewQtd.setVisibility(View.GONE);
+-                buttonIncrement.setVisibility(View.GONE);
+-                button.setVisibility(View.GONE);
+-                valor.setVisibility(View.GONE);
+-                card.setVisibility(View.GONE);
+-                moeda.setVisibility(View.GONE);
+-
+-            }
+-        });
++//        removeButton.setOnClickListener(new View.OnClickListener() {
++//            @Override
++//            public void onClick(View v) {
++//                cardList.remove(card);
++//                notifyDataSetChanged();
++//            }
++//        });
+ 
+         buttonIncrement.setOnClickListener(new View.OnClickListener() {
+             @Override
+Index: app/src/main/res/values/style.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<resources>\r\n    <style name=\"SplashTheme\" parent=\"Theme.AppCompat.Light.NoActionBar\">\r\n        <item name=\"android:windowBackground\">@drawable/logo</item>\r\n    </style>\r\n    <style name=\"TextosCustomizados\" parent=\"TextAppearance.Design.Tab\">\r\n        <item name=\"textAllCaps\">false</item>\r\n        <item name=\"android:textAllCaps\">false</item>\r\n        <item name=\"android:textSize\">18sp</item>\r\n    </style>\r\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values/style.xml b/app/src/main/res/values/style.xml
+--- a/app/src/main/res/values/style.xml	(revision 3932deb79a9ece743cd096ac87e7bb15d0603f51)
++++ b/app/src/main/res/values/style.xml	(date 1699390887428)
+@@ -3,9 +3,4 @@
+     <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+         <item name="android:windowBackground">@drawable/logo</item>
+     </style>
+-    <style name="TextosCustomizados" parent="TextAppearance.Design.Tab">
+-        <item name="textAllCaps">false</item>
+-        <item name="android:textAllCaps">false</item>
+-        <item name="android:textSize">18sp</item>
+-    </style>
+ </resources>
+\ No newline at end of file
+Index: app/src/main/java/com/example/equalityfood/AtualizarPerfil.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.equalityfood;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.content.Context;\r\nimport android.content.Intent;\r\nimport android.net.ConnectivityManager;\r\nimport android.net.NetworkInfo;\r\nimport android.os.Bundle;\r\nimport android.text.TextUtils;\r\nimport android.view.View;\r\nimport android.widget.Button;\r\nimport android.widget.EditText;\r\nimport android.widget.Toast;\r\n\r\nimport com.google.firebase.auth.FirebaseAuth;\r\nimport com.google.firebase.auth.FirebaseUser;\r\nimport com.google.firebase.auth.UserProfileChangeRequest;\r\nimport com.google.firebase.database.DatabaseReference;\r\nimport com.google.firebase.database.FirebaseDatabase;\r\n\r\npublic class AtualizarPerfil extends AppCompatActivity {\r\n\r\n    private EditText alterarNome;\r\n    private EditText alterarNumero;\r\n    private EditText alterarEmail;\r\n    private Button btnAlterar;\r\n\r\n    private Button voltar_button;\r\n\r\n    private FirebaseAuth mAuth;\r\n    private DatabaseReference mDatabase;\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_atualizar_perfil);\r\n\r\n        mAuth = FirebaseAuth.getInstance();\r\n        mDatabase = FirebaseDatabase.getInstance().getReference();\r\n\r\n        alterarNome = findViewById(R.id.nomeCompleto);\r\n        alterarNumero = findViewById(R.id.numTelefone);\r\n        alterarEmail = findViewById(R.id.email);\r\n        btnAlterar = findViewById(R.id.cadastrar_button);\r\n\r\n        semInternet();\r\n\r\n        FirebaseUser user = mAuth.getCurrentUser();\r\n        if (user != null) {\r\n            alterarNome.setText(user.getDisplayName());\r\n            alterarEmail.setText(user.getEmail());\r\n            alterarNumero.setText(user.getPhoneNumber());\r\n        }\r\n\r\n        voltar_button.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View view) {\r\n                Intent intent = new Intent(AtualizarPerfil.this, Perfil.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n        btnAlterar.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                // Obtenha os novos dados dos campos de texto\r\n                String novoNome = alterarNome.getText().toString().trim();\r\n                String novoNumero = alterarNumero.getText().toString().trim();\r\n                String novoEmail = alterarEmail.getText().toString().trim();\r\n\r\n                // Valide os campos (adicione validações conforme necessário)\r\n                if (TextUtils.isEmpty(novoNome) || TextUtils.isEmpty(novoNumero) || TextUtils.isEmpty(novoEmail)) {\r\n                    Toast.makeText(AtualizarPerfil.this, \"Por favor, preencha todos os campos.\", Toast.LENGTH_SHORT).show();\r\n                } else {\r\n                    // Atualize os dados do usuário\r\n                    atualizarDados(novoNome, novoNumero, novoEmail);\r\n                }\r\n            }\r\n        });\r\n    }\r\n\r\n    private void atualizarDados(String novoNome, String novoNumero, String novoEmail) {\r\n        FirebaseUser user = mAuth.getCurrentUser();\r\n        if (user != null) {\r\n            String userID = user.getUid();\r\n            DatabaseReference usuarioRef = mDatabase.child(\"usuarios\").child(userID);\r\n\r\n            user.updateProfile(new UserProfileChangeRequest.Builder()\r\n                            .setDisplayName(novoNome)\r\n                            .build())\r\n                    .addOnCompleteListener(task -> {\r\n                        if (task.isSuccessful()) {\r\n                            usuarioRef.child(\"nome\").setValue(novoNome);\r\n                            usuarioRef.child(\"numero\").setValue(novoNumero);\r\n                            usuarioRef.child(\"email\").setValue(novoEmail);\r\n\r\n                            Toast.makeText(AtualizarPerfil.this, \"Dados atualizados com sucesso!\", Toast.LENGTH_SHORT).show();\r\n                        } else {\r\n                            // Falha ao atualizar dados\r\n                            Toast.makeText(AtualizarPerfil.this, \"Falha ao atualizar dados. Por favor, tente novamente mais tarde.\", Toast.LENGTH_SHORT).show();\r\n                        }\r\n                    });\r\n        }\r\n    }\r\n\r\n    public void semInternet() {\r\n        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);\r\n        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();\r\n        if (networkInfo == null || !networkInfo.isConnected()) {\r\n            // Abre a tela de sem internet\r\n            Intent intent = new Intent(this, telaSemInternet.class);\r\n            startActivity(intent);\r\n        }\r\n    }\r\n\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/equalityfood/AtualizarPerfil.java b/app/src/main/java/com/example/equalityfood/AtualizarPerfil.java
+--- a/app/src/main/java/com/example/equalityfood/AtualizarPerfil.java	(revision 3932deb79a9ece743cd096ac87e7bb15d0603f51)
++++ b/app/src/main/java/com/example/equalityfood/AtualizarPerfil.java	(date 1699390886254)
+@@ -1,11 +1,6 @@
+ package com.example.equalityfood;
+ 
+ import androidx.appcompat.app.AppCompatActivity;
+-
+-import android.content.Context;
+-import android.content.Intent;
+-import android.net.ConnectivityManager;
+-import android.net.NetworkInfo;
+ import android.os.Bundle;
+ import android.text.TextUtils;
+ import android.view.View;
+@@ -26,8 +21,6 @@
+     private EditText alterarEmail;
+     private Button btnAlterar;
+ 
+-    private Button voltar_button;
+-
+     private FirebaseAuth mAuth;
+     private DatabaseReference mDatabase;
+ 
+@@ -44,22 +37,12 @@
+         alterarEmail = findViewById(R.id.email);
+         btnAlterar = findViewById(R.id.cadastrar_button);
+ 
+-        semInternet();
+-
+         FirebaseUser user = mAuth.getCurrentUser();
+         if (user != null) {
+             alterarNome.setText(user.getDisplayName());
+             alterarEmail.setText(user.getEmail());
+             alterarNumero.setText(user.getPhoneNumber());
+         }
+-
+-        voltar_button.setOnClickListener(new View.OnClickListener() {
+-            @Override
+-            public void onClick(View view) {
+-                Intent intent = new Intent(AtualizarPerfil.this, Perfil.class);
+-                startActivity(intent);
+-            }
+-        });
+         btnAlterar.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+@@ -103,15 +86,5 @@
+         }
+     }
+ 
+-    public void semInternet() {
+-        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+-        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+-        if (networkInfo == null || !networkInfo.isConnected()) {
+-            // Abre a tela de sem internet
+-            Intent intent = new Intent(this, telaSemInternet.class);
+-            startActivity(intent);
+-        }
+-    }
+-
+ 
+ }
+Index: app/src/main/res/layout/activity_pedidos.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<RelativeLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".Pedidos\">\r\n\r\n    <ImageButton\r\n        android:id=\"@+id/close\"\r\n        android:layout_width=\"49dp\"\r\n        android:layout_height=\"48dp\"\r\n        android:layout_marginStart=\"20dp\"\r\n        android:layout_marginTop=\"30dp\"\r\n        android:background=\"#00FFFFFF\"\r\n        android:contentDescription=\"@string/fechar\"\r\n        app:srcCompat=\"@drawable/header\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView\"\r\n        android:layout_width=\"220dp\"\r\n        android:layout_height=\"40dp\"\r\n        android:layout_marginStart=\"300dp\"\r\n        android:layout_marginTop=\"30dp\"\r\n        android:text=\"@string/pedidos\"\r\n        android:textColor=\"#000000\"\r\n        android:textSize=\"28sp\" />\r\n\r\n    <com.google.android.material.tabs.TabLayout\r\n        android:id=\"@+id/tabLayout\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        app:tabIndicatorColor=\"@color/black\"\r\n        app:tabSelectedTextColor=\"@color/black\"\r\n        app:tabTextColor=\"#6A6A6A\"\r\n        android:contentDescription=\"@string/texto_speakable\"\r\n        android:layout_marginTop=\"100dp\"\r\n        app:tabTextAppearance=\"@style/TextosCustomizados\"\r\n        >\r\n\r\n    </com.google.android.material.tabs.TabLayout>\r\n\r\n\r\n    <androidx.viewpager2.widget.ViewPager2\r\n        android:id=\"@+id/pager\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\"\r\n        android:layout_marginTop=\"60dp\"/>\r\n\r\n\r\n</RelativeLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_pedidos.xml b/app/src/main/res/layout/activity_pedidos.xml
+--- a/app/src/main/res/layout/activity_pedidos.xml	(revision 3932deb79a9ece743cd096ac87e7bb15d0603f51)
++++ b/app/src/main/res/layout/activity_pedidos.xml	(date 1699390887274)
+@@ -1,51 +1,134 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
++<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     xmlns:tools="http://schemas.android.com/tools"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+     tools:context=".Pedidos">
+ 
+-    <ImageButton
+-        android:id="@+id/close"
+-        android:layout_width="49dp"
+-        android:layout_height="48dp"
+-        android:layout_marginStart="20dp"
+-        android:layout_marginTop="30dp"
+-        android:background="#00FFFFFF"
+-        android:contentDescription="@string/fechar"
+-        app:srcCompat="@drawable/header" />
+ 
+     <TextView
+         android:id="@+id/textView"
+-        android:layout_width="220dp"
++        android:layout_width="124dp"
+         android:layout_height="40dp"
+-        android:layout_marginStart="300dp"
+-        android:layout_marginTop="30dp"
+-        android:text="@string/pedidos"
++        android:layout_marginEnd="312dp"
++        android:gravity="center"
++        android:text="Pedidos"
+         android:textColor="#000000"
+-        android:textSize="28sp" />
++        android:textSize="28sp"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintTop_toTopOf="parent"
++        app:layout_constraintVertical_bias="0.04" />
++
++    <TextView
++        android:id="@+id/pedido"
++        android:layout_width="207dp"
++        android:layout_height="28dp"
++        android:layout_marginTop="376dp"
++        android:text="Histórico de pedidos"
++        android:textSize="20sp"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.094"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent" />
+ 
+-    <com.google.android.material.tabs.TabLayout
+-        android:id="@+id/tabLayout"
+-        android:layout_width="match_parent"
++    <ImageView
++        android:id="@+id/imageView3"
++        android:layout_width="645dp"
++        android:layout_height="231dp"
++        android:layout_marginTop="20dp"
++        app:layout_constraintBottom_toTopOf="@+id/pedido"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.508"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/textView2"
++        app:layout_constraintVertical_bias="1.0"
++        app:srcCompat="@drawable/rectangle" />
++
++    <TextView
++        android:id="@+id/data"
++        android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+-        app:tabIndicatorColor="@color/black"
+-        app:tabSelectedTextColor="@color/black"
+-        app:tabTextColor="#6A6A6A"
+-        android:contentDescription="@string/texto_speakable"
+-        android:layout_marginTop="100dp"
+-        app:tabTextAppearance="@style/TextosCustomizados"
+-        >
++        android:layout_marginBottom="96dp"
++        android:text="xx/xx/xx às 00:00"
++        android:textSize="18sp"
++        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
++        app:layout_constraintEnd_toStartOf="@+id/imgCesta2"
++        app:layout_constraintHorizontal_bias="0.076"
++        app:layout_constraintStart_toStartOf="@+id/imageView3" />
++
++    <ImageView
++        android:id="@+id/imgCesta2"
++        android:layout_width="89dp"
++        android:layout_height="139dp"
++        android:layout_gravity="center"
++        android:layout_weight="1"
++        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
++        app:layout_constraintEnd_toEndOf="@+id/imageView3"
++        app:layout_constraintHorizontal_bias="0.868"
++        app:layout_constraintStart_toStartOf="@+id/imageView3"
++        app:layout_constraintTop_toBottomOf="@+id/textView2"
++        app:layout_constraintVertical_bias="0.313"
++        tools:srcCompat="@drawable/groupcesta" />
+ 
+-    </com.google.android.material.tabs.TabLayout>
++    <TextView
++        android:id="@+id/textView2"
++        android:layout_width="243dp"
++        android:layout_height="29dp"
++        android:layout_marginTop="36dp"
++        android:text="Em Andamento"
++        android:textSize="20sp"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.118"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/textView" />
+ 
++    <TextView
++        android:id="@+id/valor"
++        android:layout_width="101dp"
++        android:layout_height="35dp"
++        android:layout_marginEnd="356dp"
++        android:layout_marginBottom="41dp"
++        android:text="R$ 0,00"
++        android:textColor="#000000"
++        android:textSize="24sp"
++        app:layout_constraintBottom_toBottomOf="@+id/data"
++        app:layout_constraintEnd_toStartOf="@+id/imgCesta2"
++        app:layout_constraintHorizontal_bias="1.0"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="@+id/imageView3"
++        app:layout_constraintVertical_bias="0.88" />
+ 
+-    <androidx.viewpager2.widget.ViewPager2
+-        android:id="@+id/pager"
+-        android:layout_width="match_parent"
+-        android:layout_height="match_parent"
+-        android:layout_marginTop="60dp"/>
++    <LinearLayout
++        android:id="@+id/linearLayout"
++        android:layout_width="705dp"
++        android:layout_height="610dp"
++        android:layout_marginTop="400dp"
++        android:orientation="vertical"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="1.0"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent"
++        app:layout_constraintVertical_bias="0.293">
++
++        <ListView
++            android:id="@+id/listaviewpedidos"
++            android:layout_width="match_parent"
++            android:layout_height="match_parent" />
++    </LinearLayout>
++
++    <ImageView
++        android:id="@+id/close"
++        android:layout_width="53dp"
++        android:layout_height="28dp"
++        android:layout_marginTop="52dp"
++        app:layout_constraintEnd_toStartOf="@+id/textView"
++        app:layout_constraintHorizontal_bias="0.223"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent"
++        app:srcCompat="@drawable/header" />
+ 
+ 
+-</RelativeLayout>
+\ No newline at end of file
++</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/example/equalityfood/Carrinho.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.equalityfood;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.content.Context;\r\nimport android.content.Intent;\r\nimport android.net.ConnectivityManager;\r\nimport android.net.NetworkInfo;\r\nimport android.os.Bundle;\r\nimport android.view.View;\r\nimport android.widget.Button;\r\nimport android.widget.ImageButton;\r\nimport android.widget.ImageView;\r\nimport android.widget.ListView;\r\n\r\nimport java.util.List;\r\n\r\npublic class Carrinho extends AppCompatActivity {\r\n\r\n    String[] produtos = {\"Lasanha congelada Seara\",\"Picanha Maturata\", \"Pão de Queijo\"};\r\n    int[] imgProd = {R.drawable.rectangleprod,R.drawable.rectangleprod, R.drawable.rectangleprod};\r\n    double[] precoProd = {80.00, 100.50, 30};\r\n    List<Carrinho> cardList;\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_carrinho);\r\n\r\n        ListView lista = findViewById(R.id.listaview);\r\n        Adapter adapter = new Adapter(this, produtos, imgProd, precoProd, cardList);\r\n        lista.setAdapter(adapter);\r\n\r\n        semInternet();\r\n\r\n        ImageView voltarHome = findViewById(R.id.voltar);\r\n\r\n        voltarHome.setOnClickListener(new View.OnClickListener() {\r\n            //não pode voltar, por questões de segurança\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(Carrinho.this, home.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n\r\n        Button btnCarrinho = findViewById(R.id.finalizar);\r\n\r\n        btnCarrinho.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(Carrinho.this, Pagamento.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n    }\r\n\r\n    public void semInternet() {\r\n        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);\r\n        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();\r\n        if (networkInfo == null || !networkInfo.isConnected()) {\r\n            // Abre a tela de sem internet\r\n            Intent intent = new Intent(this, telaSemInternet.class);\r\n            startActivity(intent);\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/equalityfood/Carrinho.java b/app/src/main/java/com/example/equalityfood/Carrinho.java
+--- a/app/src/main/java/com/example/equalityfood/Carrinho.java	(revision 3932deb79a9ece743cd096ac87e7bb15d0603f51)
++++ b/app/src/main/java/com/example/equalityfood/Carrinho.java	(date 1699390886277)
+@@ -1,10 +1,7 @@
+ package com.example.equalityfood;
+ import androidx.appcompat.app.AppCompatActivity;
+ 
+-import android.content.Context;
+ import android.content.Intent;
+-import android.net.ConnectivityManager;
+-import android.net.NetworkInfo;
+ import android.os.Bundle;
+ import android.view.View;
+ import android.widget.Button;
+@@ -30,16 +27,12 @@
+         Adapter adapter = new Adapter(this, produtos, imgProd, precoProd, cardList);
+         lista.setAdapter(adapter);
+ 
+-        semInternet();
+-
+         ImageView voltarHome = findViewById(R.id.voltar);
+ 
+         voltarHome.setOnClickListener(new View.OnClickListener() {
+-            //não pode voltar, por questões de segurança
+             @Override
+             public void onClick(View v) {
+-                Intent intent = new Intent(Carrinho.this, home.class);
+-                startActivity(intent);
++                finish();
+             }
+         });
+ 
+@@ -53,15 +46,5 @@
+                 startActivity(intent);
+             }
+         });
+-    }
+-
+-    public void semInternet() {
+-        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+-        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+-        if (networkInfo == null || !networkInfo.isConnected()) {
+-            // Abre a tela de sem internet
+-            Intent intent = new Intent(this, telaSemInternet.class);
+-            startActivity(intent);
+-        }
+     }
+ }
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_atualizar_perfil.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".AtualizarPerfil\">\r\n\r\n    <Button\r\n        android:id=\"@+id/cadastrar_button\"\r\n        android:layout_width=\"195dp\"\r\n        android:layout_height=\"52dp\"\r\n        android:background=\"@drawable/borda_botao\"\r\n        android:hint=\"Alterar\"\r\n        android:textColorHint=\"#FFFFFF\"\r\n        android:textSize=\"20sp\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.497\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\"\r\n        app:layout_constraintVertical_bias=\"0.945\" />\r\n\r\n    <ImageButton\r\n        android:id=\"@+id/voltar_button\"\r\n        android:layout_width=\"48dp\"\r\n        android:layout_height=\"48dp\"\r\n        android:layout_marginStart=\"1dp\"\r\n        android:layout_marginTop=\"228dp\"\r\n        android:background=\"#00FFFFFF\"\r\n        android:contentDescription=\"X\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.145\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\"\r\n        app:srcCompat=\"@drawable/header\" />\r\n\r\n    <ImageView\r\n        android:id=\"@+id/imageView18\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"92dp\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\"\r\n        app:srcCompat=\"@drawable/logo\" />\r\n\r\n    <EditText\r\n        android:id=\"@+id/nomeCompleto\"\r\n        android:layout_width=\"297dp\"\r\n        android:layout_height=\"56dp\"\r\n        android:ems=\"10\"\r\n        android:inputType=\"textPersonName\"\r\n        android:text=\"Atualizar Nome\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\"\r\n        app:layout_constraintVertical_bias=\"0.358\" />\r\n\r\n    <EditText\r\n        android:id=\"@+id/email\"\r\n        android:layout_width=\"297dp\"\r\n        android:layout_height=\"56dp\"\r\n        android:ems=\"10\"\r\n        android:inputType=\"textPersonName\"\r\n        android:text=\"Atualizar E-mail\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\"\r\n        app:layout_constraintVertical_bias=\"0.518\" />\r\n\r\n    <EditText\r\n        android:id=\"@+id/numTelefone\"\r\n        android:layout_width=\"297dp\"\r\n        android:layout_height=\"56dp\"\r\n        android:ems=\"10\"\r\n        android:inputType=\"textPersonName\"\r\n        android:text=\"Atualizar Número \"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\"\r\n        app:layout_constraintVertical_bias=\"0.441\" />\r\n\r\n    <ImageView\r\n        android:id=\"@+id/imageView19\"\r\n        android:layout_width=\"799dp\"\r\n        android:layout_height=\"370dp\"\r\n        android:layout_marginBottom=\"796dp\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.0\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:srcCompat=\"@drawable/cabecalho\" />\r\n\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_atualizar_perfil.xml b/app/src/main/res/layout/activity_atualizar_perfil.xml
+--- a/app/src/main/res/layout/activity_atualizar_perfil.xml	(revision 3932deb79a9ece743cd096ac87e7bb15d0603f51)
++++ b/app/src/main/res/layout/activity_atualizar_perfil.xml	(date 1699390886938)
+@@ -10,7 +10,8 @@
+         android:id="@+id/cadastrar_button"
+         android:layout_width="195dp"
+         android:layout_height="52dp"
+-        android:background="@drawable/borda_botao"
++        android:background="@drawable/borda_botao_laranja"
++        android:backgroundTint="#F5991A"
+         android:hint="Alterar"
+         android:textColorHint="#FFFFFF"
+         android:textSize="20sp"
+@@ -23,8 +24,8 @@
+ 
+     <ImageButton
+         android:id="@+id/voltar_button"
+-        android:layout_width="48dp"
+-        android:layout_height="48dp"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
+         android:layout_marginStart="1dp"
+         android:layout_marginTop="228dp"
+         android:background="#00FFFFFF"
