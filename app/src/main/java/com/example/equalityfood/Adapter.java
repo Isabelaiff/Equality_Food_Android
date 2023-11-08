@@ -1,11 +1,17 @@
 package com.example.equalityfood;
 
+import static android.system.Os.prctl;
+import static android.system.Os.remove;
+
+import static java.security.AccessController.getContext;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -24,31 +30,28 @@ public class Adapter extends BaseAdapter {
     private Integer[] qtdvetlor;
     private Double[] precoVet;
     TextView valortotal;
+    ArrayList<Produto> arrayList;
 
     private double soma = 0.0;
 
-
-    public Adapter(Context applicationContext, String[] prod, Integer[] img, Double[] precoVet, TextView valortotal) {
-        this.applicationContext = applicationContext;
-        this.prod = prod;
-        this.img = img;
-        this.precoVet = precoVet;
-        this.inflater = LayoutInflater.from(applicationContext);
+    public Adapter(Context context, ArrayList<Produto> arrayList, TextView valortotal) {
+        this.arrayList = arrayList;
         this.valortotal = valortotal;
-        for (double item : precoVet) {
-            soma += item;
-            valortotal.setText(String.valueOf(soma));
+        this.inflater = LayoutInflater.from(context);
+        for (Produto item : arrayList) {
+            soma += item.getPrecoProd();
         }
+        valortotal.setText(String.format("%.2f", soma));
     }
 
     @Override
     public int getCount() {
-        return prod.length;
+        return arrayList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return prod.length;
+        return arrayList.get(position);
     }
 
     @Override
@@ -60,8 +63,6 @@ public class Adapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup parent) {
         view = inflater.inflate(R.layout.activity_adapter, null);
 
-
-        TextView valorTotal = view.findViewById(R.id.total);
         ImageView card = view.findViewById(R.id.imageView2);
         ImageView removeButton = view.findViewById(R.id.lixo);
         ImageView icon = view.findViewById(R.id.imgProd);
@@ -74,42 +75,23 @@ public class Adapter extends BaseAdapter {
         TextView moeda = view.findViewById(R.id.moeda);
         ConstraintLayout constraint = view.findViewById(R.id.constraint);
 
-
-        nome.setText(prod[i]);
-        precoView.setText(String.valueOf(precoVet[i]));
-        icon.setImageResource(img[i]);
+        Produto produto = arrayList.get(i);
+        nome.setText(produto.getProdutos());
+        precoView.setText(String.format("%.2f", produto.getPrecoProd()).replace(".", ","));
+        icon.setImageResource(produto.getImgProd());
         textViewQtd.setText("1");
 
         removeButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
+                int qtd = Integer.parseInt(textViewQtd.getText().toString());
 
-//                int[] novoArray = new int[prod.length - 1];
-//
-//                // Copie os elementos do array original para o novo array, excluindo o elemento na posição 'posicaoRemover'
-//                for (int k = 0, j = 0; k < prod.length; k++) {
-//                    if (k != i) {
-//                        novoArray[j] = Integer.parseInt(prod[k]);
-//                        j++;
-//                    }
-//                }
-
-                removeButton.setVisibility(View.GONE);
-                icon.setVisibility(View.GONE);
-                nome.setVisibility(View.GONE);
-                precoView.setVisibility(View.GONE);
-                textViewQtd.setVisibility(View.GONE);
-                buttonIncrement.setVisibility(View.GONE);
-                button.setVisibility(View.GONE);
-                valor.setVisibility(View.GONE);
-                card.setVisibility(View.GONE);
-                moeda.setVisibility(View.GONE);
-
-
-
+                double valorRemovido =arrayList.get(i).getPrecoProd() * qtd * -1;
+                somaTotal(valorRemovido);
+                arrayList.remove(i);
+                notifyDataSetChanged();
             }
         });
-
 
         buttonIncrement.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,9 +100,9 @@ public class Adapter extends BaseAdapter {
                 qtd++;
 
                 textViewQtd.setText(String.valueOf(qtd));
-                double novoPreco = precoVet[i] * qtd;
+                double novoPreco = produto.getPrecoProd() * qtd;
                 precoView.setText(String.format("%.2f", novoPreco));
-                somaTotal(precoVet[i]);
+                somaTotal(produto.getPrecoProd());
             }
         });
 
@@ -132,18 +114,17 @@ public class Adapter extends BaseAdapter {
                 if (qtd > 1) {
                     qtd--;
                     textViewQtd.setText(String.valueOf(qtd));
-                    double novoPreco = precoVet[i] * qtd;
+                    double novoPreco = produto.getPrecoProd() * qtd;
                     precoView.setText(String.format("%.2f", novoPreco));
-                    somaTotal(precoVet[i] * -1);
+                    somaTotal(produto.getPrecoProd() * -1);
                 }
             }
         });
 
         return view;
     }
-
-    public void somaTotal(double precoVet) {
-        soma += precoVet;
+    public void somaTotal(double preco) {
+        soma += preco;
         valortotal.setText(String.format("%.2f", soma));
     }
 }
