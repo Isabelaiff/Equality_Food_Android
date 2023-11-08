@@ -18,6 +18,7 @@ public class ResultActivity extends AppCompatActivity {
     List<String> imgProd = new ArrayList<>();
     List<Double> precoProd = new ArrayList<>();
     List<String> descricao = new ArrayList<>();
+    List<String> dataVal = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +37,7 @@ public class ResultActivity extends AppCompatActivity {
         }
 
         ListView lista = findViewById(R.id.lista);
-        AdapterListaProdutos adapter = new AdapterListaProdutos(this, imgProd, produtos, descricao, precoProd);
+        AdapterListaProdutos adapter = new AdapterListaProdutos(this, imgProd, produtos, descricao, precoProd, dataVal);
         lista.setAdapter(adapter);
 
         semInternet();

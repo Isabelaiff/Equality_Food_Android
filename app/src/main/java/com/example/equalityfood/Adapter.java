@@ -70,7 +70,7 @@ public class Adapter extends BaseAdapter {
 
         TextView valorTotal = view.findViewById(R.id.total);
         ImageView card = view.findViewById(R.id.imageView2);
-        Button removeButton = view.findViewById(R.id.button);
+        ImageView removeButton = view.findViewById(R.id.button);
         ImageView icon = view.findViewById(R.id.imgProd);
         TextView nome = view.findViewById(R.id.produto);
         TextView precoView = view.findViewById(R.id.preco);

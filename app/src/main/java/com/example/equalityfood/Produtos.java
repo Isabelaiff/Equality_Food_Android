@@ -5,38 +5,44 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-public class Produtos  extends AppCompatActivity {
+import com.bumptech.glide.Glide;
 
-    private int count = 0;
-    private TextView textView;
+public class Produtos  extends AppCompatActivity {
+    TextView textView20;
+    TextView textView16;
+    ImageView imageView;
+    TextView textView22;
+    TextView textView25;
+    String img;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_produtos);
+        textView20 = findViewById(R.id.textView20);
+        textView16 = findViewById(R.id.textView16);
+        imageView = findViewById(R.id.imageView);
+        textView22 = findViewById(R.id.textView22);
+        textView25 = findViewById(R.id.textView25);
 
-        textView = findViewById(R.id.textView26);
-        Button buttonIncrement = findViewById(R.id.btnVoltaLogin);
-        Button button = findViewById(R.id.button3);
+        Bundle bundle = getIntent().getExtras();
 
-        buttonIncrement.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                count++;
-                textView.setText(String.valueOf(count));
-            }
-        });
+        double valor = bundle.getDouble("valor");
+        String descricao = bundle.getString("descricao");
+        String nome = bundle.getString("produto");
+        String validade = bundle.getString("validade");
+        img = bundle.getString("imagem");
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (count > 0) {
-                    count--;
-                    textView.setText(String.valueOf(count));
-                }
-            }
-        });
+        textView20.setText(String.valueOf(valor));
+        textView16.setText(nome);
+        textView22.setText(descricao);
+        textView25.setText(validade);
+        Glide.with(this)
+                .load(img)
+                .into(imageView);
     }
 }
