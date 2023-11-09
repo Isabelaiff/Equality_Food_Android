@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -11,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+
+import java.util.ArrayList;
 
 public class Produtos  extends AppCompatActivity {
     TextView textView20;
@@ -20,6 +23,7 @@ public class Produtos  extends AppCompatActivity {
     TextView textView25;
     ImageButton imageButton2;
     String img;
+    Button button4;
 
 
     @Override
@@ -32,6 +36,7 @@ public class Produtos  extends AppCompatActivity {
         textView22 = findViewById(R.id.textView22);
         textView25 = findViewById(R.id.textView25);
         imageButton2 = findViewById(R.id.imageButton2);
+        button4 = findViewById(R.id.button4);
 
         Bundle bundle = getIntent().getExtras();
 
@@ -57,5 +62,23 @@ public class Produtos  extends AppCompatActivity {
                 finish();
             }
         });
+
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundleProd = new Bundle();
+                bundleProd.putString("produto", nome);
+                bundleProd.putString("descricao", descricao);
+                bundleProd.putDouble("valor", valor);
+                bundleProd.putString("imagem", img);
+                bundleProd.putString("validade", validade);
+
+                Intent intentProd = new Intent(Produtos.this, Carrinho.class);
+                intentProd.putExtras(bundleProd);
+                startActivity(intentProd);
+            }
+        });
+
+
     }
 }

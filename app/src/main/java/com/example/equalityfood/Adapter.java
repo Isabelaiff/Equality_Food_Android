@@ -18,6 +18,8 @@ import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -25,10 +27,6 @@ import java.util.List;
 public class Adapter extends BaseAdapter {
     private Context applicationContext;
     private LayoutInflater inflater;
-    private String[] prod;
-    private Integer[] img;
-    private Integer[] qtdvetlor;
-    private Double[] precoVet;
     TextView valortotal;
     ArrayList<Produto> arrayList;
 
@@ -78,7 +76,11 @@ public class Adapter extends BaseAdapter {
         Produto produto = arrayList.get(i);
         nome.setText(produto.getProdutos());
         precoView.setText(String.format("%.2f", produto.getPrecoProd()).replace(".", ","));
-        icon.setImageResource(produto.getImgProd());
+
+        Glide.with(view)
+                .load(produto.getImgProd())
+                .into(icon);
+
         textViewQtd.setText("1");
 
         removeButton.setOnClickListener(new View.OnClickListener() {

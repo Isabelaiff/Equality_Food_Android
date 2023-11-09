@@ -16,26 +16,36 @@ import java.util.ArrayList;
 
 
 public class Carrinho extends AppCompatActivity {
-
-    private ArrayList<Produto> produtos;
     private ListView lista;
 
-//    String[] produtos = {"Lasanha congelada Seara", "Picanha Maturata", "Pão de Queijo"};
-//    Integer[] imgProd = {R.drawable.rectangleprod, R.drawable.rectangleprod, R.drawable.rectangleprod};
-//    Double[] precoProd = {80.00, 100.50, 30.0};
     TextView valortotal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carrinho);
-
-        lista = findViewById(R.id.listaview);
-        valortotal = findViewById(R.id.total);
-//        Adapter adapter = new Adapter(this, produtos, imgProd, precoProd, valortotal);
-//        lista.setAdapter(adapter);
         semInternet();
-//        somaTotal(precoProd);
+
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null){
+            double valor = bundle.getDouble("valor");
+            String descricao = bundle.getString("descricao");
+            String nome = bundle.getString("produto");
+            String validade = bundle.getString("validade");
+            String img = bundle.getString("imagem");
+
+            Produto prod = new Produto(nome, img, valor);
+//        produtos.add(prod);
+            Selecionados.Adicionar(prod);
+
+            lista = findViewById(R.id.listaview);
+            valortotal = findViewById(R.id.total);
+            ArrayList a = Selecionados.Listar();
+
+            Adapter adapter = new Adapter(this, a, valortotal);
+            lista.setAdapter(adapter);
+        }
+
 
         ImageView voltarHome = findViewById(R.id.voltar);
 
@@ -47,13 +57,6 @@ public class Carrinho extends AppCompatActivity {
             }
         });
 
-        produtos = new ArrayList<>();
-        produtos.add(new Produto("Pão de Queijo", R.drawable.rectangleprod,  10));
-        produtos.add(new Produto("Lasanha ", R.drawable.rectangleprod,  25));
-        produtos.add(new Produto("Picanha", R.drawable.rectangleprod,  40));
-
-        Adapter adapter = new Adapter(this, produtos, valortotal);
-        lista.setAdapter(adapter);
 
 
         Button btnCarrinho = findViewById(R.id.finalizar);
