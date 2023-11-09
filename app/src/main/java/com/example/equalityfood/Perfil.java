@@ -19,6 +19,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.storage.FirebaseStorage;
@@ -61,6 +62,7 @@ public class Perfil extends AppCompatActivity {
         ImageButton btnAlterarFoto = findViewById(R.id.imageButton12);
         fotoDePerfil = findViewById(R.id.imageView34);
 
+
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         if (user != null && user.getPhotoUrl() != null) {
@@ -97,27 +99,6 @@ public class Perfil extends AppCompatActivity {
         }
 
 
-//        ImageButton imageButton13 = findViewById(R.id.imageButton13);
-
-//        imageButton13.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(Perfil.this, Carrinho.class);
-//                startActivity(intent);
-//            }
-//        });
-
-//        ImageButton imageButton3 = findViewById(R.id.imageButton3);
-//        imageButton3.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(Perfil.this, Pedidos.class);
-//                startActivity(intent);
-//            }
-//        });
-
-
-
         Button textView32 = findViewById(R.id.textView32);
         textView32.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,14 +118,6 @@ public class Perfil extends AppCompatActivity {
             }
         });
 
-//        ImageButton imageButton12 = findViewById(R.id.imageButton12);
-//        imageButton12.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(Perfil.this, Foto.class);
-//                startActivity(intent);
-//            }
-//        });
 
         Button editarInfo = findViewById(R.id.button);
         editarInfo.setOnClickListener(new View.OnClickListener() {
@@ -204,8 +177,6 @@ public class Perfil extends AppCompatActivity {
                 }
             }
         });
-
-
     }
 
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -218,10 +189,10 @@ public class Perfil extends AppCompatActivity {
             if (extras != null) {
                 Bitmap imageBitmap = (Bitmap) extras.get("data");
 
-                // Salva a imagem no Firebase Storage
+                //Salva a imagem no Firebase Storage
                 salvarImagemNoFirebaseStorage(imageBitmap);
 
-                // Carrega a imagem do URL e define no ImageView usando Picasso
+                //Carrega a imagem do URL e altera no ImageView
                 if (user != null && user.getPhotoUrl() != null) {
                     fotoDePerfil.setImageBitmap(imageBitmap);
 //                    String photoUrl = user.getPhotoUrl().toString();
@@ -247,13 +218,13 @@ public class Perfil extends AppCompatActivity {
             imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
             byte[] imageData = baos.toByteArray();
 
-            //Define o caminho no Firebase Storage onde a imagem será salva
+            //Definir o caminho no Firebase Storage onde a imagem será salva
             StorageReference storageRef = FirebaseStorage.getInstance().getReference();
             StorageReference imageRef = storageRef.child("perfis")
                     .child(userId)
                     .child("foto_de_perfil.jpg");
 
-            //Faz o upload da imagem
+            //Fazer o upload da imagem
             UploadTask uploadTask = imageRef.putBytes(imageData);
             uploadTask.addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -268,11 +239,10 @@ public class Perfil extends AppCompatActivity {
                         public void onComplete(@NonNull Task<Uri> task) {
                             Uri url = task.getResult();
 
-                            // Precisa salvar essa URL no BD.
                             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
                             if (user != null) {
-                                // Atualize o campo photoUrl do usuário com a URL da imagem
+                                //Atualize o campo photoUrl do usuário com a URL da imagem
                                 UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                                         .setPhotoUri(url)
                                         .build();
@@ -282,10 +252,8 @@ public class Perfil extends AppCompatActivity {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 if (task.isSuccessful()) {
-                                                    // Sucesso ao atualizar a photoUrl do usuário
                                                     Toast.makeText(Perfil.this, "Foto de perfil alterada com sucesso! Ela pode levar alguns segundos para atualizar", Toast.LENGTH_LONG).show();
                                                 } else {
-                                                    // Falha ao atualizar a photoUrl do usuário
                                                     Toast.makeText(Perfil.this, "Falha ao atualizar foto de perfil", Toast.LENGTH_LONG).show();
 
                                                 }

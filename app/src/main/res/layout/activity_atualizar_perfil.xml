@@ -39,27 +39,17 @@
 
     <ImageButton
         android:id="@+id/voltar_button"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="228dp"
-        android:background="#00FFFFFF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="344dp"
+        android:background="#F9F9F9"
         android:contentDescription="X"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.145"
+        app:layout_constraintHorizontal_bias="0.068"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/header" />
 
-    <ImageView
-        android:id="@+id/imageView18"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="92dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo" />
 
     <EditText
         android:id="@+id/nomeCompleto"
@@ -102,12 +92,12 @@
 
     <ImageView
         android:id="@+id/imageView19"
-        android:layout_width="799dp"
-        android:layout_height="370dp"
-        android:layout_marginBottom="796dp"
+        android:layout_width="725dp"
+        android:layout_height="360dp"
+        android:layout_marginBottom="752dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.444"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/cabecalho" />
 

@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
 
@@ -15,12 +14,12 @@
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
-
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
+
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.SENDTO" />
@@ -37,8 +36,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
-        tools:targetApi="31"
-        tools:ignore="ExtraText">
+        tools:ignore="ExtraText"
+        tools:targetApi="31">
         <activity
             android:name=".ResultActivity"
             android:exported="false" />
@@ -131,7 +130,7 @@
             android:exported="false" />
         <activity
             android:name=".PopUpQrCode"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".Login"
             android:exported="false" />
@@ -141,8 +140,7 @@
         <activity
             android:name=".PedidoFragmento"
             android:exported="false"
-            tools:ignore="WrongManifestParent">
-        </activity>
-
+            tools:ignore="WrongManifestParent"></activity>
     </application>
-    </manifest>
+
+</manifest>

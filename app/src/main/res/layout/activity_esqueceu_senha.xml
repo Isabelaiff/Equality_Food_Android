@@ -37,7 +37,7 @@
         android:layout_marginTop="228dp"
         android:textColor="@color/black"
         android:textSize="14sp"
-        android:hint="+5511000000000"
+        android:hint="Seu email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />

@@ -1,0 +1,19 @@
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\r\n    id 'com.android.application'\r\n    id 'com.google.gms.google-services'\r\n\r\n}\r\n\r\nandroid {\r\n    namespace 'com.example.equalityfood'\r\n    compileSdk 33\r\n    defaultConfig {\r\n        applicationId \"com.example.equalityfood\"\r\n        minSdk 28\r\n        targetSdk 33\r\n        versionCode 1\r\n        versionName \"1.0\"\r\n        testInstrumentationRunner \"androidx.test.runner.AndroidJUnitRunner\"\r\n\r\n        viewBinding {\r\n            enabled = true\r\n        }\r\n    }\r\n    buildTypes {\r\n        release {\r\n            minifyEnabled false\r\n            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'\r\n        }\r\n    }\r\n    compileOptions {\r\n        sourceCompatibility JavaVersion.VERSION_1_8\r\n        targetCompatibility JavaVersion.VERSION_1_8\r\n    }\r\n}\r\n\r\ndependencies {\r\n    implementation 'androidx.appcompat:appcompat:1.6.1'\r\n    implementation 'com.google.android.material:material:1.9.0'\r\n    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'\r\n    implementation 'com.google.android.gms:play-services-base:18.2.0'\r\n    implementation 'androidx.gridlayout:gridlayout:1.0.0'\r\n    implementation 'com.google.firebase:firebase-database:20.2.2'\r\n    implementation 'com.google.firebase:firebase-database-ktx:20.2.2'\r\n    implementation 'com.google.firebase:firebase-auth:22.1.2'\r\n    implementation 'com.android.car.ui:car-ui-lib:2.5.1'\r\n    implementation 'com.google.firebase:firebase-analytics:20.1.2'\r\n    testImplementation 'junit:junit:4.13.2'\r\n    androidTestImplementation 'androidx.test.ext:junit:1.1.5'\r\n    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'\r\n    implementation 'com.google.android.gms:play-services-auth:19.2.0'\r\n    implementation 'com.google.firebase:firebase-auth:19.2.0'\r\n    implementation 'com.google.android.material:material:1.4.0'\r\n    implementation 'com.squareup.retrofit2:retrofit:2.9.0'\r\n    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'\r\n    implementation 'com.github.bumptech.glide:glide:4.12.0'\r\n    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'\r\n    implementation 'androidx.cardview:cardview:1.0.0'\r\n    implementation 'androidx.core:core:1.7.0'\r\n    implementation 'androidx.lifecycle:lifecycle-viewmodel:2.3.1'\r\n    implementation 'androidx.lifecycle:lifecycle-livedata:2.3.1'\r\n    implementation 'androidx.lifecycle:lifecycle-common-java8:2.3.1'\r\n    implementation 'com.google.firebase:firebase-storage:20.2.1'\r\n    implementation 'com.squareup.picasso:picasso:2.8'\r\n\r\n\r\n//    implementation(platform(\"com.google.firebase:firebase-bom:32.5.0\"))\r\n//    implementation(\"com.google.firebase:firebase-storage\")\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/build.gradle b/app/build.gradle
+--- a/app/build.gradle	(revision f95086fe19e21f71c96de80519d5a48a8bf6d639)
++++ b/app/build.gradle	(date 1699457107384)
+@@ -61,7 +61,4 @@
+     implementation 'com.squareup.picasso:picasso:2.8'
+ 
+ 
+-//    implementation(platform("com.google.firebase:firebase-bom:32.5.0"))
+-//    implementation("com.google.firebase:firebase-storage")
+-
+ }
+\ No newline at end of file
