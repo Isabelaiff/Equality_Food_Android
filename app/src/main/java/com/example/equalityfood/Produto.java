@@ -2,11 +2,11 @@ package com.example.equalityfood;
 
 public class Produto {
     private String produtos;
-    private int imgProd;
+    private String imgProd;
     private double precoProd;
     private int qtd;
 
-    public Produto(String produtos, int imgProd, double precoProd) {
+    public Produto(String produtos, String imgProd, double precoProd) {
         this.produtos = produtos;
         this.imgProd = imgProd;
         this.precoProd = precoProd;
@@ -21,11 +21,11 @@ public class Produto {
         this.produtos = produtos;
     }
 
-    public int getImgProd() {
+    public String getImgProd() {
         return imgProd;
     }
 
-    public void setImgProd(int imgProd) {
+    public void setImgProd(String imgProd) {
         this.imgProd = imgProd;
     }
 

@@ -1,0 +1,459 @@
+Index: app/src/main/java/com/example/equalityfood/Adapter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.equalityfood;\r\n\r\nimport static android.system.Os.prctl;\r\nimport static android.system.Os.remove;\r\n\r\nimport static java.security.AccessController.getContext;\r\n\r\nimport android.content.Context;\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.widget.BaseAdapter;\r\nimport android.widget.Button;\r\nimport android.widget.ImageButton;\r\nimport android.widget.ImageView;\r\nimport android.widget.LinearLayout;\r\nimport android.widget.TextView;\r\n\r\nimport androidx.constraintlayout.widget.ConstraintLayout;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.Arrays;\r\nimport java.util.List;\r\n\r\npublic class Adapter extends BaseAdapter {\r\n    private Context applicationContext;\r\n    private LayoutInflater inflater;\r\n    private String[] prod;\r\n    private Integer[] img;\r\n    private Integer[] qtdvetlor;\r\n    private Double[] precoVet;\r\n    TextView valortotal;\r\n    ArrayList<Produto> arrayList;\r\n\r\n    private double soma = 0.0;\r\n\r\n    public Adapter(Context context, ArrayList<Produto> arrayList, TextView valortotal) {\r\n        this.arrayList = arrayList;\r\n        this.valortotal = valortotal;\r\n        this.inflater = LayoutInflater.from(context);\r\n        for (Produto item : arrayList) {\r\n            soma += item.getPrecoProd();\r\n        }\r\n        valortotal.setText(String.format(\"%.2f\", soma));\r\n    }\r\n\r\n    @Override\r\n    public int getCount() {\r\n        return arrayList.size();\r\n    }\r\n\r\n    @Override\r\n    public Object getItem(int position) {\r\n        return arrayList.get(position);\r\n    }\r\n\r\n    @Override\r\n    public long getItemId(int position) {\r\n        return position;\r\n    }\r\n\r\n    @Override\r\n    public View getView(int i, View view, ViewGroup parent) {\r\n        view = inflater.inflate(R.layout.activity_adapter, null);\r\n\r\n        ImageView card = view.findViewById(R.id.imageView2);\r\n        ImageView removeButton = view.findViewById(R.id.lixo);\r\n        ImageView icon = view.findViewById(R.id.imgProd);\r\n        TextView nome = view.findViewById(R.id.produto);\r\n        TextView precoView = view.findViewById(R.id.preco);\r\n        TextView textViewQtd = view.findViewById(R.id.qtd);\r\n        Button buttonIncrement = view.findViewById(R.id.mais);\r\n        Button button = view.findViewById(R.id.menos);\r\n        TextView valor = view.findViewById(R.id.produto2);\r\n        TextView moeda = view.findViewById(R.id.moeda);\r\n        ConstraintLayout constraint = view.findViewById(R.id.constraint);\r\n\r\n        Produto produto = arrayList.get(i);\r\n        nome.setText(produto.getProdutos());\r\n        precoView.setText(String.format(\"%.2f\", produto.getPrecoProd()).replace(\".\", \",\"));\r\n        icon.setImageResource(produto.getImgProd());\r\n        textViewQtd.setText(\"1\");\r\n\r\n        removeButton.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View view) {\r\n                int qtd = Integer.parseInt(textViewQtd.getText().toString());\r\n\r\n                double valorRemovido =arrayList.get(i).getPrecoProd() * qtd * -1;\r\n                somaTotal(valorRemovido);\r\n                arrayList.remove(i);\r\n                notifyDataSetChanged();\r\n            }\r\n        });\r\n\r\n        buttonIncrement.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View view) {\r\n                int qtd = Integer.parseInt(textViewQtd.getText().toString());\r\n                qtd++;\r\n\r\n                textViewQtd.setText(String.valueOf(qtd));\r\n                double novoPreco = produto.getPrecoProd() * qtd;\r\n                precoView.setText(String.format(\"%.2f\", novoPreco));\r\n                somaTotal(produto.getPrecoProd());\r\n            }\r\n        });\r\n\r\n        button.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View view) {\r\n                int qtd = Integer.parseInt(textViewQtd.getText().toString());\r\n\r\n                if (qtd > 1) {\r\n                    qtd--;\r\n                    textViewQtd.setText(String.valueOf(qtd));\r\n                    double novoPreco = produto.getPrecoProd() * qtd;\r\n                    precoView.setText(String.format(\"%.2f\", novoPreco));\r\n                    somaTotal(produto.getPrecoProd() * -1);\r\n                }\r\n            }\r\n        });\r\n\r\n        return view;\r\n    }\r\n    public void somaTotal(double preco) {\r\n        soma += preco;\r\n        valortotal.setText(String.format(\"%.2f\", soma));\r\n    }\r\n}\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/equalityfood/Adapter.java b/app/src/main/java/com/example/equalityfood/Adapter.java
+--- a/app/src/main/java/com/example/equalityfood/Adapter.java	(revision 93a278630d7a70601e4bea749e1ce8071e3e913b)
++++ b/app/src/main/java/com/example/equalityfood/Adapter.java	(date 1699493279412)
+@@ -18,6 +18,8 @@
+ 
+ import androidx.constraintlayout.widget.ConstraintLayout;
+ 
++import com.bumptech.glide.Glide;
++
+ import java.util.ArrayList;
+ import java.util.Arrays;
+ import java.util.List;
+@@ -25,10 +27,6 @@
+ public class Adapter extends BaseAdapter {
+     private Context applicationContext;
+     private LayoutInflater inflater;
+-    private String[] prod;
+-    private Integer[] img;
+-    private Integer[] qtdvetlor;
+-    private Double[] precoVet;
+     TextView valortotal;
+     ArrayList<Produto> arrayList;
+ 
+@@ -78,7 +76,11 @@
+         Produto produto = arrayList.get(i);
+         nome.setText(produto.getProdutos());
+         precoView.setText(String.format("%.2f", produto.getPrecoProd()).replace(".", ","));
+-        icon.setImageResource(produto.getImgProd());
++
++        Glide.with(view)
++                .load(produto.getImgProd())
++                .into(icon);
++
+         textViewQtd.setText("1");
+ 
+         removeButton.setOnClickListener(new View.OnClickListener() {
+Index: app/src/main/java/com/example/equalityfood/Produto.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.equalityfood;\r\n\r\npublic class Produto {\r\n    private String produtos;\r\n    private int imgProd;\r\n    private double precoProd;\r\n    private int qtd;\r\n\r\n    public Produto(String produtos, int imgProd, double precoProd) {\r\n        this.produtos = produtos;\r\n        this.imgProd = imgProd;\r\n        this.precoProd = precoProd;\r\n        this.qtd = 1;\r\n    }\r\n\r\n    public String getProdutos() {\r\n        return produtos;\r\n    }\r\n\r\n    public void setProdutos(String produtos) {\r\n        this.produtos = produtos;\r\n    }\r\n\r\n    public int getImgProd() {\r\n        return imgProd;\r\n    }\r\n\r\n    public void setImgProd(int imgProd) {\r\n        this.imgProd = imgProd;\r\n    }\r\n\r\n    public double getPrecoProd() {\r\n        return precoProd;\r\n    }\r\n\r\n    public void setPrecoProd(double precoProd) {\r\n        this.precoProd = precoProd;\r\n    }\r\n\r\n    public int getQtd() {\r\n        return qtd;\r\n    }\r\n\r\n    public void setQtd(int qtd) {\r\n        this.qtd = qtd;\r\n    }\r\n\r\n    @Override\r\n    public String toString() {\r\n        return \"Produto{\" +\r\n                \"produtos='\" + produtos + '\\'' +\r\n                \", imgProd=\" + imgProd +\r\n                \", precoProd=\" + precoProd +\r\n                \", qtd=\" + qtd +\r\n                '}';\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/equalityfood/Produto.java b/app/src/main/java/com/example/equalityfood/Produto.java
+--- a/app/src/main/java/com/example/equalityfood/Produto.java	(revision 93a278630d7a70601e4bea749e1ce8071e3e913b)
++++ b/app/src/main/java/com/example/equalityfood/Produto.java	(date 1699479709680)
+@@ -2,11 +2,11 @@
+ 
+ public class Produto {
+     private String produtos;
+-    private int imgProd;
++    private String imgProd;
+     private double precoProd;
+     private int qtd;
+ 
+-    public Produto(String produtos, int imgProd, double precoProd) {
++    public Produto(String produtos, String imgProd, double precoProd) {
+         this.produtos = produtos;
+         this.imgProd = imgProd;
+         this.precoProd = precoProd;
+@@ -21,11 +21,11 @@
+         this.produtos = produtos;
+     }
+ 
+-    public int getImgProd() {
++    public String getImgProd() {
+         return imgProd;
+     }
+ 
+-    public void setImgProd(int imgProd) {
++    public void setImgProd(String imgProd) {
+         this.imgProd = imgProd;
+     }
+ 
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\r\n    id 'com.android.application'\r\n    id 'com.google.gms.google-services'\r\n\r\n}\r\n\r\nandroid {\r\n    namespace 'com.example.equalityfood'\r\n    compileSdk 33\r\n    defaultConfig {\r\n        applicationId \"com.example.equalityfood\"\r\n        minSdk 28\r\n        targetSdk 33\r\n        versionCode 1\r\n        versionName \"1.0\"\r\n        testInstrumentationRunner \"androidx.test.runner.AndroidJUnitRunner\"\r\n    }\r\n    buildTypes {\r\n        release {\r\n            minifyEnabled false\r\n            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'\r\n        }\r\n    }\r\n    compileOptions {\r\n        sourceCompatibility JavaVersion.VERSION_1_8\r\n        targetCompatibility JavaVersion.VERSION_1_8\r\n    }\r\n}\r\n\r\ndependencies {\r\n    implementation 'androidx.appcompat:appcompat:1.6.1'\r\n    implementation 'com.google.android.material:material:1.9.0'\r\n    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'\r\n    implementation 'com.google.android.gms:play-services-base:18.2.0'\r\n    implementation 'androidx.gridlayout:gridlayout:1.0.0'\r\n    implementation 'com.google.firebase:firebase-database:20.2.2'\r\n    implementation 'com.google.firebase:firebase-database-ktx:20.2.2'\r\n    implementation 'com.google.firebase:firebase-auth:22.1.2'\r\n    implementation 'com.android.car.ui:car-ui-lib:2.5.1'\r\n    implementation 'com.google.firebase:firebase-analytics:20.1.2'\r\n    testImplementation 'junit:junit:4.13.2'\r\n    androidTestImplementation 'androidx.test.ext:junit:1.1.5'\r\n    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'\r\n    implementation 'com.google.android.gms:play-services-auth:19.2.0'\r\n    implementation 'com.google.firebase:firebase-auth:19.2.0'\r\n    implementation 'com.google.android.material:material:1.4.0'\r\n    implementation 'com.squareup.retrofit2:retrofit:2.9.0'\r\n    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'\r\n    implementation 'com.github.bumptech.glide:glide:4.12.0'\r\n    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'\r\n    implementation 'androidx.cardview:cardview:1.0.0'\r\n    implementation 'androidx.core:core:1.7.0'\r\n    implementation 'androidx.lifecycle:lifecycle-viewmodel:2.3.1'\r\n    implementation 'androidx.lifecycle:lifecycle-livedata:2.3.1'\r\n    implementation 'androidx.lifecycle:lifecycle-common-java8:2.3.1'\r\n    implementation 'com.google.firebase:firebase-storage:20.2.1'\r\n    implementation 'com.squareup.picasso:picasso:2.8'\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/build.gradle b/app/build.gradle
+--- a/app/build.gradle	(revision 93a278630d7a70601e4bea749e1ce8071e3e913b)
++++ b/app/build.gradle	(date 1699481103498)
+@@ -55,5 +55,7 @@
+     implementation 'androidx.lifecycle:lifecycle-common-java8:2.3.1'
+     implementation 'com.google.firebase:firebase-storage:20.2.1'
+     implementation 'com.squareup.picasso:picasso:2.8'
++    implementation 'androidx.sqlite:sqlite:2.2.0'
++
+ 
+ }
+\ No newline at end of file
+Index: app/src/main/java/com/example/equalityfood/Produtos.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.equalityfood;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\nimport android.view.View;\r\nimport android.widget.Button;\r\nimport android.widget.ImageButton;\r\nimport android.widget.ImageView;\r\nimport android.widget.TextView;\r\n\r\nimport com.bumptech.glide.Glide;\r\n\r\npublic class Produtos  extends AppCompatActivity {\r\n    TextView textView20;\r\n    TextView textView16;\r\n    ImageView imageView;\r\n    TextView textView22;\r\n    TextView textView25;\r\n    ImageButton imageButton2;\r\n    String img;\r\n\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_produtos);\r\n        textView20 = findViewById(R.id.textView20);\r\n        textView16 = findViewById(R.id.textView16);\r\n        imageView = findViewById(R.id.imageView);\r\n        textView22 = findViewById(R.id.textView22);\r\n        textView25 = findViewById(R.id.textView25);\r\n        imageButton2 = findViewById(R.id.imageButton2);\r\n\r\n        Bundle bundle = getIntent().getExtras();\r\n\r\n        double valor = bundle.getDouble(\"valor\");\r\n        String descricao = bundle.getString(\"descricao\");\r\n        String nome = bundle.getString(\"produto\");\r\n        String validade = bundle.getString(\"validade\");\r\n        img = bundle.getString(\"imagem\");\r\n\r\n        textView20.setText(String.valueOf(valor));\r\n        textView16.setText(nome);\r\n        textView22.setText(descricao);\r\n        textView25.setText(validade);\r\n        Glide.with(this)\r\n                .load(img)\r\n                .into(imageView);\r\n\r\n        imageButton2.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(Produtos.this, home.class);\r\n                startActivity(intent);\r\n                finish();\r\n            }\r\n        });\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/equalityfood/Produtos.java b/app/src/main/java/com/example/equalityfood/Produtos.java
+--- a/app/src/main/java/com/example/equalityfood/Produtos.java	(revision 93a278630d7a70601e4bea749e1ce8071e3e913b)
++++ b/app/src/main/java/com/example/equalityfood/Produtos.java	(date 1699483533716)
+@@ -4,6 +4,7 @@
+ 
+ import android.content.Intent;
+ import android.os.Bundle;
++import android.os.Parcelable;
+ import android.view.View;
+ import android.widget.Button;
+ import android.widget.ImageButton;
+@@ -12,6 +13,8 @@
+ 
+ import com.bumptech.glide.Glide;
+ 
++import java.util.ArrayList;
++
+ public class Produtos  extends AppCompatActivity {
+     TextView textView20;
+     TextView textView16;
+@@ -20,6 +23,7 @@
+     TextView textView25;
+     ImageButton imageButton2;
+     String img;
++    Button button4;
+ 
+ 
+     @Override
+@@ -32,6 +36,7 @@
+         textView22 = findViewById(R.id.textView22);
+         textView25 = findViewById(R.id.textView25);
+         imageButton2 = findViewById(R.id.imageButton2);
++        button4 = findViewById(R.id.button4);
+ 
+         Bundle bundle = getIntent().getExtras();
+ 
+@@ -57,5 +62,23 @@
+                 finish();
+             }
+         });
++
++        button4.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View v) {
++                Bundle bundleProd = new Bundle();
++                bundleProd.putString("produto", nome);
++                bundleProd.putString("descricao", descricao);
++                bundleProd.putDouble("valor", valor);
++                bundleProd.putString("imagem", img);
++                bundleProd.putString("validade", validade);
++
++                Intent intentProd = new Intent(Produtos.this, Carrinho.class);
++                intentProd.putExtras(bundleProd);
++                startActivity(intentProd);
++            }
++        });
++
++
+     }
+ }
+\ No newline at end of file
+Index: app/src/main/java/com/example/equalityfood/Selecionados.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/equalityfood/Selecionados.java b/app/src/main/java/com/example/equalityfood/Selecionados.java
+new file mode 100644
+--- /dev/null	(date 1699483862090)
++++ b/app/src/main/java/com/example/equalityfood/Selecionados.java	(date 1699483862090)
+@@ -0,0 +1,16 @@
++package com.example.equalityfood;
++
++import java.util.ArrayList;
++
++public class Selecionados {
++
++    private static ArrayList<Produto> produtos = new ArrayList<>();
++
++    public static void Adicionar(Produto p) {
++        produtos.add(p);
++    }
++
++    public static ArrayList<Produto> Listar() {
++        return produtos;
++    }
++}
+Index: app/src/main/java/com/example/equalityfood/ResultActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.equalityfood;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.content.Context;\r\nimport android.content.Intent;\r\nimport android.net.ConnectivityManager;\r\nimport android.net.NetworkInfo;\r\nimport android.os.Bundle;\r\nimport android.widget.ListView;\r\nimport android.widget.TextView;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\npublic class ResultActivity extends AppCompatActivity {\r\n    List<String> produtos = new ArrayList<>();\r\n    List<String> imgProd = new ArrayList<>();\r\n    List<Double> precoProd = new ArrayList<>();\r\n    List<String> descricao = new ArrayList<>();\r\n    List<String> dataVal = new ArrayList<>();\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        TextView mostResult = findViewById(R.id.textView4);\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_result);\r\n        Bundle bundle = getIntent().getExtras();\r\n        if (bundle != null) {\r\n            ArrayList<ProdutosAPI> produtosAPI = bundle.getParcelableArrayList(\"ResultadoPesquisa\");\r\n            for (int i=0; i < produtosAPI.size(); i++ ) {\r\n                produtos.add(produtosAPI.get(i).getNome());\r\n                precoProd.add(produtosAPI.get(i).getPreco());\r\n                descricao.add(produtosAPI.get(i).getDescricao());\r\n                imgProd.add(produtosAPI.get(i).getImagem());\r\n            }\r\n        }\r\n\r\n        ListView lista = findViewById(R.id.lista);\r\n        AdapterListaProdutos adapter = new AdapterListaProdutos(this, imgProd, produtos, descricao, precoProd, dataVal);\r\n        lista.setAdapter(adapter);\r\n\r\n        semInternet();\r\n    }\r\n    public void semInternet() {\r\n        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);\r\n        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();\r\n        if (networkInfo == null || !networkInfo.isConnected()) {\r\n            // Abre a tela de sem internet\r\n            Intent intent = new Intent(this, telaSemInternet.class);\r\n            startActivity(intent);\r\n        }\r\n    }\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/equalityfood/ResultActivity.java b/app/src/main/java/com/example/equalityfood/ResultActivity.java
+--- a/app/src/main/java/com/example/equalityfood/ResultActivity.java	(revision 93a278630d7a70601e4bea749e1ce8071e3e913b)
++++ b/app/src/main/java/com/example/equalityfood/ResultActivity.java	(date 1699487470449)
+@@ -7,6 +7,8 @@
+ import android.net.ConnectivityManager;
+ import android.net.NetworkInfo;
+ import android.os.Bundle;
++import android.view.View;
++import android.widget.AdapterView;
+ import android.widget.ListView;
+ import android.widget.TextView;
+ 
+@@ -25,6 +27,7 @@
+         TextView mostResult = findViewById(R.id.textView4);
+         super.onCreate(savedInstanceState);
+         setContentView(R.layout.activity_result);
++        semInternet();
+         Bundle bundle = getIntent().getExtras();
+         if (bundle != null) {
+             ArrayList<ProdutosAPI> produtosAPI = bundle.getParcelableArrayList("ResultadoPesquisa");
+@@ -40,7 +43,22 @@
+         AdapterListaProdutos adapter = new AdapterListaProdutos(this, imgProd, produtos, descricao, precoProd, dataVal);
+         lista.setAdapter(adapter);
+ 
+-        semInternet();
++        lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
++            @Override
++            public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
++                // Pass the product information to the Produtos activity
++                Bundle bundle = new Bundle();
++                bundle.putString("produto", produtos.get(i));
++                bundle.putString("descricao", descricao.get(i));
++                bundle.putDouble("valor", precoProd.get(i));
++                bundle.putString("imagem", imgProd.get(i));
++                bundle.putString("validade", dataVal.get(i));
++
++                Intent intent = new Intent(ResultActivity.this, Produtos.class);
++                intent.putExtras(bundle);
++                startActivity(intent);
++            }
++        });
+     }
+     public void semInternet() {
+         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+Index: app/src/main/java/com/example/equalityfood/Pagamento.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.equalityfood;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.content.Context;\r\nimport android.content.Intent;\r\nimport android.net.ConnectivityManager;\r\nimport android.net.NetworkInfo;\r\nimport android.os.Bundle;\r\nimport android.view.View;\r\nimport android.widget.Button;\r\nimport android.widget.ImageButton;\r\nimport android.widget.TextView;\r\n\r\nimport com.google.firebase.auth.FirebaseAuth;\r\nimport com.google.firebase.auth.FirebaseUser;\r\nimport com.google.firebase.database.DataSnapshot;\r\nimport com.google.firebase.database.DatabaseError;\r\nimport com.google.firebase.database.DatabaseReference;\r\nimport com.google.firebase.database.FirebaseDatabase;\r\nimport com.google.firebase.database.ValueEventListener;\r\n\r\npublic class Pagamento extends AppCompatActivity {\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_pagamento);\r\n\r\n        ImageButton btnCarrinho = findViewById(R.id.imageButton7);\r\n        Button btnPagar = findViewById(R.id.finalizar);\r\n        TextView enderecoFinal = findViewById(R.id.textView31);\r\n        TextView subtotal = findViewById(R.id.subtotal);\r\n        TextView TotalFinal = findViewById(R.id.sub);\r\n\r\n        Bundle bundle = getIntent().getExtras();\r\n        String total = bundle.getString(\"TOTAL\");\r\n        Double valorTotal = Double.parseDouble(total.replace(\",\", \".\"));\r\n        valorTotal += 5;\r\n        String totalComAcrescimo = String.format(\"R$%.2f\", valorTotal);\r\n        subtotal.setText(\"R$\" + total);\r\n        TotalFinal.setText(totalComAcrescimo);\r\n\r\n        semInternet();\r\n\r\n        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();\r\n        if (user != null) {\r\n            String userId = user.getUid();\r\n\r\n            DatabaseReference userRef = FirebaseDatabase.getInstance().getReference(\"Usuario\").child(userId).child(\"endereco\");\r\n\r\n            userRef.addListenerForSingleValueEvent(new ValueEventListener() {\r\n                public void onDataChange(DataSnapshot dataSnapshot) {\r\n                    if (dataSnapshot.exists()) {\r\n                        String enderecoRua = String.valueOf(dataSnapshot.child(\"Rua\").getValue());\r\n                        String enderecoNumero = String.valueOf(dataSnapshot.child(\"numEndereco\").getValue());\r\n                        String enderecoComp = String.valueOf(dataSnapshot.child(\"complemento\").getValue());\r\n                        String enderecoCidade = String.valueOf(dataSnapshot.child(\"Cidade\").getValue());\r\n                        String enderecoBairro = String.valueOf(dataSnapshot.child(\"Bairro\").getValue());\r\n                        enderecoFinal.setText(enderecoRua + \" n°\" + enderecoNumero + \" \" + enderecoComp + \" bairro \" + enderecoBairro + \" cidade \" +enderecoCidade);\r\n                    } else {\r\n                        System.out.println(\"endereco cadastrado errado, entre em contato com suporte.\");\r\n                    }\r\n                }\r\n                @Override\r\n                public void onCancelled(DatabaseError databaseError) {\r\n                    System.out.println(\"Erro ao acessar o banco de dados: \" + databaseError.getMessage());\r\n                }\r\n            });\r\n        }\r\n\r\n        btnCarrinho.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                finish();\r\n            }\r\n        });\r\n\r\n        btnPagar.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                semInternet();\r\n                PopUpQrCode pop = new PopUpQrCode(Pagamento.this);\r\n                pop.show();\r\n                onDestroy();\r\n            }\r\n        });\r\n    }\r\n\r\n    public void semInternet() {\r\n        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);\r\n        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();\r\n        if (networkInfo == null || !networkInfo.isConnected()) {\r\n            // Abre a tela de sem internet\r\n            Intent intent = new Intent(this, telaSemInternet.class);\r\n            startActivity(intent);\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/equalityfood/Pagamento.java b/app/src/main/java/com/example/equalityfood/Pagamento.java
+--- a/app/src/main/java/com/example/equalityfood/Pagamento.java	(revision 93a278630d7a70601e4bea749e1ce8071e3e913b)
++++ b/app/src/main/java/com/example/equalityfood/Pagamento.java	(date 1699487599692)
+@@ -20,6 +20,8 @@
+ import com.google.firebase.database.FirebaseDatabase;
+ import com.google.firebase.database.ValueEventListener;
+ 
++import java.time.LocalDateTime;
++
+ public class Pagamento extends AppCompatActivity {
+ 
+     @Override
+@@ -76,10 +78,16 @@
+             }
+         });
+ 
++        double finalValorTotal = valorTotal;
+         btnPagar.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 semInternet();
++                LocalDateTime horarioAtual = LocalDateTime.now();
++                InformationPedidos inform = new InformationPedidos(finalValorTotal, String.valueOf(horarioAtual));
++                SelecionaPedido.Adicionar(inform);
++
++                System.out.println(SelecionaPedido.Listar());
+                 PopUpQrCode pop = new PopUpQrCode(Pagamento.this);
+                 pop.show();
+                 onDestroy();
+Index: app/src/main/java/com/example/equalityfood/SelecionaPedido.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/equalityfood/SelecionaPedido.java b/app/src/main/java/com/example/equalityfood/SelecionaPedido.java
+new file mode 100644
+--- /dev/null	(date 1699485669525)
++++ b/app/src/main/java/com/example/equalityfood/SelecionaPedido.java	(date 1699485669525)
+@@ -0,0 +1,16 @@
++package com.example.equalityfood;
++
++import java.util.ArrayList;
++
++public class SelecionaPedido {
++
++        private static ArrayList<InformationPedidos> InfoPedidos = new ArrayList<>();
++
++        public static void Adicionar(InformationPedidos i) {
++            InfoPedidos.add(i);
++        }
++
++        public static ArrayList<InformationPedidos> Listar() {
++            return InfoPedidos;
++        }
++}
+Index: app/src/main/java/com/example/equalityfood/InformationPedidos.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/equalityfood/InformationPedidos.java b/app/src/main/java/com/example/equalityfood/InformationPedidos.java
+new file mode 100644
+--- /dev/null	(date 1699485669541)
++++ b/app/src/main/java/com/example/equalityfood/InformationPedidos.java	(date 1699485669541)
+@@ -0,0 +1,36 @@
++package com.example.equalityfood;
++
++public class InformationPedidos {
++    private double precoFinal;
++    private String hora;
++
++    public InformationPedidos(double precoProd, String horas) {
++        this.precoFinal = precoProd;
++        this.hora = horas;
++    }
++
++    public double getPrecoFinal() {
++        return precoFinal;
++    }
++
++    public void setPrecoFinal(double precoFinal) {
++        this.precoFinal = precoFinal;
++    }
++
++    public String getHora() {
++        return hora;
++    }
++
++    public void setHora(String hora) {
++        this.hora = hora;
++    }
++
++
++    @Override
++    public String toString() {
++        return "InformationPedidos{" +
++                "precoFinal=" + precoFinal +
++                ", hora='" + hora + '\'' +
++                '}';
++    }
++}
+Index: app/src/main/java/com/example/equalityfood/Carrinho.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.equalityfood;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.content.Context;\r\nimport android.content.Intent;\r\nimport android.net.ConnectivityManager;\r\nimport android.net.NetworkInfo;\r\nimport android.os.Bundle;\r\nimport android.view.View;\r\nimport android.widget.Button;\r\nimport android.widget.ImageView;\r\nimport android.widget.ListView;\r\nimport android.widget.TextView;\r\n\r\nimport java.util.ArrayList;\r\n\r\n\r\npublic class Carrinho extends AppCompatActivity {\r\n\r\n    private ArrayList<Produto> produtos;\r\n    private ListView lista;\r\n\r\n//    String[] produtos = {\"Lasanha congelada Seara\", \"Picanha Maturata\", \"Pão de Queijo\"};\r\n//    Integer[] imgProd = {R.drawable.rectangleprod, R.drawable.rectangleprod, R.drawable.rectangleprod};\r\n//    Double[] precoProd = {80.00, 100.50, 30.0};\r\n    TextView valortotal;\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_carrinho);\r\n\r\n        lista = findViewById(R.id.listaview);\r\n        valortotal = findViewById(R.id.total);\r\n//        Adapter adapter = new Adapter(this, produtos, imgProd, precoProd, valortotal);\r\n//        lista.setAdapter(adapter);\r\n        semInternet();\r\n//        somaTotal(precoProd);\r\n\r\n        ImageView voltarHome = findViewById(R.id.voltar);\r\n\r\n        voltarHome.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(Carrinho.this, home.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n        produtos = new ArrayList<>();\r\n        produtos.add(new Produto(\"Pão de Queijo\", R.drawable.rectangleprod,  10));\r\n        produtos.add(new Produto(\"Lasanha \", R.drawable.rectangleprod,  25));\r\n        produtos.add(new Produto(\"Picanha\", R.drawable.rectangleprod,  40));\r\n\r\n        Adapter adapter = new Adapter(this, produtos, valortotal);\r\n        lista.setAdapter(adapter);\r\n\r\n\r\n        Button btnCarrinho = findViewById(R.id.finalizar);\r\n\r\n        btnCarrinho.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                String total = valortotal.getText().toString();\r\n\r\n                Bundle bundle = new Bundle();\r\n                bundle.putString(\"TOTAL\", total);\r\n                Intent intent = new Intent(Carrinho.this, Pagamento.class);\r\n                intent.putExtras(bundle);\r\n                startActivity(intent);\r\n\r\n            }\r\n        });\r\n    }\r\n\r\n    public void semInternet() {\r\n        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);\r\n        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();\r\n        if (networkInfo == null || !networkInfo.isConnected()) {\r\n            // Abre a tela de sem internet\r\n            Intent intent = new Intent(this, telaSemInternet.class);\r\n            startActivity(intent);\r\n        }\r\n    }\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/equalityfood/Carrinho.java b/app/src/main/java/com/example/equalityfood/Carrinho.java
+--- a/app/src/main/java/com/example/equalityfood/Carrinho.java	(revision 93a278630d7a70601e4bea749e1ce8071e3e913b)
++++ b/app/src/main/java/com/example/equalityfood/Carrinho.java	(date 1699484249126)
+@@ -16,26 +16,36 @@
+ 
+ 
+ public class Carrinho extends AppCompatActivity {
+-
+-    private ArrayList<Produto> produtos;
+     private ListView lista;
+ 
+-//    String[] produtos = {"Lasanha congelada Seara", "Picanha Maturata", "Pão de Queijo"};
+-//    Integer[] imgProd = {R.drawable.rectangleprod, R.drawable.rectangleprod, R.drawable.rectangleprod};
+-//    Double[] precoProd = {80.00, 100.50, 30.0};
+     TextView valortotal;
+ 
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+         setContentView(R.layout.activity_carrinho);
++        semInternet();
++
++        Bundle bundle = getIntent().getExtras();
++        if (bundle != null){
++            double valor = bundle.getDouble("valor");
++            String descricao = bundle.getString("descricao");
++            String nome = bundle.getString("produto");
++            String validade = bundle.getString("validade");
++            String img = bundle.getString("imagem");
++
++            Produto prod = new Produto(nome, img, valor);
++//        produtos.add(prod);
++            Selecionados.Adicionar(prod);
+ 
+-        lista = findViewById(R.id.listaview);
+-        valortotal = findViewById(R.id.total);
+-//        Adapter adapter = new Adapter(this, produtos, imgProd, precoProd, valortotal);
+-//        lista.setAdapter(adapter);
+-        semInternet();
+-//        somaTotal(precoProd);
++            lista = findViewById(R.id.listaview);
++            valortotal = findViewById(R.id.total);
++            ArrayList a = Selecionados.Listar();
++
++            Adapter adapter = new Adapter(this, a, valortotal);
++            lista.setAdapter(adapter);
++        }
++
+ 
+         ImageView voltarHome = findViewById(R.id.voltar);
+ 
+@@ -47,13 +57,6 @@
+             }
+         });
+ 
+-        produtos = new ArrayList<>();
+-        produtos.add(new Produto("Pão de Queijo", R.drawable.rectangleprod,  10));
+-        produtos.add(new Produto("Lasanha ", R.drawable.rectangleprod,  25));
+-        produtos.add(new Produto("Picanha", R.drawable.rectangleprod,  40));
+-
+-        Adapter adapter = new Adapter(this, produtos, valortotal);
+-        lista.setAdapter(adapter);
+ 
+ 
+         Button btnCarrinho = findViewById(R.id.finalizar);
+Index: app/src/main/java/com/example/equalityfood/TabFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.equalityfood;\r\n\r\nimport android.os.Bundle;\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\n\r\nimport androidx.fragment.app.Fragment;\r\n\r\npublic class TabFragment extends Fragment {\r\n\r\n    @Override\r\n    public View onCreateView(LayoutInflater inflater, ViewGroup container,\r\n                             Bundle savedInstanceState){\r\n    return inflater.inflate(R.layout.fragment_tab, container, false);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/equalityfood/TabFragment.java b/app/src/main/java/com/example/equalityfood/TabFragment.java
+--- a/app/src/main/java/com/example/equalityfood/TabFragment.java	(revision 93a278630d7a70601e4bea749e1ce8071e3e913b)
++++ b/app/src/main/java/com/example/equalityfood/TabFragment.java	(date 1699495186222)
+@@ -4,14 +4,23 @@
+ import android.view.LayoutInflater;
+ import android.view.View;
+ import android.view.ViewGroup;
++import android.widget.TextView;
+ 
+ import androidx.fragment.app.Fragment;
+ 
++import java.util.ArrayList;
++
+ public class TabFragment extends Fragment {
+ 
+     @Override
+     public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                              Bundle savedInstanceState){
++//        View view = getView();
++//        TextView data = view.findViewById(R.id.data);
++//        ArrayList<InformationPedidos> a = SelecionaPedido.Listar();
++//
++//        data.setText(String.valueOf(a));
++
+     return inflater.inflate(R.layout.fragment_tab, container, false);
+     }
+ }

@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -25,6 +27,7 @@ public class ResultActivity extends AppCompatActivity {
         TextView mostResult = findViewById(R.id.textView4);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
+        semInternet();
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             ArrayList<ProdutosAPI> produtosAPI = bundle.getParcelableArrayList("ResultadoPesquisa");
@@ -40,7 +43,22 @@ public class ResultActivity extends AppCompatActivity {
         AdapterListaProdutos adapter = new AdapterListaProdutos(this, imgProd, produtos, descricao, precoProd, dataVal);
         lista.setAdapter(adapter);
 
-        semInternet();
+        lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
+                // Pass the product information to the Produtos activity
+                Bundle bundle = new Bundle();
+                bundle.putString("produto", produtos.get(i));
+                bundle.putString("descricao", descricao.get(i));
+                bundle.putDouble("valor", precoProd.get(i));
+                bundle.putString("imagem", imgProd.get(i));
+                bundle.putString("validade", dataVal.get(i));
+
+                Intent intent = new Intent(ResultActivity.this, Produtos.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
     }
     public void semInternet() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);

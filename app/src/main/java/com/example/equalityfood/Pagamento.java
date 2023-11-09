@@ -20,6 +20,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.time.LocalDateTime;
+
 public class Pagamento extends AppCompatActivity {
 
     @Override
@@ -76,10 +78,16 @@ public class Pagamento extends AppCompatActivity {
             }
         });
 
+        double finalValorTotal = valorTotal;
         btnPagar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 semInternet();
+                LocalDateTime horarioAtual = LocalDateTime.now();
+                InformationPedidos inform = new InformationPedidos(finalValorTotal, String.valueOf(horarioAtual));
+                SelecionaPedido.Adicionar(inform);
+
+                System.out.println(SelecionaPedido.Listar());
                 PopUpQrCode pop = new PopUpQrCode(Pagamento.this);
                 pop.show();
                 onDestroy();
