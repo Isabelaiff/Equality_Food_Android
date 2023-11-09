@@ -26,7 +26,7 @@
         android:layout_height="25dp"
         android:text="Legumes"
         android:textColor="@color/black"
-        android:textSize="18dp"
+        android:textSize="30dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
